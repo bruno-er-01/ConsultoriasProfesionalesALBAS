@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaDatos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,8 +13,10 @@ namespace CapaPresentacion
 {
     public partial class FormMenuRegistroUsuarios : Form
     {
-        public FormMenuRegistroUsuarios()
+        private Usuario usuarioActual;
+        public FormMenuRegistroUsuarios(Usuario usuario)
         {
+            this.usuarioActual = usuario;
             InitializeComponent();
         }
 
@@ -31,7 +34,7 @@ namespace CapaPresentacion
 
         private void btnFormAdministrador_Click(object sender, EventArgs e)
         {
-            AbrirFormEnPanel(new FormRegistrarAdministrador());
+            AbrirFormEnPanel(new FormRegistrarAdministrador(usuarioActual));
         }
 
         private void btnFormEspecialista_Click(object sender, EventArgs e)

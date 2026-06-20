@@ -15,7 +15,8 @@ namespace CapaDatos
             {
                 using (var context = new BD_ALBASEntities1())
                 {
-                    return context.Area.ToList();
+                    //obtenemos las areas activas
+                    return context.Area.Where(a => a.activo == true).ToList();
                 }
             }
             catch (Exception ex)

@@ -8,5 +8,6 @@ namespace CapaNegocios
 {
     internal class NReporte
     {
+        
     }
 }

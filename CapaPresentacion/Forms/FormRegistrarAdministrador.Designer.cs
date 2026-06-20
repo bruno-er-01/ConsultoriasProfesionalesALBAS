@@ -49,10 +49,11 @@
             this.btnRegistrar = new System.Windows.Forms.Button();
             this.dgUsuarios = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtDireccion = new System.Windows.Forms.TextBox();
+            this.tbDireccion = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.lbGenero = new System.Windows.Forms.Label();
-            this.cbActividad = new System.Windows.Forms.ComboBox();
+            this.tbEstado = new System.Windows.Forms.Label();
+            this.cbEstado = new System.Windows.Forms.ComboBox();
+            this.btnEliminar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgUsuarios)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,13 +62,14 @@
             this.btnListar.BackColor = System.Drawing.Color.Maroon;
             this.btnListar.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListar.ForeColor = System.Drawing.Color.White;
-            this.btnListar.Location = new System.Drawing.Point(425, 210);
+            this.btnListar.Location = new System.Drawing.Point(549, 210);
             this.btnListar.Margin = new System.Windows.Forms.Padding(2);
             this.btnListar.Name = "btnListar";
             this.btnListar.Size = new System.Drawing.Size(120, 43);
             this.btnListar.TabIndex = 112;
             this.btnListar.Text = "Listar";
             this.btnListar.UseVisualStyleBackColor = false;
+            this.btnListar.Click += new System.EventHandler(this.btnListar_Click);
             // 
             // tbCorreo
             // 
@@ -227,6 +229,7 @@
             this.btnActualizarDatos.TabIndex = 92;
             this.btnActualizarDatos.Text = "Actualizar Datos";
             this.btnActualizarDatos.UseVisualStyleBackColor = false;
+            this.btnActualizarDatos.Click += new System.EventHandler(this.btnActualizarDatos_Click);
             // 
             // btnBuscar
             // 
@@ -240,6 +243,7 @@
             this.btnBuscar.TabIndex = 91;
             this.btnBuscar.Text = "Buscar username";
             this.btnBuscar.UseVisualStyleBackColor = false;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // btnRegistrar
             // 
@@ -253,6 +257,7 @@
             this.btnRegistrar.TabIndex = 90;
             this.btnRegistrar.Text = "Registrar";
             this.btnRegistrar.UseVisualStyleBackColor = false;
+            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 
             // dgUsuarios
             // 
@@ -263,6 +268,7 @@
             this.dgUsuarios.RowHeadersWidth = 51;
             this.dgUsuarios.Size = new System.Drawing.Size(807, 258);
             this.dgUsuarios.TabIndex = 89;
+            this.dgUsuarios.SelectionChanged += new System.EventHandler(this.dgUsuarios_SelectionChanged);
             // 
             // label1
             // 
@@ -276,13 +282,13 @@
             this.label1.TabIndex = 87;
             this.label1.Text = "Registrar o buscar Administrador";
             // 
-            // txtDireccion
+            // tbDireccion
             // 
-            this.txtDireccion.Location = new System.Drawing.Point(566, 94);
-            this.txtDireccion.Margin = new System.Windows.Forms.Padding(2);
-            this.txtDireccion.Name = "txtDireccion";
-            this.txtDireccion.Size = new System.Drawing.Size(113, 20);
-            this.txtDireccion.TabIndex = 113;
+            this.tbDireccion.Location = new System.Drawing.Point(566, 94);
+            this.tbDireccion.Margin = new System.Windows.Forms.Padding(2);
+            this.tbDireccion.Name = "tbDireccion";
+            this.tbDireccion.Size = new System.Drawing.Size(113, 20);
+            this.tbDireccion.TabIndex = 113;
             // 
             // label2
             // 
@@ -295,38 +301,53 @@
             this.label2.TabIndex = 114;
             this.label2.Text = "Dirección: ";
             // 
-            // lbGenero
+            // tbEstado
             // 
-            this.lbGenero.AutoSize = true;
-            this.lbGenero.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbGenero.Location = new System.Drawing.Point(480, 128);
-            this.lbGenero.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lbGenero.Name = "lbGenero";
-            this.lbGenero.Size = new System.Drawing.Size(81, 21);
-            this.lbGenero.TabIndex = 115;
-            this.lbGenero.Text = "Actividad: ";
+            this.tbEstado.AutoSize = true;
+            this.tbEstado.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbEstado.Location = new System.Drawing.Point(480, 128);
+            this.tbEstado.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.tbEstado.Name = "tbEstado";
+            this.tbEstado.Size = new System.Drawing.Size(81, 21);
+            this.tbEstado.TabIndex = 115;
+            this.tbEstado.Text = "Actividad: ";
             // 
-            // cbActividad
+            // cbEstado
             // 
-            this.cbActividad.FormattingEnabled = true;
-            this.cbActividad.Items.AddRange(new object[] {
-            "Activo",
-            "Inactivo"});
-            this.cbActividad.Location = new System.Drawing.Point(566, 128);
-            this.cbActividad.Margin = new System.Windows.Forms.Padding(2);
-            this.cbActividad.Name = "cbActividad";
-            this.cbActividad.Size = new System.Drawing.Size(113, 21);
-            this.cbActividad.TabIndex = 116;
+            this.cbEstado.FormattingEnabled = true;
+            this.cbEstado.Items.AddRange(new object[] {
+            "0",
+            "1"});
+            this.cbEstado.Location = new System.Drawing.Point(566, 128);
+            this.cbEstado.Margin = new System.Windows.Forms.Padding(2);
+            this.cbEstado.Name = "cbEstado";
+            this.cbEstado.Size = new System.Drawing.Size(113, 21);
+            this.cbEstado.TabIndex = 116;
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.BackColor = System.Drawing.Color.Maroon;
+            this.btnEliminar.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminar.ForeColor = System.Drawing.Color.White;
+            this.btnEliminar.Location = new System.Drawing.Point(425, 210);
+            this.btnEliminar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(120, 43);
+            this.btnEliminar.TabIndex = 117;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = false;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // FormRegistrarAdministrador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(855, 526);
-            this.Controls.Add(this.lbGenero);
-            this.Controls.Add(this.cbActividad);
+            this.Controls.Add(this.btnEliminar);
+            this.Controls.Add(this.tbEstado);
+            this.Controls.Add(this.cbEstado);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtDireccion);
+            this.Controls.Add(this.tbDireccion);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgUsuarios);
             this.Controls.Add(this.btnRegistrar);
@@ -379,9 +400,10 @@
         private System.Windows.Forms.Button btnRegistrar;
         private System.Windows.Forms.DataGridView dgUsuarios;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtDireccion;
+        private System.Windows.Forms.TextBox tbDireccion;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label lbGenero;
-        private System.Windows.Forms.ComboBox cbActividad;
+        private System.Windows.Forms.Label tbEstado;
+        private System.Windows.Forms.ComboBox cbEstado;
+        private System.Windows.Forms.Button btnEliminar;
     }
 }

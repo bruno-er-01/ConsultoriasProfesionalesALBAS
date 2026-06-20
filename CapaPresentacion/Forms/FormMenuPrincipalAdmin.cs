@@ -42,7 +42,7 @@ namespace CapaPresentacion
 
         private void pnlUsuarios_Click(object sender, EventArgs e)
         {
-            AbrirFormEnPanel(new FormMenuRegistroUsuarios());
+            AbrirFormEnPanel(new FormMenuRegistroUsuarios(usuarioActual));
         }
 
         private void pnlClientes_Click(object sender, EventArgs e)

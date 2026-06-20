@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace CapaPresentacion
 {
-    public partial class FormDashBoardIngresoCitas : Form
+    public partial class FormDashBoardReporteAreas : Form
     {
-        public FormDashBoardIngresoCitas()
+        public FormDashBoardReporteAreas()
         {
             InitializeComponent();
+        }
+
+        private void FormDashBoardReporteAreas_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

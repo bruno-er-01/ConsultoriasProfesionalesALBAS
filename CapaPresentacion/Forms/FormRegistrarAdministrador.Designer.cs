@@ -61,38 +61,37 @@
             this.btnListar.BackColor = System.Drawing.Color.Maroon;
             this.btnListar.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListar.ForeColor = System.Drawing.Color.White;
-            this.btnListar.Location = new System.Drawing.Point(425, 210);
-            this.btnListar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnListar.Location = new System.Drawing.Point(567, 258);
+            this.btnListar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnListar.Name = "btnListar";
-            this.btnListar.Size = new System.Drawing.Size(120, 43);
+            this.btnListar.Size = new System.Drawing.Size(160, 53);
             this.btnListar.TabIndex = 112;
             this.btnListar.Text = "Listar";
             this.btnListar.UseVisualStyleBackColor = false;
             // 
             // tbCorreo
             // 
-            this.tbCorreo.Location = new System.Drawing.Point(135, 62);
-            this.tbCorreo.Margin = new System.Windows.Forms.Padding(2);
+            this.tbCorreo.Location = new System.Drawing.Point(180, 76);
+            this.tbCorreo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbCorreo.Name = "tbCorreo";
-            this.tbCorreo.Size = new System.Drawing.Size(113, 20);
+            this.tbCorreo.Size = new System.Drawing.Size(149, 22);
             this.tbCorreo.TabIndex = 110;
             // 
             // tbTelefono
             // 
-            this.tbTelefono.Location = new System.Drawing.Point(566, 62);
-            this.tbTelefono.Margin = new System.Windows.Forms.Padding(2);
+            this.tbTelefono.Location = new System.Drawing.Point(755, 76);
+            this.tbTelefono.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbTelefono.Name = "tbTelefono";
-            this.tbTelefono.Size = new System.Drawing.Size(113, 20);
+            this.tbTelefono.Size = new System.Drawing.Size(149, 22);
             this.tbTelefono.TabIndex = 109;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(66, 62);
-            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.Location = new System.Drawing.Point(88, 76);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(65, 21);
+            this.label9.Size = new System.Drawing.Size(81, 28);
             this.label9.TabIndex = 107;
             this.label9.Text = "Correo: ";
             // 
@@ -100,61 +99,59 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(492, 62);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Location = new System.Drawing.Point(656, 76);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(77, 21);
+            this.label8.Size = new System.Drawing.Size(97, 28);
             this.label8.TabIndex = 106;
             this.label8.Text = "Télefono: ";
             // 
             // tbDNI
             // 
-            this.tbDNI.Location = new System.Drawing.Point(347, 131);
-            this.tbDNI.Margin = new System.Windows.Forms.Padding(2);
+            this.tbDNI.Location = new System.Drawing.Point(463, 161);
+            this.tbDNI.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbDNI.Name = "tbDNI";
-            this.tbDNI.Size = new System.Drawing.Size(113, 20);
+            this.tbDNI.Size = new System.Drawing.Size(149, 22);
             this.tbDNI.TabIndex = 105;
             // 
             // tbApellido
             // 
-            this.tbApellido.Location = new System.Drawing.Point(347, 95);
-            this.tbApellido.Margin = new System.Windows.Forms.Padding(2);
+            this.tbApellido.Location = new System.Drawing.Point(463, 117);
+            this.tbApellido.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbApellido.Name = "tbApellido";
-            this.tbApellido.Size = new System.Drawing.Size(113, 20);
+            this.tbApellido.Size = new System.Drawing.Size(149, 22);
             this.tbApellido.TabIndex = 104;
             // 
             // tbNombre
             // 
-            this.tbNombre.Location = new System.Drawing.Point(347, 62);
-            this.tbNombre.Margin = new System.Windows.Forms.Padding(2);
+            this.tbNombre.Location = new System.Drawing.Point(463, 76);
+            this.tbNombre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbNombre.Name = "tbNombre";
-            this.tbNombre.Size = new System.Drawing.Size(113, 20);
+            this.tbNombre.Size = new System.Drawing.Size(149, 22);
             this.tbNombre.TabIndex = 103;
             // 
             // tbContrasena
             // 
-            this.tbContrasena.Location = new System.Drawing.Point(135, 131);
-            this.tbContrasena.Margin = new System.Windows.Forms.Padding(2);
+            this.tbContrasena.Location = new System.Drawing.Point(180, 161);
+            this.tbContrasena.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbContrasena.Name = "tbContrasena";
-            this.tbContrasena.Size = new System.Drawing.Size(113, 20);
+            this.tbContrasena.Size = new System.Drawing.Size(149, 22);
             this.tbContrasena.TabIndex = 102;
             // 
             // tbUsername
             // 
-            this.tbUsername.Location = new System.Drawing.Point(135, 97);
-            this.tbUsername.Margin = new System.Windows.Forms.Padding(2);
+            this.tbUsername.Location = new System.Drawing.Point(180, 119);
+            this.tbUsername.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbUsername.Name = "tbUsername";
-            this.tbUsername.Size = new System.Drawing.Size(113, 20);
+            this.tbUsername.Size = new System.Drawing.Size(149, 22);
             this.tbUsername.TabIndex = 101;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(35, 128);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Location = new System.Drawing.Point(47, 158);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(96, 21);
+            this.label7.Size = new System.Drawing.Size(119, 28);
             this.label7.TabIndex = 99;
             this.label7.Text = "Contraseña: ";
             // 
@@ -162,10 +159,9 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(299, 128);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Location = new System.Drawing.Point(399, 158);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(44, 21);
+            this.label6.Size = new System.Drawing.Size(55, 28);
             this.label6.TabIndex = 98;
             this.label6.Text = "DNI: ";
             // 
@@ -173,10 +169,9 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(276, 95);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(368, 117);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(74, 21);
+            this.label5.Size = new System.Drawing.Size(95, 28);
             this.label5.TabIndex = 97;
             this.label5.Text = "Apellido: ";
             // 
@@ -184,10 +179,9 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(268, 59);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(357, 73);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(75, 21);
+            this.label4.Size = new System.Drawing.Size(94, 28);
             this.label4.TabIndex = 96;
             this.label4.Text = "Nombre: ";
             // 
@@ -195,10 +189,9 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(43, 94);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(57, 116);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(88, 21);
+            this.label3.Size = new System.Drawing.Size(108, 28);
             this.label3.TabIndex = 95;
             this.label3.Text = "Username: ";
             // 
@@ -207,10 +200,10 @@
             this.btnExportarExcel.BackColor = System.Drawing.Color.Maroon;
             this.btnExportarExcel.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExportarExcel.ForeColor = System.Drawing.Color.White;
-            this.btnExportarExcel.Location = new System.Drawing.Point(718, 210);
-            this.btnExportarExcel.Margin = new System.Windows.Forms.Padding(2);
+            this.btnExportarExcel.Location = new System.Drawing.Point(957, 258);
+            this.btnExportarExcel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnExportarExcel.Name = "btnExportarExcel";
-            this.btnExportarExcel.Size = new System.Drawing.Size(120, 43);
+            this.btnExportarExcel.Size = new System.Drawing.Size(160, 53);
             this.btnExportarExcel.TabIndex = 93;
             this.btnExportarExcel.Text = "Exportar Excel";
             this.btnExportarExcel.UseVisualStyleBackColor = false;
@@ -220,10 +213,10 @@
             this.btnActualizarDatos.BackColor = System.Drawing.Color.Maroon;
             this.btnActualizarDatos.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnActualizarDatos.ForeColor = System.Drawing.Color.White;
-            this.btnActualizarDatos.Location = new System.Drawing.Point(287, 210);
-            this.btnActualizarDatos.Margin = new System.Windows.Forms.Padding(2);
+            this.btnActualizarDatos.Location = new System.Drawing.Point(383, 258);
+            this.btnActualizarDatos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnActualizarDatos.Name = "btnActualizarDatos";
-            this.btnActualizarDatos.Size = new System.Drawing.Size(134, 43);
+            this.btnActualizarDatos.Size = new System.Drawing.Size(179, 53);
             this.btnActualizarDatos.TabIndex = 92;
             this.btnActualizarDatos.Text = "Actualizar Datos";
             this.btnActualizarDatos.UseVisualStyleBackColor = false;
@@ -233,10 +226,10 @@
             this.btnBuscar.BackColor = System.Drawing.Color.Maroon;
             this.btnBuscar.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuscar.ForeColor = System.Drawing.Color.White;
-            this.btnBuscar.Location = new System.Drawing.Point(153, 210);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnBuscar.Location = new System.Drawing.Point(204, 258);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(130, 43);
+            this.btnBuscar.Size = new System.Drawing.Size(173, 53);
             this.btnBuscar.TabIndex = 91;
             this.btnBuscar.Text = "Buscar username";
             this.btnBuscar.UseVisualStyleBackColor = false;
@@ -246,22 +239,23 @@
             this.btnRegistrar.BackColor = System.Drawing.Color.Maroon;
             this.btnRegistrar.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegistrar.ForeColor = System.Drawing.Color.White;
-            this.btnRegistrar.Location = new System.Drawing.Point(29, 210);
-            this.btnRegistrar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnRegistrar.Location = new System.Drawing.Point(39, 258);
+            this.btnRegistrar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRegistrar.Name = "btnRegistrar";
-            this.btnRegistrar.Size = new System.Drawing.Size(120, 43);
+            this.btnRegistrar.Size = new System.Drawing.Size(160, 53);
             this.btnRegistrar.TabIndex = 90;
             this.btnRegistrar.Text = "Registrar";
             this.btnRegistrar.UseVisualStyleBackColor = false;
+            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 
             // dgUsuarios
             // 
             this.dgUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgUsuarios.Location = new System.Drawing.Point(29, 257);
-            this.dgUsuarios.Margin = new System.Windows.Forms.Padding(2);
+            this.dgUsuarios.Location = new System.Drawing.Point(39, 316);
+            this.dgUsuarios.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgUsuarios.Name = "dgUsuarios";
             this.dgUsuarios.RowHeadersWidth = 51;
-            this.dgUsuarios.Size = new System.Drawing.Size(807, 258);
+            this.dgUsuarios.Size = new System.Drawing.Size(1076, 318);
             this.dgUsuarios.TabIndex = 89;
             // 
             // label1
@@ -269,29 +263,27 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Leelawadee UI", 19.75F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.Maroon;
-            this.label1.Location = new System.Drawing.Point(40, 9);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(53, 11);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(444, 37);
+            this.label1.Size = new System.Drawing.Size(533, 45);
             this.label1.TabIndex = 87;
             this.label1.Text = "Registrar o buscar Administrador";
             // 
             // txtDireccion
             // 
-            this.txtDireccion.Location = new System.Drawing.Point(566, 94);
-            this.txtDireccion.Margin = new System.Windows.Forms.Padding(2);
+            this.txtDireccion.Location = new System.Drawing.Point(755, 116);
+            this.txtDireccion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtDireccion.Name = "txtDireccion";
-            this.txtDireccion.Size = new System.Drawing.Size(113, 20);
+            this.txtDireccion.Size = new System.Drawing.Size(149, 22);
             this.txtDireccion.TabIndex = 113;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(480, 94);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(640, 116);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(82, 21);
+            this.label2.Size = new System.Drawing.Size(103, 28);
             this.label2.TabIndex = 114;
             this.label2.Text = "Dirección: ";
             // 
@@ -299,10 +291,9 @@
             // 
             this.lbGenero.AutoSize = true;
             this.lbGenero.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbGenero.Location = new System.Drawing.Point(480, 128);
-            this.lbGenero.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbGenero.Location = new System.Drawing.Point(640, 158);
             this.lbGenero.Name = "lbGenero";
-            this.lbGenero.Size = new System.Drawing.Size(81, 21);
+            this.lbGenero.Size = new System.Drawing.Size(104, 28);
             this.lbGenero.TabIndex = 115;
             this.lbGenero.Text = "Actividad: ";
             // 
@@ -312,17 +303,17 @@
             this.cbActividad.Items.AddRange(new object[] {
             "Activo",
             "Inactivo"});
-            this.cbActividad.Location = new System.Drawing.Point(566, 128);
-            this.cbActividad.Margin = new System.Windows.Forms.Padding(2);
+            this.cbActividad.Location = new System.Drawing.Point(755, 158);
+            this.cbActividad.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbActividad.Name = "cbActividad";
-            this.cbActividad.Size = new System.Drawing.Size(113, 21);
+            this.cbActividad.Size = new System.Drawing.Size(149, 24);
             this.cbActividad.TabIndex = 116;
             // 
             // FormRegistrarAdministrador
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(855, 526);
+            this.ClientSize = new System.Drawing.Size(1140, 647);
             this.Controls.Add(this.lbGenero);
             this.Controls.Add(this.cbActividad);
             this.Controls.Add(this.label2);
@@ -348,7 +339,7 @@
             this.Controls.Add(this.tbContrasena);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.tbUsername);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormRegistrarAdministrador";
             this.Text = "FormRegistrarAdministrador";
             ((System.ComponentModel.ISupportInitialize)(this.dgUsuarios)).EndInit();

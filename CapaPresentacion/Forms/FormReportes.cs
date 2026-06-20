@@ -36,5 +36,11 @@ namespace CapaPresentacion
         {
             AbrirFormEnPanel(new FormDashBoardCitas());
         }
+
+        private void btnReporteAreasCasos_Click(object sender, EventArgs e)
+        {
+           FormDashBoardReporteAreas form =  new FormDashBoardReporteAreas();
+           form.ShowDialog();
+        }
     }
 }

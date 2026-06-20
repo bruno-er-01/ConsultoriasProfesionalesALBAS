@@ -1,0 +1,711 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BD_ALBASModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Administrador">
+          <Key>
+            <PropertyRef Name="idAdministrador" />
+          </Key>
+          <Property Name="idAdministrador" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Area">
+          <Key>
+            <PropertyRef Name="idArea" />
+          </Key>
+          <Property Name="idArea" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="200" />
+          <Property Name="costo" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Caso">
+          <Key>
+            <PropertyRef Name="nroCaso" />
+            <PropertyRef Name="idCliente" />
+          </Key>
+          <Property Name="nroCaso" Type="int" Nullable="false" />
+          <Property Name="idCliente" Type="int" Nullable="false" />
+          <Property Name="idEspecialista" Type="int" Nullable="false" />
+          <Property Name="idAdministrador" Type="int" Nullable="false" />
+          <Property Name="titulo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="200" />
+          <Property Name="fechaHoraInicio" Type="datetime" Nullable="false" />
+          <Property Name="fechaHoraFin" Type="datetime" />
+          <Property Name="estado" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="documento" Type="varchar" MaxLength="255" />
+          <Property Name="createdBy" Type="int" />
+          <Property Name="createdAt" Type="datetime" Nullable="false" />
+          <Property Name="modifiedBy" Type="int" />
+          <Property Name="modifiedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Cita">
+          <Key>
+            <PropertyRef Name="idCita" />
+          </Key>
+          <Property Name="idCita" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nroCaso" Type="int" Nullable="false" />
+          <Property Name="idCliente" Type="int" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="horaInicio" Type="time" Precision="7" Nullable="false" />
+          <Property Name="horaFin" Type="time" Precision="7" Nullable="false" />
+          <Property Name="estado" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="observacion" Type="varchar" MaxLength="300" />
+          <Property Name="modalidad" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="confirmacionAsistencia" Type="bit" Nullable="false" />
+          <Property Name="createdBy" Type="int" />
+          <Property Name="createdAt" Type="datetime" Nullable="false" />
+          <Property Name="modifiedBy" Type="int" />
+          <Property Name="modifiedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="idCliente" />
+          </Key>
+          <Property Name="idCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="apellido" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="dni" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="correo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="telefono" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="direccion" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="genero" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="activo" Type="bit" Nullable="false" />
+          <Property Name="createdBy" Type="int" />
+          <Property Name="createdAt" Type="datetime" Nullable="false" />
+          <Property Name="modifiedBy" Type="int" />
+          <Property Name="modifiedAt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Especialista">
+          <Key>
+            <PropertyRef Name="idEspecialista" />
+          </Key>
+          <Property Name="idEspecialista" Type="int" Nullable="false" />
+          <Property Name="idArea" Type="int" Nullable="false" />
+          <Property Name="disponible" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reporte">
+          <Key>
+            <PropertyRef Name="idReporte" />
+          </Key>
+          <Property Name="idReporte" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idAdministrador" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="tipoGrafico" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="fechaGenerada" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="apellido" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="dni" Type="varchar" MaxLength="8" Nullable="false" />
+          <Property Name="telefono" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="correo" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="rol" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="activo" Type="bit" Nullable="false" />
+          <Property Name="direccion" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="createdBy" Type="int" />
+          <Property Name="createdAt" Type="datetime" Nullable="false" />
+          <Property Name="modifiedBy" Type="int" />
+          <Property Name="modifiedAt" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_Administrador_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Administrador" Type="Self.Administrador" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Administrador">
+              <PropertyRef Name="idAdministrador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Caso_Administrador">
+          <End Role="Administrador" Type="Self.Administrador" Multiplicity="1" />
+          <End Role="Caso" Type="Self.Caso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Administrador">
+              <PropertyRef Name="idAdministrador" />
+            </Principal>
+            <Dependent Role="Caso">
+              <PropertyRef Name="idAdministrador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Caso_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Caso" Type="Self.Caso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="Caso">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Caso_Especialista">
+          <End Role="Especialista" Type="Self.Especialista" Multiplicity="1" />
+          <End Role="Caso" Type="Self.Caso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Especialista">
+              <PropertyRef Name="idEspecialista" />
+            </Principal>
+            <Dependent Role="Caso">
+              <PropertyRef Name="idEspecialista" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cita_Caso">
+          <End Role="Caso" Type="Self.Caso" Multiplicity="1" />
+          <End Role="Cita" Type="Self.Cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Caso">
+              <PropertyRef Name="nroCaso" />
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="Cita">
+              <PropertyRef Name="nroCaso" />
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Especialista_Area">
+          <End Role="Area" Type="Self.Area" Multiplicity="1" />
+          <End Role="Especialista" Type="Self.Especialista" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="idArea" />
+            </Principal>
+            <Dependent Role="Especialista">
+              <PropertyRef Name="idArea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Especialista_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Especialista" Type="Self.Especialista" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Especialista">
+              <PropertyRef Name="idEspecialista" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reporte_Administrador">
+          <End Role="Administrador" Type="Self.Administrador" Multiplicity="1" />
+          <End Role="Reporte" Type="Self.Reporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Administrador">
+              <PropertyRef Name="idAdministrador" />
+            </Principal>
+            <Dependent Role="Reporte">
+              <PropertyRef Name="idAdministrador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BD_ALBASModelStoreContainer">
+          <EntitySet Name="Administrador" EntityType="Self.Administrador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Area" EntityType="Self.Area" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Caso" EntityType="Self.Caso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cita" EntityType="Self.Cita" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Especialista" EntityType="Self.Especialista" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reporte" EntityType="Self.Reporte" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Administrador_Usuario" Association="Self.FK_Administrador_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Administrador" EntitySet="Administrador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Caso_Administrador" Association="Self.FK_Caso_Administrador">
+            <End Role="Administrador" EntitySet="Administrador" />
+            <End Role="Caso" EntitySet="Caso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Caso_Cliente" Association="Self.FK_Caso_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Caso" EntitySet="Caso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Caso_Especialista" Association="Self.FK_Caso_Especialista">
+            <End Role="Especialista" EntitySet="Especialista" />
+            <End Role="Caso" EntitySet="Caso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cita_Caso" Association="Self.FK_Cita_Caso">
+            <End Role="Caso" EntitySet="Caso" />
+            <End Role="Cita" EntitySet="Cita" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Especialista_Area" Association="Self.FK_Especialista_Area">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="Especialista" EntitySet="Especialista" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Especialista_Usuario" Association="Self.FK_Especialista_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Especialista" EntitySet="Especialista" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reporte_Administrador" Association="Self.FK_Reporte_Administrador">
+            <End Role="Administrador" EntitySet="Administrador" />
+            <End Role="Reporte" EntitySet="Reporte" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BD_ALBASModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Administrador">
+          <Key>
+            <PropertyRef Name="idAdministrador" />
+          </Key>
+          <Property Name="idAdministrador" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Administrador_Usuario" FromRole="Administrador" ToRole="Usuario" />
+          <NavigationProperty Name="Caso" Relationship="Self.FK_Caso_Administrador" FromRole="Administrador" ToRole="Caso" />
+          <NavigationProperty Name="Reporte" Relationship="Self.FK_Reporte_Administrador" FromRole="Administrador" ToRole="Reporte" />
+        </EntityType>
+        <EntityType Name="Area">
+          <Key>
+            <PropertyRef Name="idArea" />
+          </Key>
+          <Property Name="idArea" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="costo" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Especialista" Relationship="Self.FK_Especialista_Area" FromRole="Area" ToRole="Especialista" />
+        </EntityType>
+        <EntityType Name="Caso">
+          <Key>
+            <PropertyRef Name="nroCaso" />
+            <PropertyRef Name="idCliente" />
+          </Key>
+          <Property Name="nroCaso" Type="Int32" Nullable="false" />
+          <Property Name="idCliente" Type="Int32" Nullable="false" />
+          <Property Name="idEspecialista" Type="Int32" Nullable="false" />
+          <Property Name="idAdministrador" Type="Int32" Nullable="false" />
+          <Property Name="titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="fechaHoraInicio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="fechaHoraFin" Type="DateTime" Precision="3" />
+          <Property Name="estado" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="documento" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="createdBy" Type="Int32" />
+          <Property Name="createdAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modifiedBy" Type="Int32" />
+          <Property Name="modifiedAt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Administrador" Relationship="Self.FK_Caso_Administrador" FromRole="Caso" ToRole="Administrador" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_Caso_Cliente" FromRole="Caso" ToRole="Cliente" />
+          <NavigationProperty Name="Especialista" Relationship="Self.FK_Caso_Especialista" FromRole="Caso" ToRole="Especialista" />
+          <NavigationProperty Name="Cita" Relationship="Self.FK_Cita_Caso" FromRole="Caso" ToRole="Cita" />
+        </EntityType>
+        <EntityType Name="Cita">
+          <Key>
+            <PropertyRef Name="idCita" />
+          </Key>
+          <Property Name="idCita" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nroCaso" Type="Int32" Nullable="false" />
+          <Property Name="idCliente" Type="Int32" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="horaInicio" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="horaFin" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="estado" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="observacion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="modalidad" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="confirmacionAsistencia" Type="Boolean" Nullable="false" />
+          <Property Name="createdBy" Type="Int32" />
+          <Property Name="createdAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modifiedBy" Type="Int32" />
+          <Property Name="modifiedAt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Caso" Relationship="Self.FK_Cita_Caso" FromRole="Cita" ToRole="Caso" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="idCliente" />
+          </Key>
+          <Property Name="idCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dni" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="direccion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="genero" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <Property Name="createdBy" Type="Int32" />
+          <Property Name="createdAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modifiedBy" Type="Int32" />
+          <Property Name="modifiedAt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Caso" Relationship="Self.FK_Caso_Cliente" FromRole="Cliente" ToRole="Caso" />
+        </EntityType>
+        <EntityType Name="Especialista">
+          <Key>
+            <PropertyRef Name="idEspecialista" />
+          </Key>
+          <Property Name="idEspecialista" Type="Int32" Nullable="false" />
+          <Property Name="idArea" Type="Int32" Nullable="false" />
+          <Property Name="disponible" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Area" Relationship="Self.FK_Especialista_Area" FromRole="Especialista" ToRole="Area" />
+          <NavigationProperty Name="Caso" Relationship="Self.FK_Caso_Especialista" FromRole="Especialista" ToRole="Caso" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Especialista_Usuario" FromRole="Especialista" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Reporte">
+          <Key>
+            <PropertyRef Name="idReporte" />
+          </Key>
+          <Property Name="idReporte" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idAdministrador" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tipoGrafico" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechaGenerada" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Administrador" Relationship="Self.FK_Reporte_Administrador" FromRole="Reporte" ToRole="Administrador" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dni" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="correo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="rol" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <Property Name="direccion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="createdBy" Type="Int32" />
+          <Property Name="createdAt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modifiedBy" Type="Int32" />
+          <Property Name="modifiedAt" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Administrador" Relationship="Self.FK_Administrador_Usuario" FromRole="Usuario" ToRole="Administrador" />
+          <NavigationProperty Name="Especialista" Relationship="Self.FK_Especialista_Usuario" FromRole="Usuario" ToRole="Especialista" />
+        </EntityType>
+        <Association Name="FK_Administrador_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Administrador" Type="Self.Administrador" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Administrador">
+              <PropertyRef Name="idAdministrador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Caso_Administrador">
+          <End Role="Administrador" Type="Self.Administrador" Multiplicity="1" />
+          <End Role="Caso" Type="Self.Caso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Administrador">
+              <PropertyRef Name="idAdministrador" />
+            </Principal>
+            <Dependent Role="Caso">
+              <PropertyRef Name="idAdministrador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reporte_Administrador">
+          <End Role="Administrador" Type="Self.Administrador" Multiplicity="1" />
+          <End Role="Reporte" Type="Self.Reporte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Administrador">
+              <PropertyRef Name="idAdministrador" />
+            </Principal>
+            <Dependent Role="Reporte">
+              <PropertyRef Name="idAdministrador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Especialista_Area">
+          <End Role="Area" Type="Self.Area" Multiplicity="1" />
+          <End Role="Especialista" Type="Self.Especialista" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="idArea" />
+            </Principal>
+            <Dependent Role="Especialista">
+              <PropertyRef Name="idArea" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Caso_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Caso" Type="Self.Caso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="Caso">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Caso_Especialista">
+          <End Role="Especialista" Type="Self.Especialista" Multiplicity="1" />
+          <End Role="Caso" Type="Self.Caso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Especialista">
+              <PropertyRef Name="idEspecialista" />
+            </Principal>
+            <Dependent Role="Caso">
+              <PropertyRef Name="idEspecialista" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cita_Caso">
+          <End Role="Caso" Type="Self.Caso" Multiplicity="1" />
+          <End Role="Cita" Type="Self.Cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Caso">
+              <PropertyRef Name="nroCaso" />
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="Cita">
+              <PropertyRef Name="nroCaso" />
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Especialista_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Especialista" Type="Self.Especialista" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Especialista">
+              <PropertyRef Name="idEspecialista" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BD_ALBASEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Administrador" EntityType="Self.Administrador" />
+          <EntitySet Name="Area" EntityType="Self.Area" />
+          <EntitySet Name="Caso" EntityType="Self.Caso" />
+          <EntitySet Name="Cita" EntityType="Self.Cita" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+          <EntitySet Name="Especialista" EntityType="Self.Especialista" />
+          <EntitySet Name="Reporte" EntityType="Self.Reporte" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <AssociationSet Name="FK_Administrador_Usuario" Association="Self.FK_Administrador_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Administrador" EntitySet="Administrador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Caso_Administrador" Association="Self.FK_Caso_Administrador">
+            <End Role="Administrador" EntitySet="Administrador" />
+            <End Role="Caso" EntitySet="Caso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reporte_Administrador" Association="Self.FK_Reporte_Administrador">
+            <End Role="Administrador" EntitySet="Administrador" />
+            <End Role="Reporte" EntitySet="Reporte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Especialista_Area" Association="Self.FK_Especialista_Area">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="Especialista" EntitySet="Especialista" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Caso_Cliente" Association="Self.FK_Caso_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Caso" EntitySet="Caso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Caso_Especialista" Association="Self.FK_Caso_Especialista">
+            <End Role="Especialista" EntitySet="Especialista" />
+            <End Role="Caso" EntitySet="Caso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cita_Caso" Association="Self.FK_Cita_Caso">
+            <End Role="Caso" EntitySet="Caso" />
+            <End Role="Cita" EntitySet="Cita" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Especialista_Usuario" Association="Self.FK_Especialista_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Especialista" EntitySet="Especialista" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BD_ALBASModelStoreContainer" CdmEntityContainer="BD_ALBASEntities1">
+          <EntitySetMapping Name="Administrador">
+            <EntityTypeMapping TypeName="BD_ALBASModel.Administrador">
+              <MappingFragment StoreEntitySet="Administrador">
+                <ScalarProperty Name="idAdministrador" ColumnName="idAdministrador" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Area">
+            <EntityTypeMapping TypeName="BD_ALBASModel.Area">
+              <MappingFragment StoreEntitySet="Area">
+                <ScalarProperty Name="idArea" ColumnName="idArea" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="costo" ColumnName="costo" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Caso">
+            <EntityTypeMapping TypeName="BD_ALBASModel.Caso">
+              <MappingFragment StoreEntitySet="Caso">
+                <ScalarProperty Name="nroCaso" ColumnName="nroCaso" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="idEspecialista" ColumnName="idEspecialista" />
+                <ScalarProperty Name="idAdministrador" ColumnName="idAdministrador" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="fechaHoraInicio" ColumnName="fechaHoraInicio" />
+                <ScalarProperty Name="fechaHoraFin" ColumnName="fechaHoraFin" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="documento" ColumnName="documento" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedAt" ColumnName="modifiedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cita">
+            <EntityTypeMapping TypeName="BD_ALBASModel.Cita">
+              <MappingFragment StoreEntitySet="Cita">
+                <ScalarProperty Name="idCita" ColumnName="idCita" />
+                <ScalarProperty Name="nroCaso" ColumnName="nroCaso" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="horaInicio" ColumnName="horaInicio" />
+                <ScalarProperty Name="horaFin" ColumnName="horaFin" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="observacion" ColumnName="observacion" />
+                <ScalarProperty Name="modalidad" ColumnName="modalidad" />
+                <ScalarProperty Name="confirmacionAsistencia" ColumnName="confirmacionAsistencia" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedAt" ColumnName="modifiedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="BD_ALBASModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="dni" ColumnName="dni" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="genero" ColumnName="genero" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedAt" ColumnName="modifiedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Especialista">
+            <EntityTypeMapping TypeName="BD_ALBASModel.Especialista">
+              <MappingFragment StoreEntitySet="Especialista">
+                <ScalarProperty Name="idEspecialista" ColumnName="idEspecialista" />
+                <ScalarProperty Name="idArea" ColumnName="idArea" />
+                <ScalarProperty Name="disponible" ColumnName="disponible" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reporte">
+            <EntityTypeMapping TypeName="BD_ALBASModel.Reporte">
+              <MappingFragment StoreEntitySet="Reporte">
+                <ScalarProperty Name="idReporte" ColumnName="idReporte" />
+                <ScalarProperty Name="idAdministrador" ColumnName="idAdministrador" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="tipoGrafico" ColumnName="tipoGrafico" />
+                <ScalarProperty Name="fechaGenerada" ColumnName="fechaGenerada" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="BD_ALBASModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="BD_ALBASModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="dni" ColumnName="dni" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="rol" ColumnName="rol" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdAt" ColumnName="createdAt" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="modifiedAt" ColumnName="modifiedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

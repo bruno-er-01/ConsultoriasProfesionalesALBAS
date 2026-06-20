@@ -93,7 +93,22 @@ namespace CapaNegocios
 
         public Usuario IniciarSesion(string username, string password)
         {
-            return dUsuario.IniciarSesion(username, password);
+
+            Usuario usuario = dUsuario.IniciarSesion(username, password);
+
+            if (usuario != null)
+            {
+                FileLogger fileLogger = new FileLogger();
+
+                string mensaje = "Inicio de sesión | Usuario: " + usuario.username +
+                                 " | Rol: " + usuario.rol +
+                                 " | Fecha: " + DateTime.Now.ToShortDateString() +
+                                 " | Hora: " + DateTime.Now.ToLongTimeString();
+
+                fileLogger.RegistrarLog(mensaje);
+            }
+
+            return usuario;
         }
 
         public string Modificar(Usuario usuario)

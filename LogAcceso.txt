@@ -1,1 +1,4 @@
 Inicio de sesión | Usuario: bruno.admin | Rol: Administrador | Fecha: 20/06/2026 | Hora: 10:31:33 AM
+Inicio de sesión | Usuario: aldo.admin | Rol: Administrador | Fecha: 20/06/2026 | Hora: 11:14:16 AM
+Inicio de sesión | Usuario: bruno.admin | Rol: Administrador | Fecha: 20/06/2026 | Hora: 12:19:49 PM
+Inicio de sesión | Usuario: anyelo.esp | Rol: Especialista | Fecha: 20/06/2026 | Hora: 12:20:25 PM

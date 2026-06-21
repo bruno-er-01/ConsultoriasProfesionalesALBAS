@@ -55,5 +55,7 @@ namespace CapaPresentacion
         {
             this.Close();
         }
+
+    
     }
 }

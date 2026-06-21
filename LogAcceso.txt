@@ -14,3 +14,4 @@ Inicio de sesión | Usuario: anyelo.esp | Rol: Especialista | Fecha: 20/06/2026 
 Inicio de sesión | Usuario: anyelo.esp | Rol: Especialista | Fecha: 20/06/2026 | Hora: 10:46:40 PM
 Inicio de sesión | Usuario: anyelo.esp | Rol: Especialista | Fecha: 20/06/2026 | Hora: 10:47:22 PM
 Inicio de sesión | Usuario: anyelo.esp | Rol: Especialista | Fecha: 20/06/2026 | Hora: 10:52:11 PM
+Inicio de sesión | Usuario: anyelo.esp | Rol: Especialista | Fecha: 20/06/2026 | Hora: 10:56:14 PM

@@ -23,28 +23,48 @@ namespace CapaPresentacion
 
         private void btnIniciarSesion_Click(object sender, EventArgs e)
         {
-            if (txtUsuario.Text == "" || txtPassword.Text == "")
+            if (txtUsuario.Text.Trim() == "" || txtPassword.Text.Trim() == "")
             {
                 MessageBox.Show("Complete todos los campos.");
                 return;
             }
-            Usuario usuario = nUsuario.IniciarSesion(txtUsuario.Text, txtPassword.Text);
+
+            Usuario usuario = nUsuario.IniciarSesion(
+                txtUsuario.Text.Trim(),
+                txtPassword.Text.Trim()
+            );
+
             if (usuario == null)
             {
                 MessageBox.Show("Usuario o contraseña incorrectos");
                 return;
             }
+
             if (usuario.rol == "Administrador")
             {
                 this.Hide();
+
                 FormMenuPrincipalAdmin menu = new FormMenuPrincipalAdmin(usuario);
-                menu.Show();
+                menu.ShowDialog();
+
+                this.Show();
+                txtPassword.Clear();
+                txtUsuario.Focus();
+            }
+            else if (usuario.rol == "Especialista")
+            {
+                this.Hide();
+
+                FormMenuPrincipalEspecialista menu = new FormMenuPrincipalEspecialista(usuario);
+                menu.ShowDialog();
+
+                this.Show();
+                txtPassword.Clear();
+                txtUsuario.Focus();
             }
             else
             {
-                this.Hide();
-                FormMenuPrincipalEspecialista menu = new FormMenuPrincipalEspecialista(usuario);
-                menu.Show();
+                MessageBox.Show("Rol no reconocido.");
             }
         }
 

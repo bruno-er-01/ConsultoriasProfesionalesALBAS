@@ -51,19 +51,19 @@
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.txtPassword);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(246, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
+            this.panel1.Location = new System.Drawing.Point(328, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(394, 452);
+            this.panel1.Size = new System.Drawing.Size(525, 556);
             this.panel1.TabIndex = 5;
             // 
             // btnSalir
             // 
             this.btnSalir.Font = new System.Drawing.Font("Leelawadee UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalir.Location = new System.Drawing.Point(125, 329);
-            this.btnSalir.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSalir.Location = new System.Drawing.Point(167, 405);
+            this.btnSalir.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(158, 41);
+            this.btnSalir.Size = new System.Drawing.Size(211, 50);
             this.btnSalir.TabIndex = 9;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
@@ -73,10 +73,9 @@
             // 
             this.lklOlvidoContraseña.AutoSize = true;
             this.lklOlvidoContraseña.LinkColor = System.Drawing.Color.White;
-            this.lklOlvidoContraseña.Location = new System.Drawing.Point(47, 150);
-            this.lklOlvidoContraseña.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lklOlvidoContraseña.Location = new System.Drawing.Point(63, 185);
             this.lklOlvidoContraseña.Name = "lklOlvidoContraseña";
-            this.lklOlvidoContraseña.Size = new System.Drawing.Size(131, 13);
+            this.lklOlvidoContraseña.Size = new System.Drawing.Size(161, 16);
             this.lklOlvidoContraseña.TabIndex = 8;
             this.lklOlvidoContraseña.TabStop = true;
             this.lklOlvidoContraseña.Text = "¿Olvidaste tu contraseña?";
@@ -85,10 +84,10 @@
             // btnIniciarSesion
             // 
             this.btnIniciarSesion.Font = new System.Drawing.Font("Leelawadee UI", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIniciarSesion.Location = new System.Drawing.Point(125, 275);
-            this.btnIniciarSesion.Margin = new System.Windows.Forms.Padding(2);
+            this.btnIniciarSesion.Location = new System.Drawing.Point(167, 338);
+            this.btnIniciarSesion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnIniciarSesion.Name = "btnIniciarSesion";
-            this.btnIniciarSesion.Size = new System.Drawing.Size(158, 41);
+            this.btnIniciarSesion.Size = new System.Drawing.Size(211, 50);
             this.btnIniciarSesion.TabIndex = 7;
             this.btnIniciarSesion.Text = "Iniciar sesión";
             this.btnIniciarSesion.UseVisualStyleBackColor = true;
@@ -97,10 +96,10 @@
             // txtUsuario
             // 
             this.txtUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUsuario.Location = new System.Drawing.Point(43, 107);
-            this.txtUsuario.Margin = new System.Windows.Forms.Padding(2);
+            this.txtUsuario.Location = new System.Drawing.Point(57, 132);
+            this.txtUsuario.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(316, 37);
+            this.txtUsuario.Size = new System.Drawing.Size(420, 45);
             this.txtUsuario.TabIndex = 3;
             // 
             // label2
@@ -108,20 +107,20 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Leelawadee UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(38, 178);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(51, 219);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(197, 45);
+            this.label2.Size = new System.Drawing.Size(247, 54);
             this.label2.TabIndex = 6;
             this.label2.Text = "Contraseña:";
             // 
             // txtPassword
             // 
             this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.Location = new System.Drawing.Point(43, 223);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(2);
+            this.txtPassword.Location = new System.Drawing.Point(57, 274);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(316, 37);
+            this.txtPassword.PasswordChar = '*';
+            this.txtPassword.Size = new System.Drawing.Size(420, 45);
             this.txtPassword.TabIndex = 4;
             // 
             // label1
@@ -129,33 +128,32 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Leelawadee UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(38, 63);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(51, 78);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(144, 45);
+            this.label1.Size = new System.Drawing.Size(178, 54);
             this.label1.TabIndex = 5;
             this.label1.Text = "Usuario:";
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::CapaPresentacion.Properties.Resources.imgLogin;
-            this.pictureBox1.Location = new System.Drawing.Point(4, 89);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Location = new System.Drawing.Point(5, 110);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(238, 245);
+            this.pictureBox1.Size = new System.Drawing.Size(317, 302);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
             // 
             // FormLogin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(644, 452);
+            this.ClientSize = new System.Drawing.Size(859, 556);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormLogin";
             this.Text = "FormLogin";
             this.panel1.ResumeLayout(false);

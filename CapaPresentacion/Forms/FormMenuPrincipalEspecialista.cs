@@ -41,14 +41,10 @@ namespace CapaPresentacion
             AbrirFormEnPanel(new FormInicio());
         }
 
-        private void pnlBuscarClientes_Click(object sender, EventArgs e)
-        {
-            
-        }
-
+ 
         private void pnlBuscarCasosCitas_Click(object sender, EventArgs e)
         {
-            
+            AbrirFormEnPanel(new FormEspecialistaBuscarCita());
         }
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)
@@ -56,6 +52,10 @@ namespace CapaPresentacion
             this.Close();
         }
 
-    
+        private void pnlBuscarClientes_Click(object sender, EventArgs e)
+        {
+            AbrirFormEnPanel( new FormEspecialistaBuscarCliente());
+        }
+        //jiji
     }
 }

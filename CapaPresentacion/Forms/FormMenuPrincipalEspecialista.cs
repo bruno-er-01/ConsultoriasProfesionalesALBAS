@@ -56,5 +56,6 @@ namespace CapaPresentacion
         {
             AbrirFormEnPanel( new FormEspecialistaBuscarCliente());
         }
+        //jiji
     }
 }

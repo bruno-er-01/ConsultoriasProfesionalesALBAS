@@ -25,8 +25,10 @@ namespace CapaNegocios
                 return "El nombre de usuario ya está registrado.";
             }
 
+            //Asignamos el rol
             usuario.rol = "Administrador";
 
+            //Aquí registramos el usuario
             int idUsuario = dUsuario.Registrar(usuario);
 
             if (idUsuario == 0)
@@ -34,6 +36,7 @@ namespace CapaNegocios
                 return "No se pudo registrar el usuario administrador.";
             }
 
+            //Aquí registramos el administrador
             return dAdministrador.Registrar(idUsuario);
         }
 
@@ -49,8 +52,10 @@ namespace CapaNegocios
                 return "El nombre de usuario ya está registrado.";
             }
 
+            //Asignamos el rol
             usuario.rol = "Especialista";
 
+            //Aquí registramos el usuario
             int idUsuario = dUsuario.Registrar(usuario);
 
             if (idUsuario == 0)
@@ -58,6 +63,7 @@ namespace CapaNegocios
                 return "No se pudo registrar el usuario especialista.";
             }
 
+            //Aquí registramos el especialista
             return dEspecialista.Registrar(idUsuario, idArea, disponible);
         }
 
@@ -76,9 +82,16 @@ namespace CapaNegocios
             return dUsuario.ListarAdministradores();
         }
 
+        //Borrar Muestra solo los usuarios con el rol de Especialista
         public List<Usuario> ListarEspecialistas()
         {
             return dUsuario.ListarEspecialistas();
+        }
+
+        //Agregar Muestra los Especialistas con datos de Usuario
+        public object ListarEspecialistasConDatos()
+        {
+            return dEspecialista.ListarTodo();
         }
 
         public Usuario BuscarPorDni(string dni)

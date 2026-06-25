@@ -10,3 +10,18 @@ Inicio de sesión | Usuario: aldo.admin | Rol: Administrador | Fecha: 20/06/2026
 Inicio de sesión | Usuario: aldo.admin | Rol: Administrador | Fecha: 20/06/2026 | Hora: 18:38:05
 Inicio de sesión | Usuario: aldo.admin | Rol: Administrador | Fecha: 20/06/2026 | Hora: 18:41:06
 Inicio de sesión | Usuario: bruno.admin | Rol: Administrador | Fecha: 20/06/2026 | Hora: 10:15:14 PM
+Inicio de sesión | Usuario: anyelo.esp | Rol: Especialista | Fecha: 20/06/2026 | Hora: 23:09:21
+Inicio de sesión | Usuario: aldo.admin | Rol: Administrador | Fecha: 22/06/2026 | Hora: 10:58:55
+Inicio de sesión | Usuario: aldo.admin | Rol: Administrador | Fecha: 24/06/2026 | Hora: 22:44:07
+Inicio de sesión | Usuario: aldo.admin | Rol: Administrador | Fecha: 24/06/2026 | Hora: 23:07:30
+Inicio de sesión | Usuario: aldo.admin | Rol: Administrador | Fecha: 24/06/2026 | Hora: 23:08:08
+Inicio de sesión | Usuario: aldo.admin | Rol: Administrador | Fecha: 24/06/2026 | Hora: 23:19:06
+Inicio de sesión | Usuario: aldo.admin | Rol: Administrador | Fecha: 24/06/2026 | Hora: 23:33:04
+Inicio de sesión | Usuario: aldo.admin | Rol: Administrador | Fecha: 24/06/2026 | Hora: 23:35:43
+Inicio de sesión | Usuario: aldo.admin | Rol: Administrador | Fecha: 25/06/2026 | Hora: 02:42:37
+Inicio de sesión | Usuario: aldo.admin | Rol: Administrador | Fecha: 25/06/2026 | Hora: 02:49:57
+Inicio de sesión | Usuario: aldo.admin | Rol: Administrador | Fecha: 25/06/2026 | Hora: 03:07:40
+Inicio de sesión | Usuario: aldo.admin | Rol: Administrador | Fecha: 25/06/2026 | Hora: 03:20:38
+Inicio de sesión | Usuario: aldo.admin | Rol: Administrador | Fecha: 25/06/2026 | Hora: 03:25:33
+Inicio de sesión | Usuario: aldo.admin | Rol: Administrador | Fecha: 25/06/2026 | Hora: 03:29:02
+Inicio de sesión | Usuario: aldo.admin | Rol: Administrador | Fecha: 25/06/2026 | Hora: 03:30:02

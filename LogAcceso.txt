@@ -25,3 +25,4 @@ Inicio de sesión | Usuario: aldo.admin | Rol: Administrador | Fecha: 25/06/2026
 Inicio de sesión | Usuario: aldo.admin | Rol: Administrador | Fecha: 25/06/2026 | Hora: 03:25:33
 Inicio de sesión | Usuario: aldo.admin | Rol: Administrador | Fecha: 25/06/2026 | Hora: 03:29:02
 Inicio de sesión | Usuario: aldo.admin | Rol: Administrador | Fecha: 25/06/2026 | Hora: 03:30:02
+Inicio de sesión | Usuario: aldo.admin | Rol: Administrador | Fecha: 25/06/2026 | Hora: 17:55:45

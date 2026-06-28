@@ -217,6 +217,8 @@ namespace CapaPresentacion
                 cbAreaAtencion.SelectedValue = Convert.ToInt32(
                     dgUsuarios.CurrentRow.Cells["idArea"].Value
                 );
+                //cambios
+
             }
         }
     }

@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.ctAreas = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label11 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -75,16 +75,16 @@
             // 
             // ctAreas
             // 
-            chartArea5.Name = "ChartArea1";
-            this.ctAreas.ChartAreas.Add(chartArea5);
-            legend5.Name = "Legend1";
-            this.ctAreas.Legends.Add(legend5);
+            chartArea1.Name = "ChartArea1";
+            this.ctAreas.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.ctAreas.Legends.Add(legend1);
             this.ctAreas.Location = new System.Drawing.Point(66, 275);
             this.ctAreas.Name = "ctAreas";
-            series5.ChartArea = "ChartArea1";
-            series5.Legend = "Legend1";
-            series5.Name = "Series1";
-            this.ctAreas.Series.Add(series5);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.ctAreas.Series.Add(series1);
             this.ctAreas.Size = new System.Drawing.Size(497, 260);
             this.ctAreas.TabIndex = 78;
             this.ctAreas.Text = "chart1";
@@ -191,6 +191,7 @@
             this.cbOrden.Name = "cbOrden";
             this.cbOrden.Size = new System.Drawing.Size(121, 24);
             this.cbOrden.TabIndex = 73;
+            this.cbOrden.SelectedIndexChanged += new System.EventHandler(this.cbOrden_SelectedIndexChanged);
             // 
             // label9
             // 

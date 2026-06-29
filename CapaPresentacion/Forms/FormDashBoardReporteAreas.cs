@@ -437,5 +437,10 @@ namespace CapaPresentacion
 
             tabla.AddCell(celda);
         }
+
+        private void cbOrden_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // no va nada me equivoqué 
+        }
     }
 }

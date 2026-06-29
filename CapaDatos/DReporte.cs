@@ -110,7 +110,7 @@ namespace CapaDatos
                         }
                     }
 
-                    if (orden == "Menor demanda")
+                    if (orden == "Ascendente")
                     {
                         reporte = reporte.OrderBy(r => r.TotalCasos).ToList();
                     }

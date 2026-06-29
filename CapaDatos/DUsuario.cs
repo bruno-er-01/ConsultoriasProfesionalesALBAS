@@ -78,6 +78,32 @@ namespace CapaDatos
                 return ex.Message;
             }
         }
+        public string ActualizarPassword(int idUsuario, string nuevaPassword)
+        {
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    var modificado = context.Usuario.Find(idUsuario);
+
+                    if (modificado == null)
+                    {
+                        return "Usuario no encontrado.";
+                    }
+
+                    modificado.password = nuevaPassword;
+                    modificado.modifiedAt = DateTime.Now;
+
+                    context.SaveChanges();
+                }
+
+                return "Contraseña actualizada correctamente.";
+            }
+            catch (Exception ex)
+            {
+                return "Error al actualizar contraseña: " + ex.Message;
+            }
+        }
         //
         public List<Usuario> ListarAdministradores()
         {

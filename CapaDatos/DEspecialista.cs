@@ -68,5 +68,53 @@ namespace CapaDatos
                 return null;
             }
         }
+        public string BuscarAreaEspecialista(int idUsuario)
+        {
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    var area = (from e in context.Especialista
+                                join a in context.Area
+                                    on e.idArea equals a.idArea
+                                where e.idEspecialista == idUsuario
+                                select a.nombre)
+                                .FirstOrDefault();
+
+                    if (area == null)
+                    {
+                        return "Sin área asignada";
+                    }
+
+                    return area;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return "Error al cargar área";
+            }
+        }
+
+        public bool BuscarDisponibilidadEspecialista(int idUsuario)
+        {
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    bool disponible = context.Especialista
+                        .Where(e => e.idEspecialista == idUsuario)
+                        .Select(e => e.disponible)
+                        .FirstOrDefault();
+
+                    return disponible;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
     }
 }

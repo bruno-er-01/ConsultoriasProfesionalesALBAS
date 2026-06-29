@@ -111,6 +111,12 @@
     <Compile Include="Forms\FormEspecialistaBuscarCliente.Designer.cs">
       <DependentUpon>FormEspecialistaBuscarCliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormEspecialistaMiCuenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormEspecialistaMiCuenta.Designer.cs">
+      <DependentUpon>FormEspecialistaMiCuenta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormInicio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -214,6 +220,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormEspecialistaBuscarCliente.resx">
       <DependentUpon>FormEspecialistaBuscarCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormEspecialistaMiCuenta.resx">
+      <DependentUpon>FormEspecialistaMiCuenta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormInicio.resx">
       <DependentUpon>FormInicio.cs</DependentUpon>

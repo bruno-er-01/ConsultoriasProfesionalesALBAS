@@ -9,6 +9,6 @@ namespace CapaNegocios
 {
     public class NEspecialista
     {
-        
+
     }
 }

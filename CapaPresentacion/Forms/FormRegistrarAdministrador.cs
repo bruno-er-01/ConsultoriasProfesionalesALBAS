@@ -21,7 +21,6 @@ namespace CapaPresentacion
         {
             InitializeComponent();
             this.usuarioActual = usuario;
-            MostrarDatagrid(nusuario.ListarAdministradores());
         }
 
         void MostrarDatagrid(List<Usuario> lista)
@@ -62,7 +61,8 @@ namespace CapaPresentacion
                 correo = tbCorreo.Text,
                 username = tbUsername.Text,
                 password = tbContrasena.Text,
-                direccion = tbDireccion.Text
+                direccion = tbDireccion.Text,
+                createdBy = usuarioActual.idUsuario
             };
 
             string mensaje = nusuario.RegistrarAdministrador(usuario);
@@ -135,8 +135,11 @@ namespace CapaPresentacion
                 return;
             }
 
+            int idusuario = int.Parse(dgUsuarios.CurrentRow.Cells["idUsuario"].Value.ToString());
+
             Usuario usuario = new Usuario()
             {
+                idUsuario = idusuario,
                 nombre = tbNombre.Text,
                 apellido = tbApellido.Text,
                 dni = tbDNI.Text,
@@ -144,7 +147,8 @@ namespace CapaPresentacion
                 correo = tbCorreo.Text,
                 username = tbUsername.Text,
                 password = tbContrasena.Text,
-                direccion = tbDireccion.Text
+                direccion = tbDireccion.Text,
+                createdBy = usuarioActual.idUsuario
             };
 
             string mensaje = nusuario.Modificar(usuario);
@@ -176,10 +180,9 @@ namespace CapaPresentacion
         {
             if (dgUsuarios.CurrentRow == null) return;
 
-            if (dgUsuarios.CurrentRow.DataBoundItem == null) return;
-
             Usuario usuario = dgUsuarios.CurrentRow.DataBoundItem as Usuario;
 
+            //Permite la lista vacíá
             if (usuario == null) return;
 
             tbNombre.Text = usuario.nombre;

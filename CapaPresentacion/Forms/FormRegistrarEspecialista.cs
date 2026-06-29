@@ -14,90 +14,212 @@ namespace CapaPresentacion
 {
     public partial class FormRegistrarEspecialista : Form
     {
-        private NUsuario nUsuario = new NUsuario();
+        private Usuario usuarioActual;
+        private NUsuario nusuario = new NUsuario();
+        private NArea nArea = new NArea();
 
-        public FormRegistrarEspecialista()
+        public FormRegistrarEspecialista(Usuario usuario)
         {
             InitializeComponent();
-            CargarTabla();
+            this.usuarioActual = usuario;
+            MostrarComboAreaAtencion(nArea.ListarTodo());
         }
 
-        private void CargarTabla()
+        void MostrarComboAreaAtencion(List<Area> lista)
         {
-            dgEspecialista.DataSource = null;
-            var lista = nUsuario.ListarEspecialistas();
-            if (lista != null && lista.Count > 0)
+            cbAreaAtencion.DataSource = null;
+            if(lista.Count > 0)
             {
-                dgEspecialista.DataSource = lista;
+                cbAreaAtencion.DataSource = lista;
+                cbAreaAtencion.ValueMember = "idArea";
+                cbAreaAtencion.DisplayMember = "nombre";
             }
         }
 
-        private void dgEspecialistas_SelectionChanged(object sender, EventArgs e)
+        void MostrarDatagrid(Object lista)
         {
-            if (dgEspecialista.SelectedRows.Count > 0)
+            dgUsuarios.DataSource = null;
+            if (lista != null)
             {
-                var fila = dgEspecialista.SelectedRows[0];
-                txtNombre.Text = fila.Cells["nombre"].Value?.ToString();
-                txtApellido.Text = fila.Cells["apellido"].Value?.ToString();
-                txtDNI.Text = fila.Cells["dni"].Value?.ToString();
-                txtTelefono.Text = fila.Cells["telefono"].Value?.ToString();
-                txtDireccion.Text = fila.Cells["direccion"].Value?.ToString();
-                txtCorreo.Text = fila.Cells["correo"].Value?.ToString();
-                txtUsername.Text = fila.Cells["username"].Value?.ToString();
-                txtContrasena.Text = fila.Cells["password"].Value?.ToString();
-                cbGenero.Text = fila.Cells["disponibilidad"].Value?.ToString();
-                cbAreaAtencion.Text = fila.Cells["areaAtencion"].Value?.ToString();
-                cbActividad.Text = fila.Cells["actividad"].Value?.ToString();
+                dgUsuarios.DataSource = lista;
+
+                if (dgUsuarios.Columns["activo"] != null)
+                    dgUsuarios.Columns["activo"].Visible = false;
+
+                if (dgUsuarios.Columns["Administrador"] != null)
+                    dgUsuarios.Columns["Administrador"].Visible = false;
+
+                if (dgUsuarios.Columns["Especialista"] != null)
+                    dgUsuarios.Columns["Especialista"].Visible = false;
             }
         }
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtDNI.Text) || string.IsNullOrWhiteSpace(txtUsername.Text))
+            if (tbCorreo.Text == "" || tbUsername.Text == "" || tbContrasena.Text == ""
+                || tbNombre.Text == "" || tbApellido.Text == "" || tbDNI.Text == ""
+                || tbTelefono.Text == "" || tbDireccion.Text == "" || cbAreaAtencion.Text == "")
+
             {
-                MessageBox.Show("El DNI y Username son obligatorios.");
+                MessageBox.Show("Completar todos los campos");
                 return;
             }
+            
+            int idArea = int.Parse(cbAreaAtencion.SelectedValue.ToString());
+            bool disponible = false;
 
             Usuario usuario = new Usuario()
             {
-                nombre = txtNombre.Text,
-                apellido = txtApellido.Text,
-                dni = txtDNI.Text,
-                telefono = txtTelefono.Text,
-                direccion = txtDireccion.Text,
-                correo = txtCorreo.Text,
-                username = txtUsername.Text,
-                password = txtContrasena.Text,
-                activo = cbActividad.Text == "Activo"
+                nombre = tbNombre.Text,
+                apellido = tbApellido.Text,
+                dni = tbDNI.Text,
+                telefono = tbTelefono.Text,
+                correo = tbCorreo.Text,
+                username = tbUsername.Text,
+                password = tbContrasena.Text,
+                direccion = tbDireccion.Text,
+                createdBy = usuarioActual.idUsuario
             };
 
-            string mensaje = (dgEspecialista.SelectedRows.Count == 0)
-                ? nUsuario.RegistrarEspecialista(usuario, 0, true)
-                : nUsuario.Modificar(usuario);
-
+            string mensaje = nusuario.RegistrarEspecialista(usuario, idArea, disponible);
             MessageBox.Show(mensaje);
-            CargarTabla();
-        }
-
-        private void btnActualizarDatos_Click(object sender, EventArgs e)
-        {
-            CargarTabla();
+            MostrarDatagrid(nusuario.ListarEspecialistas());
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            string dniBuscado = txtDNI.Text.Trim();
-            var lista = nUsuario.ListarEspecialistas();
-            if (lista != null && !string.IsNullOrWhiteSpace(dniBuscado))
+            string username = tbUsername.Text;
+            string dni = tbDNI.Text;
+            string correo = tbCorreo.Text;
+
+            Usuario usuarioEncontrado = null;
+
+            if (username != "")
             {
-                dgEspecialista.DataSource = lista.Where(u => u.dni != null && u.dni.Contains(dniBuscado)).ToList();
+                usuarioEncontrado = nusuario.BuscarPorUsername(username);
             }
+            else if (dni != "")
+            {
+                usuarioEncontrado = nusuario.BuscarPorDni(dni);
+            }
+            else if (correo != "")
+            {
+                usuarioEncontrado = nusuario.BuscarPorCorreo(correo);
+            }
+            else
+            {
+                MessageBox.Show("Ingrese username, DNI o correo para buscar.");
+                return;
+            }
+
+            if (usuarioEncontrado == null)
+            {
+                MessageBox.Show("No se encontró ningún usuario.");
+                return;
+            }
+
+            tbNombre.Text = usuarioEncontrado.nombre;
+            tbApellido.Text = usuarioEncontrado.apellido;
+            tbDNI.Text = usuarioEncontrado.dni;
+            tbTelefono.Text = usuarioEncontrado.telefono;
+            tbCorreo.Text = usuarioEncontrado.correo;
+            tbUsername.Text = usuarioEncontrado.username;
+            tbContrasena.Text = usuarioEncontrado.password;
+            tbDireccion.Text = usuarioEncontrado.direccion;
+
+            List<Usuario> lista = new List<Usuario>();
+            lista.Add(usuarioEncontrado);
+            MostrarDatagrid(lista);
+
+            MessageBox.Show("Usuario encontrado.");
+        }
+
+        private void btnActualizarDatos_Click(object sender, EventArgs e)
+        {
+            if (dgUsuarios.CurrentRow == null)
+            {
+                MessageBox.Show("Seleccione un Especialista");
+                return;
+            }
+
+
+            if (tbCorreo.Text == "" || tbUsername.Text == "" || tbContrasena.Text == ""
+                || tbNombre.Text == "" || tbApellido.Text == "" || tbDNI.Text == ""
+                || tbTelefono.Text == "" || tbDireccion.Text == "")
+
+            {
+                MessageBox.Show("Completar todos los campos");
+                return;
+            }
+
+            int idusuario = int.Parse(dgUsuarios.CurrentRow.Cells["idUsuario"].Value.ToString());
+
+            Usuario usuario = new Usuario()
+            {
+                idUsuario = idusuario,
+                nombre = tbNombre.Text,
+                apellido = tbApellido.Text,
+                dni = tbDNI.Text,
+                telefono = tbTelefono.Text,
+                correo = tbCorreo.Text,
+                username = tbUsername.Text,
+                password = tbContrasena.Text,
+                direccion = tbDireccion.Text,
+                modifiedBy = usuarioActual.idUsuario
+            };
+
+            string mensaje = nusuario.Modificar(usuario);
+            MessageBox.Show(mensaje);
+            MostrarDatagrid(nusuario.ListarEspecialistasConDatos());
         }
 
         private void btnListar_Click(object sender, EventArgs e)
         {
-            CargarTabla();
+            MostrarDatagrid(nusuario.ListarEspecialistasConDatos());
+        }
+
+        private void btnEiminar_Click(object sender, EventArgs e)
+        {
+            if (dgUsuarios.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Seleccione una fila");
+                return;
+            }
+            var fila = dgUsuarios.SelectedRows[0];
+            var usuarioId = int.Parse(fila.Cells["idUsuario"].Value.ToString());
+
+            string mensaje = nusuario.EliminarLogico(usuarioId, usuarioActual.idUsuario);
+            MessageBox.Show(mensaje);
+            MostrarDatagrid(nusuario.ListarEspecialistasConDatos());
+        }
+
+        private void dgUsuarios_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgUsuarios.CurrentRow == null) { return;}
+
+            Usuario usuario = dgUsuarios.CurrentRow.DataBoundItem as Usuario;
+
+            //Permite la lista vacíá
+            if (usuario == null) return;
+
+            tbNombre.Text = usuario.nombre;
+            tbApellido.Text = usuario.apellido;
+            tbDNI.Text = usuario.dni;
+            tbTelefono.Text = usuario.telefono;
+            tbCorreo.Text = usuario.correo;
+            tbUsername.Text = usuario.username;
+            tbContrasena.Text = usuario.password;
+            tbDireccion.Text = usuario.direccion;
+
+
+            if (dgUsuarios.Columns["idArea"] != null)
+            {
+                cbAreaAtencion.SelectedValue = Convert.ToInt32(
+                    dgUsuarios.CurrentRow.Cells["idArea"].Value
+                );
+                //cambios
+
+            }
         }
     }
 }

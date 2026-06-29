@@ -39,7 +39,7 @@ namespace CapaPresentacion
 
         private void btnFormEspecialista_Click(object sender, EventArgs e)
         {
-            AbrirFormEnPanel(new FormRegistrarEspecialista());
+            AbrirFormEnPanel(new FormRegistrarEspecialista(usuarioActual));
         }
     }
 }

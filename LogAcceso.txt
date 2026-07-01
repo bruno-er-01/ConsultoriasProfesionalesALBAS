@@ -26,3 +26,11 @@ Inicio de sesión | Usuario: aldo.admin | Rol: Administrador | Fecha: 25/06/2026
 Inicio de sesión | Usuario: aldo.admin | Rol: Administrador | Fecha: 25/06/2026 | Hora: 03:29:02
 Inicio de sesión | Usuario: aldo.admin | Rol: Administrador | Fecha: 25/06/2026 | Hora: 03:30:02
 Inicio de sesión | Usuario: aldo.admin | Rol: Administrador | Fecha: 25/06/2026 | Hora: 17:55:45
+Inicio de sesión | Usuario: aldo.admin | Rol: Administrador | Fecha: 29/06/2026 | Hora: 14:02:59
+Inicio de sesión | Usuario: aldo.admin | Rol: Administrador | Fecha: 29/06/2026 | Hora: 14:37:52
+Inicio de sesión | Usuario: aldo.admin | Rol: Administrador | Fecha: 29/06/2026 | Hora: 14:44:45
+Inicio de sesión | Usuario: aldo.admin | Rol: Administrador | Fecha: 29/06/2026 | Hora: 14:48:33
+Inicio de sesión | Usuario: aldo.admin | Rol: Administrador | Fecha: 29/06/2026 | Hora: 14:49:46
+Inicio de sesión | Usuario: aldo.admin | Rol: Administrador | Fecha: 29/06/2026 | Hora: 14:53:53
+Inicio de sesión | Usuario: aldo.admin | Rol: Administrador | Fecha: 29/06/2026 | Hora: 15:04:27
+Inicio de sesión | Usuario: aldo.admin | Rol: Administrador | Fecha: 29/06/2026 | Hora: 15:05:49

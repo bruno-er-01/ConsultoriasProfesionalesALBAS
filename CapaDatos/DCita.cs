@@ -23,18 +23,21 @@ namespace CapaDatos
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 return ex.Message;
             }
         }
 
-        public List<Cita> ListarTodo()
+        public List<Cita> ListarPorCasoCliente(int nroCaso, int idCliente)
         {
             List<Cita> citas = new List<Cita>();
             try
             {
                 using (var context = new BD_ALBASEntities1())
                 {
-                    return context.Cita.ToList();
+                    return context.Cita.Where(c => c.nroCaso == nroCaso 
+                        && c.idCliente == idCliente)
+                        .ToList();
                 }
             }
             catch (Exception ex)

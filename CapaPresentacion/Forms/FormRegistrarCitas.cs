@@ -15,64 +15,193 @@ namespace CapaPresentacion
     public partial class FormRegistrarCitas : Form
     {
         private NCita nCita = new NCita();
+        //private NCliente nCliente = new NCliente();
 
-        public FormRegistrarCitas()
+        private int nroCaso;
+        private int idCliente;
+        private String tituloCaso;
+        private bool fechaAscendente = true;
+
+        public FormRegistrarCitas(int nroCaso, int idCliente, String tituloCaso)
         {
             InitializeComponent();
-            CargarTabla();
+            this.nroCaso = nroCaso;
+            this.idCliente = idCliente;
+            this.tituloCaso = tituloCaso;
+
+            lblTituloCaso.Text = tituloCaso;
+            /*var cliente = nCliente.BuscarporId(idCliente);
+            if (cliente != null)
+            {
+                lblCliente.Text = cliente.nombre + " " + cliente.apellido;
+            }*/
+            CargarTabla(nCita.ListarPorCasoCliente(nroCaso, idCliente));
         }
 
-        private void CargarTabla()
+        private void CargarTabla(List<Cita> citas)
         {
             dgCita.DataSource = null;
-            var lista = nCita.ListarTodo();
-            if (lista != null && lista.Count > 0)
+        
+            if (citas.Count > 0)
             {
-                dgCita.DataSource = lista;
+                dgCita.DataSource = citas;
+                dgCita.Columns["fecha"].SortMode = DataGridViewColumnSortMode.Automatic;
+                dgCita.Columns["idCita"].Visible = false;
+                dgCita.Columns["nroCaso"].Visible = false;
+                dgCita.Columns["idCliente"].Visible = false;
+                dgCita.Columns["Caso"].Visible = false;
+                dgCita.Columns["createdBy"].Visible = false;
+                dgCita.Columns["createdAt"].Visible = false;
+                dgCita.Columns["modifiedBy"].Visible = false;
+                dgCita.Columns["modifiedAt"].Visible = false;
             }
+        }
+
+        private void LimpiarCampos()
+        {
+            cbModalidad.SelectedIndex = -1;
+            cbEstado.SelectedIndex = -1;
+
+            txtFecha.Text = "";
+            rtbObservacion.Text = "";
+
+            chkAsistencia.Checked = false;
+
+            dtpHoraInicio.Value = DateTime.Now;
+            dtpHoraFin.Value = DateTime.Now.AddHours(1);
+
+            dgCita.ClearSelection();
         }
 
         private void dgCita_SelectionChanged(object sender, EventArgs e)
         {
-            if (dgCita.SelectedRows.Count > 0)
+            if (dgCita.SelectedRows.Count == 0)
             {
-                var fila = dgCita.SelectedRows[0];
-
-                txtModalidad.Text = fila.Cells["modalidad"].Value?.ToString();
-                cbEstado.Text = fila.Cells["estado"].Value?.ToString();
-                cbHoraInicio.Text = fila.Cells["horaInicio"].Value?.ToString();
-                btnHoraFin.Text = fila.Cells["horaFin"].Value?.ToString();
-                cbAsistencia.Text = fila.Cells["confirmacionAsistencia"].Value?.ToString();
-
-                if (fila.Cells["fecha"].Value != null)
-                {
-                    clClientes.SelectionStart = Convert.ToDateTime(fila.Cells["fecha"].Value);
-                }
+                return;
             }
+            var fila = dgCita.SelectedRows[0];
+
+            cbModalidad.Text = fila.Cells["modalidad"].Value.ToString();
+            cbEstado.Text = fila.Cells["estado"].Value.ToString();
+            dtpHoraInicio.Text = fila.Cells["horaInicio"].Value.ToString();
+            dtpHoraFin.Text = fila.Cells["horaFin"].Value.ToString();
+            chkAsistencia.Checked = Convert.ToBoolean(fila.Cells["confirmacionAsistencia"].Value); 
+
+            if (fila.Cells["fecha"].Value != null)
+            {
+                DateTime fecha = Convert.ToDateTime(fila.Cells["fecha"].Value);
+
+                clCitas.SelectionStart = fecha;
+                txtFecha.Text = fecha.ToShortDateString();
+            }
+            
         }
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
+            TimeSpan horaInicio = TimeSpan.Parse(dtpHoraInicio.Text);
+            TimeSpan horaFin = TimeSpan.Parse(dtpHoraFin.Text);
+
+            if (horaFin <= horaInicio)
+            {
+                MessageBox.Show("La hora fin debe ser mayor que la hora inicio");
+                return;
+            }
+
+            if(cbModalidad.Text == "")
+            {
+                MessageBox.Show("Complete todos los campos");
+                return;
+            }
+
+
+
             Cita cita = new Cita()
             {
-                nroCaso = 1,
-                idCliente = 1,
-                fecha = clClientes.SelectionStart,
-                modalidad = txtModalidad.Text,
-                estado = cbEstado.Text ?? "Pendiente",
-                horaInicio = string.IsNullOrWhiteSpace(cbHoraInicio.Text) ? DateTime.Now.TimeOfDay : TimeSpan.Parse(cbHoraInicio.Text),
-                horaFin = string.IsNullOrWhiteSpace(btnHoraFin.Text) ? DateTime.Now.TimeOfDay.Add(TimeSpan.FromHours(1)) : TimeSpan.Parse(btnHoraFin.Text),
-                confirmacionAsistencia = cbAsistencia.Text == "Asistio" || cbAsistencia.Text == "Si"
+                nroCaso = nroCaso,
+                idCliente = idCliente,
+                fecha = clCitas.SelectionStart,
+                modalidad = cbModalidad.Text,
+                horaInicio = horaInicio,
+                horaFin = horaFin,
+                confirmacionAsistencia = chkAsistencia.Checked,
+                observacion = rtbObservacion.Text
             };
 
-            string mensaje = (dgCita.SelectedRows.Count == 0) ? nCita.Registrar(cita) : nCita.Modificar(cita);
+            string mensaje = nCita.Registrar(cita);
             MessageBox.Show(mensaje);
-            CargarTabla();
+
+            CargarTabla(nCita.ListarPorCasoCliente(nroCaso, idCliente));
+            LimpiarCampos();
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            if (cbEstado.Text == "")
+            {
+                MessageBox.Show("Seleccione un estado.");
+                return;
+            }
+
+            var lista = nCita.ListarPorCasoCliente(nroCaso, idCliente)
+                .Where(c => c.estado == cbEstado.Text).ToList();
+
+            CargarTabla(lista);
+            LimpiarCampos();
         }
 
         private void btnActualizarDatos_Click(object sender, EventArgs e)
         {
-            CargarTabla();
+            if (dgCita.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Selecciona una fila");
+                return;
+            }
+
+            if (cbModalidad.Text == "" || cbEstado.Text == "" ||txtFecha.Text == "")
+            {
+                MessageBox.Show("Complete todos los campos");
+                return;
+            }
+
+            TimeSpan horaInicio = TimeSpan.Parse(dtpHoraInicio.Text);
+
+            TimeSpan horaFin = TimeSpan.Parse(dtpHoraFin.Text);
+
+            if (horaFin <= horaInicio)
+            {
+                MessageBox.Show("La hora fin debe ser mayor que la hora inicio");
+                return;
+            }
+
+            var fila = dgCita.SelectedRows[0];
+
+            Cita cita = new Cita()
+            {
+                idCita = int.Parse(fila.Cells["idCita"].Value.ToString()),
+                nroCaso = nroCaso,
+                idCliente = idCliente,
+                fecha = clCitas.SelectionStart,
+                estado = cbEstado.Text,
+                modalidad = cbModalidad.Text,
+                horaInicio = horaInicio,
+                horaFin = horaFin,
+                observacion = rtbObservacion.Text,
+                confirmacionAsistencia = chkAsistencia.Checked
+            };
+
+            string mensaje = nCita.Modificar(cita);
+            MessageBox.Show(mensaje);
+
+            CargarTabla(nCita.ListarPorCasoCliente(nroCaso, idCliente));
+            LimpiarCampos();
+
+        }
+
+        private void btnAgregarRecordatorio_Click(object sender, EventArgs e)
+        {
+            FormRecordatorio formRecordatorio = new FormRecordatorio();
+            formRecordatorio.Show();
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -80,12 +209,27 @@ namespace CapaPresentacion
             this.Close();
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
+        private void clCitas_DateSelected(object sender, DateRangeEventArgs e)
         {
-            var lista = nCita.ListarTodo();
-            if (lista != null && cbEstado.SelectedIndex != -1)
+            txtFecha.Text = e.Start.ToShortDateString();
+        }
+
+        private void dgCita_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (dgCita.Columns[e.ColumnIndex].Name == "fecha")
             {
-                dgCita.DataSource = lista.Where(c => c.estado == cbEstado.Text).ToList();
+                var lista = nCita.ListarPorCasoCliente(nroCaso, idCliente);
+
+                if (fechaAscendente)
+                {
+                    CargarTabla(lista.OrderBy(c => c.fecha).ToList());
+                }
+                else
+                {
+                    CargarTabla(lista.OrderByDescending(c => c.fecha).ToList());
+                }
+
+                fechaAscendente = !fechaAscendente;
             }
         }
     }

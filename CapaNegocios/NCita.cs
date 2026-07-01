@@ -16,9 +16,9 @@ namespace CapaNegocios
             return dCita.Registrar(cita);
         }
 
-        public List<Cita> ListarTodo()
+        public List<Cita> ListarPorCasoCliente(int nroCaso, int idCliente)
         {
-            return dCita.ListarTodo();
+            return dCita.ListarPorCasoCliente(nroCaso, idCliente);
         }
 
         public string Modificar(Cita cita)

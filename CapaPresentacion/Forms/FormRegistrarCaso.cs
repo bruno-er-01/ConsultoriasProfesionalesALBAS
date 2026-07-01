@@ -109,10 +109,22 @@ namespace CapaPresentacion
             CargarTabla();
         }
 
-        private void btnRegistrarCaso_Click(object sender, EventArgs e)
+        private void btnRegistrarCita_Click(object sender, EventArgs e)
         {
-            FormRegistrarCitas formCita = new FormRegistrarCitas();
-            formCita.ShowDialog();
+            if (dgCaso.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Seleccione un caso.");
+                return;
+            }
+
+            var fila = dgCaso.SelectedRows[0];
+
+            int nroCaso = int.Parse(fila.Cells["nroCaso"].Value.ToString());
+            int idCliente = int.Parse(fila.Cells["idCliente"].Value.ToString());
+            string tituloCaso = fila.Cells["titulo"].Value.ToString();
+
+            FormRegistrarCitas formRegistrarCitas = new FormRegistrarCitas(nroCaso, idCliente, tituloCaso);
+            formRegistrarCitas.Show();
         }
     }
 }

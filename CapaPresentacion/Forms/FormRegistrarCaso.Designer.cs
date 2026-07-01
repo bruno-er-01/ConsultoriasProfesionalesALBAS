@@ -207,6 +207,9 @@
             // cbEstado
             // 
             this.cbEstado.FormattingEnabled = true;
+            this.cbEstado.Items.AddRange(new object[] {
+            "Abierto",
+            "En proceso"});
             this.cbEstado.Location = new System.Drawing.Point(137, 123);
             this.cbEstado.Margin = new System.Windows.Forms.Padding(4);
             this.cbEstado.Name = "cbEstado";

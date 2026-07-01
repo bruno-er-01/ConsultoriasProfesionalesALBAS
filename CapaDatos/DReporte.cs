@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace CapaDatos
 {
-    public  class DReporte
+    public class ReporteNoShowEstructura
+    {
+        public string Mes { get; set; }
+        public double TotalPerdido { get; set; }
+    }
+
+    public class DReporte
     {
         public List<string> ListarEstadosCaso()
         {
@@ -68,7 +74,7 @@ namespace CapaDatos
                         {
                             Area = g.Key.Area,
                             TotalCasos = g.Count(),
-                                    
+
                             CasosActivos = g.Count(x =>
                                 x.Estado == "Abierto" ||
                                 x.Estado == "En proceso"),
@@ -128,6 +134,44 @@ namespace CapaDatos
                 return new List<ReporteDemandaArea>();
             }
         }
+
+        public class ReporteNoShowEstructura
+        {
+            public string Mes { get; set; }
+            public double TotalPerdido { get; set; }
+        }
+
+        public List<CapaDatos.ReporteNoShowEstructura> ObtenerPerdidaNoShow()
+        {
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    var query = from c in context.Cita
+                                join ca in context.Caso on new { c.nroCaso, c.idCliente } equals new { ca.nroCaso, ca.idCliente }
+                                join e in context.Especialista on ca.idEspecialista equals e.idEspecialista
+                                join a in context.Area on e.idArea equals a.idArea
+                                where c.estado == "Cancelado" || c.confirmacionAsistencia == false
+                                select new { c.fecha, a.costo };
+
+                    List<CapaDatos.ReporteNoShowEstructura> resultado = query.ToList()
+                        .GroupBy(x => x.fecha.ToString("MMMM"))
+                        .Select(g => new CapaDatos.ReporteNoShowEstructura
+                        {
+                            Mes = g.Key,
+                            TotalPerdido = g.Sum(x => Convert.ToDouble(x.costo))
+                        }).ToList();
+
+                    return resultado;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return new List<CapaDatos.ReporteNoShowEstructura>();
+            }
+        }
     }
 }
+
 

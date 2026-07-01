@@ -33,6 +33,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pnlMenuReportes = new System.Windows.Forms.Panel();
             this.btnReporteAreasCasos = new System.Windows.Forms.Button();
+            this.btnReporteCitasCanceladasAusentadas = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnDashBoardIngresoCitas
@@ -76,7 +77,7 @@
             // pnlMenuReportes
             // 
             this.pnlMenuReportes.Location = new System.Drawing.Point(0, 167);
-            this.pnlMenuReportes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlMenuReportes.Margin = new System.Windows.Forms.Padding(4);
             this.pnlMenuReportes.Name = "pnlMenuReportes";
             this.pnlMenuReportes.Size = new System.Drawing.Size(1163, 646);
             this.pnlMenuReportes.TabIndex = 10;
@@ -95,11 +96,26 @@
             this.btnReporteAreasCasos.UseVisualStyleBackColor = false;
             this.btnReporteAreasCasos.Click += new System.EventHandler(this.btnReporteAreasCasos_Click);
             // 
+            // btnReporteCitasCanceladasAusentadas
+            // 
+            this.btnReporteCitasCanceladasAusentadas.BackColor = System.Drawing.Color.Maroon;
+            this.btnReporteCitasCanceladasAusentadas.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnReporteCitasCanceladasAusentadas.ForeColor = System.Drawing.Color.White;
+            this.btnReporteCitasCanceladasAusentadas.Location = new System.Drawing.Point(821, 57);
+            this.btnReporteCitasCanceladasAusentadas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnReporteCitasCanceladasAusentadas.Name = "btnReporteCitasCanceladasAusentadas";
+            this.btnReporteCitasCanceladasAusentadas.Size = new System.Drawing.Size(331, 104);
+            this.btnReporteCitasCanceladasAusentadas.TabIndex = 12;
+            this.btnReporteCitasCanceladasAusentadas.Text = "Dashboard de Pérdidas económicas por citas canceladas y/o ausentadas";
+            this.btnReporteCitasCanceladasAusentadas.UseVisualStyleBackColor = false;
+            this.btnReporteCitasCanceladasAusentadas.Click += new System.EventHandler(this.btnReporteCitasCanceladasAusentadas_Click);
+            // 
             // FormReportes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1164, 814);
+            this.Controls.Add(this.btnReporteCitasCanceladasAusentadas);
             this.Controls.Add(this.btnReporteAreasCasos);
             this.Controls.Add(this.pnlMenuReportes);
             this.Controls.Add(this.label1);
@@ -108,6 +124,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormReportes";
             this.Text = "FormReportes";
+            this.Load += new System.EventHandler(this.FormReportes_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -119,5 +136,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel pnlMenuReportes;
         private System.Windows.Forms.Button btnReporteAreasCasos;
+        private System.Windows.Forms.Button btnReporteCitasCanceladasAusentadas;
     }
 }

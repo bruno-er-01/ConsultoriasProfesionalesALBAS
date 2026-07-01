@@ -14,12 +14,22 @@ namespace CapaDatos
             {
                 using (var context = new BD_ALBASEntities1())
                 {
-                    caso.estado = "En proceso";
+                    int ultimoNro = context.Caso
+                        .Where(c => c.idCliente == caso.idCliente)
+                        .Select(c => (int?)c.nroCaso)
+                        .DefaultIfEmpty(0)
+                        .Max() ?? 0;
+
+                    caso.nroCaso = ultimoNro + 1;
+
+                    caso.estado = "Abierto";
                     caso.createdAt = DateTime.Now;
+
                     context.Caso.Add(caso);
                     context.SaveChanges();
+
+                    return "Caso Nro " + caso.nroCaso + " registrado correctamente";
                 }
-                return "Registrado correctamente";
             }
             catch (Exception ex)
             {

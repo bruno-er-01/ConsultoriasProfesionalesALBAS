@@ -64,19 +64,28 @@ namespace CapaPresentacion
                 return;
             }
 
+            bool esNuevo = dgCaso.SelectedRows.Count == 0;
+
             Caso caso = new Caso()
             {
-                nroCaso = dgCaso.SelectedRows.Count > 0 ? int.Parse(dgCaso.SelectedRows[0].Cells["nroCaso"].Value.ToString()) : 0,
-                idCliente = idClienteAsociado, 
-                titulo = txtNombre.Text,
-                estado = cbEstado.Text ?? "Abierto",
+                nroCaso = esNuevo ? 0 : int.Parse(dgCaso.SelectedRows[0].Cells["nroCaso"].Value.ToString()),
+                idCliente = idClienteAsociado,
+
+                idAdministrador = 1,
+                idEspecialista = 3,
+
+                titulo = txtNombre.Text.Trim(),
+                estado = esNuevo ? "Abierto" : cbEstado.Text,
                 fechaHoraInicio = string.IsNullOrWhiteSpace(cbFechaInicio.Text) ? DateTime.Now : Convert.ToDateTime(cbFechaInicio.Text),
-                fechaHoraFin = string.IsNullOrWhiteSpace(btnFechaFin.Text) ? (DateTime?)null : Convert.ToDateTime(btnFechaFin.Text),
-                descripcion = richTextBox1.Text
+                fechaHoraFin = string.IsNullOrWhiteSpace(btnFechaFin.Text) || btnFechaFin.Text == "Seleccionar Fin"
+                                ? (DateTime?)null
+                                : Convert.ToDateTime(btnFechaFin.Text),
+                descripcion = richTextBox1.Text.Trim()
             };
 
-            string mensaje = (dgCaso.SelectedRows.Count == 0 || caso.nroCaso == 0) ? nCaso.Registrar(caso) : nCaso.Modificar(caso);
+            string mensaje = esNuevo ? nCaso.Registrar(caso) : nCaso.Modificar(caso);
             MessageBox.Show(mensaje);
+
             CargarTabla();
         }
 

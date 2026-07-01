@@ -42,5 +42,16 @@ namespace CapaPresentacion
            FormDashBoardReporteAreas form =  new FormDashBoardReporteAreas();
            form.ShowDialog();
         }
+
+        private void FormReportes_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnReporteCitasCanceladasAusentadas_Click(object sender, EventArgs e)
+        {
+            Forms.FormDashBoardReportesCitasCanceladasAusencias pantallaNoShow = new Forms.FormDashBoardReportesCitasCanceladasAusencias();
+            pantallaNoShow.ShowDialog();
+        }
     }
 }

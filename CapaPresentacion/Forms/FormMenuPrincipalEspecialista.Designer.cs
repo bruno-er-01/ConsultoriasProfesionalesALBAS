@@ -59,7 +59,7 @@
             this.pnlBuscarClientes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.pnlBuscarClientes.Controls.Add(this.pcbRegistrarClientes);
             this.pnlBuscarClientes.Controls.Add(this.label4);
-            this.pnlBuscarClientes.Location = new System.Drawing.Point(0, 414);
+            this.pnlBuscarClientes.Location = new System.Drawing.Point(0, 331);
             this.pnlBuscarClientes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlBuscarClientes.Name = "pnlBuscarClientes";
             this.pnlBuscarClientes.Size = new System.Drawing.Size(311, 47);
@@ -95,7 +95,7 @@
             this.pnlBuscarCasosCitas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.pnlBuscarCasosCitas.Controls.Add(this.pcbRegistrarCasosCitas);
             this.pnlBuscarCasosCitas.Controls.Add(this.label2);
-            this.pnlBuscarCasosCitas.Location = new System.Drawing.Point(0, 476);
+            this.pnlBuscarCasosCitas.Location = new System.Drawing.Point(0, 393);
             this.pnlBuscarCasosCitas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlBuscarCasosCitas.Name = "pnlBuscarCasosCitas";
             this.pnlBuscarCasosCitas.Size = new System.Drawing.Size(311, 47);

@@ -31,7 +31,10 @@ namespace CapaDatos
             {
                 using (var context = new BD_ALBASEntities1())
                 {
-                    return context.Caso.ToList();
+                    context.Configuration.LazyLoadingEnabled = false;
+                    context.Configuration.ProxyCreationEnabled = false;
+
+                    return context.Caso.OrderBy(c => c.nroCaso).ToList();
                 }
             }
             catch (Exception ex)
@@ -47,21 +50,20 @@ namespace CapaDatos
             {
                 using (var context = new BD_ALBASEntities1())
                 {
-                    var modificado = context.Caso.Find(caso.nroCaso);
+                    var modificado = context.Caso.Find(caso.nroCaso, caso.idCliente);
 
                     if (modificado == null)
                     {
-                        return "Caso no encontrado";
+                        return "Caso no encontrado en la base de datos.";
                     }
 
-                    modificado.idEspecialista = caso.idEspecialista;
-                    modificado.idAdministrador = caso.idAdministrador;
                     modificado.titulo = caso.titulo;
                     modificado.descripcion = caso.descripcion;
+                    modificado.estado = caso.estado;
                     modificado.fechaHoraInicio = caso.fechaHoraInicio;
                     modificado.fechaHoraFin = caso.fechaHoraFin;
-                    modificado.estado = caso.estado;
                     modificado.documento = caso.documento;
+
                     modificado.modifiedBy = caso.modifiedBy;
                     modificado.modifiedAt = DateTime.Now;
 

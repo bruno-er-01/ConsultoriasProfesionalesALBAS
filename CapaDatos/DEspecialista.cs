@@ -116,5 +116,26 @@ namespace CapaDatos
                 return false;
             }
         }
+
+        public Usuario BuscarPorId(int idEspecialista)
+        {
+            Usuario usuario = null;
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    usuario = context.Usuario
+                        .Where(u => u.idUsuario == idEspecialista)
+                        .FirstOrDefault();
+                }
+
+                return usuario;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return usuario;
+            }
+        }
     }
 }

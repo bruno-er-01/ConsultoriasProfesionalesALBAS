@@ -15,12 +15,13 @@ namespace CapaPresentacion
     public partial class FormMenuPrincipalAdmin : Form
     {
         private Usuario usuarioActual;
+        private NCita nCita = new NCita();
+        private List<int> citasNotificadas = new List<int>();
 
         public FormMenuPrincipalAdmin(Usuario usuario)
         {
             InitializeComponent();
             this.usuarioActual = usuario;
-
         }
 
         private void AbrirFormEnPanel(Form formHijo)
@@ -63,6 +64,36 @@ namespace CapaPresentacion
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void timerRecordatorio_Tick(object sender, EventArgs e)
+        {
+            List<Cita> citas = nCita.ListarCitasConRecordatorio();
+
+            foreach (Cita cita in citas)
+            {
+                DateTime fechaHoraCita = cita.fecha.Date.Add(cita.horaInicio);
+
+                DateTime fechaHoraRecordatorio = fechaHoraCita.AddMinutes(-Convert.ToInt32(cita.tiempoAnticipacion));
+
+                if (DateTime.Now >= fechaHoraRecordatorio
+                    && DateTime.Now < fechaHoraCita
+                    && !citasNotificadas.Contains(cita.idCita))
+                {
+                    MessageBox.Show(
+                        "Tiene una cita próxima.\n\n" +
+                        "Fecha: " + cita.fecha.ToString("dd/MM/yyyy") + "\n" +
+                        "Hora: " + cita.horaInicio.ToString() + "\n" +
+                        "Modalidad: " + cita.modalidad + "\n" +
+                        "Anticipación: " + cita.tiempoAnticipacion.ToString() + " minutos",
+                        "Recordatorio de cita",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                    );
+
+                    citasNotificadas.Add(cita.idCita);
+                }
+            }
         }
     }
 }

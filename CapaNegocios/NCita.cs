@@ -21,9 +21,37 @@ namespace CapaNegocios
             return dCita.ListarPorCasoCliente(nroCaso, idCliente);
         }
 
+        public string AgregarRecordatorio(int idCita, int tiempoAnticipacion)
+        {
+            return dCita.AgregarRecordatorio(idCita, tiempoAnticipacion);
+        }
+
         public string Modificar(Cita cita)
         {
             return dCita.Modificar(cita);
+        }
+
+        public string ModificarRecordatorio(int idCita, int tiempoAnticipacion)
+        {
+            return dCita.ModificarRecordatorio(idCita, tiempoAnticipacion);
+        }
+
+        public string CancelarRecordatorio(int idCita)
+        {
+            return dCita.CancelarRecordatorio(idCita);
+        }
+        public List<object> BuscarCitasParaRecordatorio(string dniCliente, string dniEspecialista)
+        {
+            return dCita.BuscarCitasParaRecordatorio(dniCliente,dniEspecialista);
+        }
+
+        public List<object> ListarCitasParaRecordatorio()
+        {
+            return dCita.ListarCitasParaRecordatorio();
+        }
+        public List<Cita> ListarCitasConRecordatorio()
+        {
+            return dCita.ListarCitasConRecordatorio();
         }
     }
 }

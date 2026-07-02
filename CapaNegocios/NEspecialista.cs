@@ -9,6 +9,12 @@ namespace CapaNegocios
 {
     public class NEspecialista
     {
+        private DEspecialista dEspecialista =
+            new DEspecialista();
 
+        public Usuario BuscarPorId(int idEspecialista)
+        {
+            return dEspecialista.BuscarPorId(idEspecialista);
+        }
     }
 }

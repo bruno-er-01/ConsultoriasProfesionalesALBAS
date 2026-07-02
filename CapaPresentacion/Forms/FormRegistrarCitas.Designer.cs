@@ -53,6 +53,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.lblTituloCaso = new System.Windows.Forms.Label();
             this.lblCliente = new System.Windows.Forms.Label();
+            this.lblEspecialista = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgCita)).BeginInit();
             this.SuspendLayout();
             // 
@@ -289,7 +291,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(292, 18);
+            this.label8.Location = new System.Drawing.Point(292, 9);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(54, 21);
             this.label8.TabIndex = 101;
@@ -299,7 +301,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(292, 48);
+            this.label9.Location = new System.Drawing.Point(292, 30);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(68, 21);
             this.label9.TabIndex = 102;
@@ -319,7 +321,7 @@
             // lblTituloCaso
             // 
             this.lblTituloCaso.AutoSize = true;
-            this.lblTituloCaso.Location = new System.Drawing.Point(377, 24);
+            this.lblTituloCaso.Location = new System.Drawing.Point(339, 15);
             this.lblTituloCaso.Name = "lblTituloCaso";
             this.lblTituloCaso.Size = new System.Drawing.Size(10, 13);
             this.lblTituloCaso.TabIndex = 103;
@@ -328,17 +330,38 @@
             // lblCliente
             // 
             this.lblCliente.AutoSize = true;
-            this.lblCliente.Location = new System.Drawing.Point(377, 54);
+            this.lblCliente.Location = new System.Drawing.Point(357, 36);
             this.lblCliente.Name = "lblCliente";
             this.lblCliente.Size = new System.Drawing.Size(10, 13);
             this.lblCliente.TabIndex = 104;
             this.lblCliente.Text = "-";
+            // 
+            // lblEspecialista
+            // 
+            this.lblEspecialista.AutoSize = true;
+            this.lblEspecialista.Location = new System.Drawing.Point(392, 57);
+            this.lblEspecialista.Name = "lblEspecialista";
+            this.lblEspecialista.Size = new System.Drawing.Size(10, 13);
+            this.lblEspecialista.TabIndex = 106;
+            this.lblEspecialista.Text = "-";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(292, 51);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(103, 21);
+            this.label11.TabIndex = 105;
+            this.label11.Text = "Especialista:";
             // 
             // FormRegistrarCitas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(873, 661);
+            this.Controls.Add(this.lblEspecialista);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.lblCliente);
             this.Controls.Add(this.lblTituloCaso);
             this.Controls.Add(this.label9);
@@ -399,5 +422,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblTituloCaso;
         private System.Windows.Forms.Label lblCliente;
+        private System.Windows.Forms.Label lblEspecialista;
+        private System.Windows.Forms.Label label11;
     }
 }

@@ -15,7 +15,9 @@ namespace CapaPresentacion
     public partial class FormRegistrarCitas : Form
     {
         private NCita nCita = new NCita();
-        //private NCliente nCliente = new NCliente();
+        private NCliente nCliente = new NCliente();
+        private NCaso nCaso = new NCaso();
+        private NEspecialista nEspecialista = new NEspecialista();
 
         private int nroCaso;
         private int idCliente;
@@ -29,12 +31,7 @@ namespace CapaPresentacion
             this.idCliente = idCliente;
             this.tituloCaso = tituloCaso;
 
-            lblTituloCaso.Text = tituloCaso;
-            /*var cliente = nCliente.BuscarporId(idCliente);
-            if (cliente != null)
-            {
-                lblCliente.Text = cliente.nombre + " " + cliente.apellido;
-            }*/
+            CargarDatosCaso();
             CargarTabla(nCita.ListarPorCasoCliente(nroCaso, idCliente));
         }
 
@@ -50,6 +47,7 @@ namespace CapaPresentacion
                 dgCita.Columns["nroCaso"].Visible = false;
                 dgCita.Columns["idCliente"].Visible = false;
                 dgCita.Columns["Caso"].Visible = false;
+                dgCita.Columns["tiempoAnticipacion"].Visible = false;
                 dgCita.Columns["createdBy"].Visible = false;
                 dgCita.Columns["createdAt"].Visible = false;
                 dgCita.Columns["modifiedBy"].Visible = false;
@@ -96,6 +94,28 @@ namespace CapaPresentacion
             }
             
         }
+        private void CargarDatosCaso()
+        {
+            lblTituloCaso.Text = tituloCaso;
+
+            Cliente cliente = nCliente.BuscarPorId(idCliente);
+
+            if (cliente != null)
+            {
+                lblCliente.Text = cliente.nombre + " " + cliente.apellido + " - " + cliente.dni;
+            }
+
+            Caso caso = nCaso.BuscarPorId(nroCaso, idCliente);
+
+            if (caso != null)
+            {
+                Usuario especialista = nEspecialista.BuscarPorId(caso.idEspecialista);
+                if (especialista != null)
+                {
+                    lblEspecialista.Text = especialista.nombre + " " + especialista.apellido + " - " + especialista.dni;
+                }
+            }
+        }
 
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
@@ -113,8 +133,6 @@ namespace CapaPresentacion
                 MessageBox.Show("Complete todos los campos");
                 return;
             }
-
-
 
             Cita cita = new Cita()
             {

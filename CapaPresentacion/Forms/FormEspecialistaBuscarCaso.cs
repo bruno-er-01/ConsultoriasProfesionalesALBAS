@@ -88,10 +88,5 @@ namespace CapaPresentacion
             cbAreaAtención.SelectedIndex = -1;
             CargarTabla();
         }
-
-        private void FormEspecialistaBuscarCaso_Load(object sender, EventArgs e)
-        {
-            CargarTabla();
-        }
     }
 }

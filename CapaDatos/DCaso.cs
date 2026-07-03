@@ -111,5 +111,58 @@ namespace CapaDatos
                 return caso;
             }
         }
+
+        public List<ReporteAntiguedadCaso> ListarReporteAntiguedad()
+        {
+            List<ReporteAntiguedadCaso> reporte = new List<ReporteAntiguedadCaso>();
+
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    var casos = context.Caso.ToList();
+
+                    foreach (Caso caso in casos)
+                    {
+                        int diasAntiguedad = (DateTime.Now.Date - caso.fechaHoraInicio.Date).Days;
+                        string clasificacion;
+
+                        if (diasAntiguedad <= 15)
+                        {
+                            clasificacion = "Reciente";
+                        }
+                        else if (diasAntiguedad <= 30)
+                        {
+                            clasificacion = "En seguimiento";
+                        }
+                        else
+                        {
+                            clasificacion = "Crítico";
+                        }
+
+                        ReporteAntiguedadCaso fila = new ReporteAntiguedadCaso();
+
+                        fila.NroCaso = caso.nroCaso;
+                        fila.Titulo = caso.titulo;
+                        fila.Cliente = caso.Cliente.nombre + " " + caso.Cliente.apellido;
+                        fila.Area = caso.Especialista.Area.nombre;
+                        fila.Especialista = caso.Especialista.Usuario.nombre + " " + caso.Especialista.Usuario.apellido;
+                        fila.FechaInicio = caso.fechaHoraInicio;
+                        fila.Estado = caso.estado;
+                        fila.DiasAntiguedad = diasAntiguedad;
+                        fila.Clasificacion = clasificacion;
+
+                        reporte.Add(fila);
+                    }
+                }
+
+                return reporte;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return reporte;
+            }
+        }
     }
 }

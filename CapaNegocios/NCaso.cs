@@ -30,5 +30,11 @@ namespace CapaNegocios
         {
             return dCaso.BuscarPorId(nroCaso, idCliente);
         }
+
+        public List<ReporteAntiguedadCaso> ListarReporteAntiguedad()
+        {
+            return dCaso.ListarReporteAntiguedad();
+        }
+
     }
 }

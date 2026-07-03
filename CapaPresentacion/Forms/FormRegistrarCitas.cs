@@ -59,15 +59,11 @@ namespace CapaPresentacion
         {
             cbModalidad.SelectedIndex = -1;
             cbEstado.SelectedIndex = -1;
-
             txtFecha.Text = "";
             rtbObservacion.Text = "";
-
             chkAsistencia.Checked = false;
-
             dtpHoraInicio.Value = DateTime.Now;
             dtpHoraFin.Value = DateTime.Now.AddHours(1);
-
             dgCita.ClearSelection();
         }
 
@@ -91,9 +87,9 @@ namespace CapaPresentacion
 
                 clCitas.SelectionStart = fecha;
                 txtFecha.Text = fecha.ToShortDateString();
-            }
-            
+            }  
         }
+
         private void CargarDatosCaso()
         {
             lblTituloCaso.Text = tituloCaso;

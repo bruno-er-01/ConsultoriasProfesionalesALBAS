@@ -14,7 +14,6 @@ namespace CapaPresentacion
     public partial class FormRecordatorio : Form
     {
         private NCita nCita = new NCita();
-        private int idCitaSeleccionada = 0;
         public FormRecordatorio()
         {
             InitializeComponent();
@@ -37,13 +36,10 @@ namespace CapaPresentacion
         {
             txtDNICliente.Text = "";
             txtDNIEspecialista.Text = "";
-
             lblFechaCita.Text = "";
             lblHoraInicio.Text = "";
             lblModalidad.Text = "";
-
             cbTiempoAnticipacion.SelectedIndex = -1;
-
             dgRecordatorio.ClearSelection();
         }
 
@@ -60,6 +56,7 @@ namespace CapaPresentacion
             lblHoraInicio.Text = fila.Cells["HoraInicio"].Value.ToString();
             lblFechaCita.Text = Convert.ToDateTime(fila.Cells["Fecha"].Value).ToString("dd/MM/yyyy");
             lblModalidad.Text = fila.Cells["Modalidad"].Value.ToString();
+
             if (fila.Cells["TiempoAnticipacion"].Value == null)
             {
                 cbTiempoAnticipacion.Text = "";
@@ -122,6 +119,12 @@ namespace CapaPresentacion
             else if (cbTiempoAnticipacion.Text == "60 minutos")
             {
                 tiempoAnticipacion = 60;
+            }
+
+            if (tiempoAnticipacion == 0)
+            {
+                MessageBox.Show("El tiempo seleccionado no es válido");
+                return;
             }
 
             string mensaje = nCita.AgregarRecordatorio(

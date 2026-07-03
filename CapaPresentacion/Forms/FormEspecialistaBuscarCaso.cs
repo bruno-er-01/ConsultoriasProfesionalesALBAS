@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,78 +16,121 @@ namespace CapaPresentacion
     public partial class FormEspecialistaBuscarCaso : Form
     {
         private NCaso nCaso = new NCaso();
-
-        public FormEspecialistaBuscarCaso()
+        private Usuario usuarioActual;
+        public FormEspecialistaBuscarCaso(Usuario usuarioActual)
         {
             InitializeComponent();
-            CargarTabla();
+            this.usuarioActual = usuarioActual;
+            MostrarData(nCaso.ListarCasosPorEspecialista(usuarioActual.idUsuario, "", ""));
         }
-
-        private void CargarTabla()
+        private void MostrarData<t>(List<t> lista)
         {
-            dgCaso.DataSource = null;
-            var lista = nCaso.ListarTodo();
-            if (lista != null && lista.Count > 0)
+            dgCasos.DataSource = null;
+            if (lista.Count > 0)
             {
-                dgCaso.DataSource = lista;
+                dgCasos.DataSource = lista;
             }
-        }
+            dgCasos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-        private void dgCaso_SelectionChanged(object sender, EventArgs e)
-        {
-            if (dgCaso.SelectedRows.Count > 0)
+            if (dgCasos.Columns["IdCliente"] != null)
             {
-                var fila = dgCaso.SelectedRows[0];
-
-                tbId.Text = (fila.Cells["nroCaso"].Value ?? fila.Cells["NroCaso"].Value ?? fila.Cells[0].Value)?.ToString();
-                cbEstado.Text = (fila.Cells["estado"].Value ?? fila.Cells["Estado"].Value ?? fila.Cells[3].Value)?.ToString();
-
-                if (dgCaso.Columns.Contains("areaAtencion"))
-                    cbAreaAtención.Text = fila.Cells["areaAtencion"].Value?.ToString();
-                else if (dgCaso.Columns.Contains("AreaAtencion"))
-                    cbAreaAtención.Text = fila.Cells["AreaAtencion"].Value?.ToString();
+                dgCasos.Columns["IdCliente"].Visible = false;
             }
+
         }
 
-        private void btnActualizarDatos_Click(object sender, EventArgs e)
+        private void btnBuscar_Click_1(object sender, EventArgs e)
         {
-            
+            MostrarData(nCaso.ListarCasosPorEspecialista(usuarioActual.idUsuario, cbEstadoCaso.Text, ""));
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
+        private void btnCitasCaso_Click(object sender, EventArgs e)
         {
-            var listaCompleta = nCaso.ListarTodo();
-            if (listaCompleta != null && listaCompleta.Count > 0)
+            if(dgCasos.SelectedRows.Count == 0)
             {
-                var filtrado = listaCompleta.AsEnumerable();
+                MessageBox.Show("Selecciones un caso");
+                return;
+            }
+            FormEspecialistaBuscarCita form = new FormEspecialistaBuscarCita();
+            form.ShowDialog();
+        }
+        // si quiero excel debo instalar nuggets
+        private void btnExportarExcel_Click(object sender, EventArgs e)
+        {
+            if (dgCasos.Rows.Count == 0)
+            {
+                MessageBox.Show("No hay datos para exportar.");
+                return;
+            }
 
-                if (!string.IsNullOrWhiteSpace(tbId.Text) && int.TryParse(tbId.Text.Trim(), out int idBuscado))
-                { 
-                filtrado = filtrado.Where(c => c.nroCaso == idBuscado);
-                }
+            SaveFileDialog save = new SaveFileDialog();
+            save.Filter = "Archivo CSV|*.csv";
+            save.Title = "Exportar casos";
+            save.FileName = "Mis_Casos.csv";
 
-                if (cbEstado.SelectedIndex != -1 && !string.IsNullOrWhiteSpace(cbEstado.Text))
+            if (save.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+
+            try
+            {
+                StringBuilder sb = new StringBuilder();
+
+                for (int i = 0; i < dgCasos.Columns.Count; i++)
                 {
-                    filtrado = filtrado.Where(c => c.estado != null && c.estado.Equals(cbEstado.Text, StringComparison.OrdinalIgnoreCase));
+                    if (dgCasos.Columns[i].Visible == true)
+                    {
+                        sb.Append(dgCasos.Columns[i].HeaderText + ";");
+                    }
                 }
 
-                if (cbAreaAtención.SelectedIndex != -1 && !string.IsNullOrWhiteSpace(cbAreaAtención.Text))
+                sb.AppendLine();
+
+                foreach (DataGridViewRow fila in dgCasos.Rows)
                 {
-                    string areaBuscada = cbAreaAtención.Text;
-                    filtrado = filtrado.Where(c => c.estado != null);
+                    if (fila.IsNewRow == false)
+                    {
+                        for (int i = 0; i < dgCasos.Columns.Count; i++)
+                        {
+                            if (dgCasos.Columns[i].Visible == true)
+                            {
+                                if (fila.Cells[i].Value != null)
+                                {
+                                    sb.Append(fila.Cells[i].Value.ToString() + ";");
+                                }
+                                else
+                                {
+                                    sb.Append(";");
+                                }
+                            }
+                        }
+
+                        sb.AppendLine();
+                    }
                 }
 
-                dgCaso.DataSource = null;
-                dgCaso.DataSource = filtrado.ToList();
+                File.WriteAllText(save.FileName, sb.ToString(), Encoding.UTF8);
+
+                MessageBox.Show("Archivo exportado correctamente.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al exportar: " + ex.Message);
             }
         }
+        
 
-        private void btnListarTodo_Click(object sender, EventArgs e)
+        private void btnBorrarFiltro_Click(object sender, EventArgs e)
         {
-            tbId.Clear();
-            cbEstado.SelectedIndex = -1;
-            cbAreaAtención.SelectedIndex = -1;
-            CargarTabla();
+            cbEstadoCaso.SelectedIndex = 0;
+            txtDataCliente.Text = "";
+            MostrarData(nCaso.ListarCasosPorEspecialista(usuarioActual.idUsuario, "", ""));
+        }
+
+        private void txtDataCliente_TextChanged(object sender, EventArgs e)
+        {
+            MostrarData(nCaso.ListarCasosPorEspecialista(usuarioActual.idUsuario, "", txtDataCliente.Text));
         }
     }
 }

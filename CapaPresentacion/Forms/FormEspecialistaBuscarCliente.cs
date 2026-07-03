@@ -47,8 +47,8 @@ namespace CapaPresentacion
                 var fila = dgClientes.SelectedRows[0];
                 int idCliente = int.Parse(fila.Cells["idCliente"].Value.ToString());
 
-                FormEspecialistaBuscarCaso frmCaso = new FormEspecialistaBuscarCaso();
-                frmCaso.ShowDialog();
+                //FormEspecialistaBuscarCaso frmCaso = new FormEspecialistaBuscarCaso();
+                //frmCaso.ShowDialog();
             }
             else
             {

@@ -42,7 +42,7 @@ namespace CapaNegocios
         }
         public List<object> BuscarCitasParaRecordatorio(string dniCliente, string dniEspecialista)
         {
-            return dCita.BuscarCitasParaRecordatorio(dniCliente,dniEspecialista);
+            return dCita.BuscarCitasParaRecordatorio(dniCliente, dniEspecialista);
         }
 
         public List<object> ListarCitasParaRecordatorio()
@@ -52,6 +52,15 @@ namespace CapaNegocios
         public List<Cita> ListarCitasConRecordatorio()
         {
             return dCita.ListarCitasConRecordatorio();
+        }
+        public int ContarCitasHoy(int idEspecialista)
+        {
+            return dCita.ContarCitasHoy(idEspecialista);
+        } 
+
+        public List<object> ListarCitasPendientesPorEspecialista(int idEspecialista)
+        {
+            return dCita.ListarCitasPendientesPorEspecialista(idEspecialista);
         }
     }
 }

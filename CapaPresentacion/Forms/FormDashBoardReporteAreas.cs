@@ -81,17 +81,20 @@ namespace CapaPresentacion
         private void MostrarTabla(List<ReporteDemandaArea> reporte)
         {
             dgReportes.DataSource = null;
-            dgReportes.DataSource = reporte;
+            if (reporte.Count > 0)
+            {
+                dgReportes.DataSource = reporte;
 
-            dgReportes.Columns["Area"].HeaderText = "Área";
-            dgReportes.Columns["TotalCasos"].HeaderText = "Total de casos";
-            dgReportes.Columns["CasosActivos"].HeaderText = "Casos activos";
-            dgReportes.Columns["CasosCerrados"].HeaderText = "Casos cerrados";
-            dgReportes.Columns["PorcentajeDemanda"].HeaderText = "% Demanda";
-            dgReportes.Columns["EspecialistasDisponibles"].HeaderText = "Especialistas disponibles";
-            dgReportes.Columns["Recomendacion"].HeaderText = "Recomendación";
+                dgReportes.Columns["Area"].HeaderText = "Área";
+                dgReportes.Columns["TotalCasos"].HeaderText = "Total de casos";
+                dgReportes.Columns["CasosActivos"].HeaderText = "Casos activos";
+                dgReportes.Columns["CasosCerrados"].HeaderText = "Casos cerrados";
+                dgReportes.Columns["PorcentajeDemanda"].HeaderText = "% Demanda";
+                dgReportes.Columns["EspecialistasDisponibles"].HeaderText = "Especialistas disponibles";
+                dgReportes.Columns["Recomendacion"].HeaderText = "Recomendación";
 
-            dgReportes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dgReportes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            }
         }
 
         private void MostrarGrafico(List<ReporteDemandaArea> reporte)

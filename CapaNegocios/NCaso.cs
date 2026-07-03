@@ -35,6 +35,17 @@ namespace CapaNegocios
         {
             return dCaso.ListarReporteAntiguedad();
         }
-
+        public int ContarCasosActivos(int idEspecialista)
+        {
+            return dCaso.ContarCasosActivos(idEspecialista);
+        }
+        public int ContarCasosCerrados(int idEspecialista)
+        {
+            return dCaso.ContarCasosCerrados(idEspecialista);
+        }
+        public List<object> ListarCasosPorEspecialista(int idEspecialista, string estado, string texto)
+        {
+            return dCaso.ListarCasosPorEspecialista(idEspecialista, estado, texto);
+        }
     }
 }

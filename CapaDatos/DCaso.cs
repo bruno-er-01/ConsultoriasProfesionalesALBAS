@@ -164,5 +164,89 @@ namespace CapaDatos
                 return reporte;
             }
         }
+        public int ContarCasosActivos(int idEspecialista)
+        {
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    return context.Caso
+                        .Count(c =>
+                            c.idEspecialista == idEspecialista &&
+                            (c.estado == "Abierto" || c.estado == "En proceso"));
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return 0;
+            }
+        }
+        public int ContarCasosCerrados(int idEspecialista)
+        {
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    return context.Caso
+                        .Count(c =>
+                            c.idEspecialista == idEspecialista &&
+                            c.estado == "Cerrado");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return 0;
+            }
+        }
+        public List<object> ListarCasosPorEspecialista(int idEspecialista, string estado, string texto)
+        {
+            List<object> lista = new List<object>();
+
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    var consulta = context.Caso
+                        .Where(c => c.idEspecialista == idEspecialista);
+
+                    if (estado != "Todos" && estado != "")
+                    {
+                        consulta = consulta.Where(c => c.estado == estado);
+                    }
+
+                    if (texto != "")
+                    {
+                        consulta = consulta.Where(c =>
+                            c.Cliente.nombre.Contains(texto) ||
+                            c.Cliente.apellido.Contains(texto) ||
+                            c.Cliente.dni.Contains(texto) ||
+                            c.titulo.Contains(texto));
+                    }
+
+                    lista = consulta
+                        .OrderByDescending(c => c.nroCaso)
+                        .Select(c => new
+                        {
+                            NroCaso = c.nroCaso,
+                            IdCliente = c.idCliente,
+                            Cliente = c.Cliente.nombre + " " + c.Cliente.apellido,
+                            DNI = c.Cliente.dni,
+                            Titulo = c.titulo,
+                            Estado = c.estado,
+                            FechaInicio = c.fechaHoraInicio
+                        })
+                        .ToList<object>();
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return lista;
+            }
+        }
     }
 }

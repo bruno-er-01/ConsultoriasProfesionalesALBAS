@@ -39,7 +39,7 @@ namespace CapaPresentacion
 
         private void pnlInicio_Click(object sender, EventArgs e)
         {
-            AbrirFormEnPanel(new FormInicio());
+            AbrirFormEnPanel(new FormEspecialistaInicio(usuarioActual));
         }
 
  
@@ -61,6 +61,11 @@ namespace CapaPresentacion
         private void pnlMiPerfil_Click(object sender, EventArgs e)
         {
             AbrirFormEnPanel(new FormEspecialistaMiCuenta(usuarioActual));
+        }
+
+        private void pnlMisCasos_Click(object sender, EventArgs e)
+        {
+            AbrirFormEnPanel(new FormEspecialistaBuscarCaso(usuarioActual));
         }
         //jiji
     }

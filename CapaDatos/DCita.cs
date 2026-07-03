@@ -229,7 +229,9 @@ namespace CapaDatos
                         (c.estado == "Pendiente" || c.estado == "Reprogramado")
                         && (c.fecha > fechaActual || (c.fecha == fechaActual && c.horaInicio > horaActual))
                         && (dniCliente == "" || c.Caso.Cliente.dni == dniCliente)
-                        && (dniEspecialista == "" || c.Caso.Especialista.Usuario.dni == dniEspecialista))
+                        && (dniEspecialista == "" || c.Caso.Especialista.Usuario.dni == dniEspecialista)).
+                        OrderBy(c => c.fecha)
+                        .ThenBy(c => c.horaInicio)
                         .Select(c => new
                         {
                             IdCita = c.idCita,
@@ -269,6 +271,77 @@ namespace CapaDatos
             {
                 Console.WriteLine(ex.Message);
                 return citas;
+            }
+        }
+        public int ContarCitasHoy(int idEspecialista)
+        {
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    DateTime hoy = DateTime.Today;
+
+                    int cantidad = (from ci in context.Cita
+                                    join ca in context.Caso
+                                        on new { ci.nroCaso, ci.idCliente }
+                                        equals new { ca.nroCaso, ca.idCliente }
+                                    where ca.idEspecialista == idEspecialista &&
+                                          ci.fecha == hoy
+                                    select ci)
+                                    .Count();
+
+                    return cantidad;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return 0;
+            }
+        }
+        public List<object> ListarCitasPendientesPorEspecialista(int idEspecialista)
+        {
+            List<object> lista = new List<object>();
+
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    DateTime fechaActual = DateTime.Now.Date;
+                    TimeSpan horaActual = DateTime.Now.TimeOfDay;
+
+                    lista = context.Cita
+                        .Where(c =>
+                            c.Caso.idEspecialista == idEspecialista &&
+                            (c.estado == "Pendiente" || c.estado == "Reprogramado") &&
+                            (
+                                c.fecha > fechaActual ||
+                                (c.fecha == fechaActual && c.horaInicio >= horaActual)
+                            ))
+                        .OrderBy(c => c.fecha)
+                        .ThenBy(c => c.horaInicio)
+                        .Select(c => new
+                        {
+                            IdCita = c.idCita,
+                            NroCaso = c.nroCaso,
+                            DNICliente = c.Caso.Cliente.dni,
+                            Cliente = c.Caso.Cliente.nombre + " " + c.Caso.Cliente.apellido,
+                            Fecha = c.fecha,
+                            HoraInicio = c.horaInicio,
+                            HoraFin = c.horaFin,
+                            Estado = c.estado,
+                            Modalidad = c.modalidad,
+                            ConfirmacionAsistencia = c.confirmacionAsistencia
+                        })
+                        .ToList<object>();
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return lista;
             }
         }
     }

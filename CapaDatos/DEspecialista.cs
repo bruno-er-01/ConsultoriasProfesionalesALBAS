@@ -137,5 +137,24 @@ namespace CapaDatos
                 return usuario;
             }
         }
+        
+        public int ContarClientesAsignados(int idEspecialista)
+        {
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    return context.Caso.Where(e=>e.idEspecialista==idEspecialista)
+                        .Select(c=>c.idCliente).Distinct().Count();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return 0;
+            }
+        }
+
+
     }
 }

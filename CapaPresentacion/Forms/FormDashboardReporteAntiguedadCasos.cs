@@ -13,9 +13,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
-using System.IO;
 using FontPDF = iTextSharp.text.Font;
 
 namespace CapaPresentacion.Forms
@@ -41,6 +38,7 @@ namespace CapaPresentacion.Forms
             listaCasos = nCaso.ListarReporteAntiguedad();
             dgCasos.DataSource = null;
             dgCasos.DataSource = nCaso.ListarReporteAntiguedad();
+            dgCasos.Columns["NroCaso"].Visible = false;
             MostrarIndicadores(listaCasos);
         }
 
@@ -71,6 +69,7 @@ namespace CapaPresentacion.Forms
             listaFiltradaActual = listaFiltrada;
             dgCasos.DataSource = null;
             dgCasos.DataSource = listaFiltrada;
+            dgCasos.Columns["NroCaso"].Visible = false;
 
             MostrarIndicadores(listaFiltrada);
 
@@ -325,6 +324,7 @@ namespace CapaPresentacion.Forms
 
                 dgCasos.DataSource = null;
                 dgCasos.DataSource = listaSeleccionada;
+                dgCasos.Columns["NroCaso"].Visible = false;
             }
         }
 
@@ -338,10 +338,8 @@ namespace CapaPresentacion.Forms
 
                 chartAntiguedad.Cursor = Cursors.Hand;
 
-                // Solo cambiar si entramos a otro punto
                 if (puntoAnterior != punto)
                 {
-                    // Restaurar el punto anterior
                     if (puntoAnterior != null)
                     {
                         puntoAnterior.SetCustomProperty("Exploded", "False");
@@ -455,13 +453,9 @@ namespace CapaPresentacion.Forms
 
             try
             {
-                Document documento =
-                    new Document(PageSize.A4.Rotate(), 30, 30, 30, 30);
+                Document documento = new Document(PageSize.A4.Rotate(), 30, 30, 30, 30);
 
-                PdfWriter.GetInstance(
-                    documento,
-                    new FileStream(save.FileName, FileMode.Create)
-                );
+                PdfWriter.GetInstance(documento, new FileStream(save.FileName, FileMode.Create));
 
                 documento.Open();
 
@@ -537,7 +531,7 @@ namespace CapaPresentacion.Forms
                 );
 
                 documento.Add(tablaInfo);
-
+                //----
                 Paragraph subtituloResumen = new Paragraph("1. RESUMEN DEL REPORTE", fuenteSubtitulo);
 
                 subtituloResumen.SpacingAfter = 8;
@@ -583,23 +577,22 @@ namespace CapaPresentacion.Forms
                 );
 
                 documento.Add(tablaResumen);
-
+                //----
                 Paragraph subtituloDetalle = new Paragraph("2. DETALLE DE LOS CASOS", fuenteSubtitulo);
 
                 subtituloDetalle.SpacingAfter = 8;
                 documento.Add(subtituloDetalle);
 
-                PdfPTable tabla = new PdfPTable(9);
+                PdfPTable tabla = new PdfPTable(8);
 
                 tabla.WidthPercentage = 100;
                 tabla.SpacingAfter = 15;
 
                 tabla.SetWidths(
                     new float[]
-                    {8, 20, 18, 13, 18, 13, 12, 10, 14}
+                    {20, 18, 13, 18, 13, 12, 10, 14}
                 );
 
-                AgregarEncabezado(tabla, "N.° caso", fuenteTablaHeader);
                 AgregarEncabezado(tabla, "Título", fuenteTablaHeader);
                 AgregarEncabezado(tabla, "Cliente", fuenteTablaHeader);
                 AgregarEncabezado(tabla, "Área", fuenteTablaHeader);
@@ -611,11 +604,6 @@ namespace CapaPresentacion.Forms
 
                 foreach (ReporteAntiguedadCaso caso in listaFiltradaActual)
                 {
-                    AgregarCelda(
-                        tabla,
-                        caso.NroCaso.ToString(),
-                        fuenteTabla
-                    );
 
                     AgregarCelda(
                         tabla,
@@ -667,9 +655,8 @@ namespace CapaPresentacion.Forms
                 }
 
                 documento.Add(tabla);
-
-                Paragraph subtituloInterpretacion =
-                    new Paragraph("3. INTERPRETACIÓN", fuenteSubtitulo);
+                //-----
+                Paragraph subtituloInterpretacion = new Paragraph("3. INTERPRETACIÓN", fuenteSubtitulo);
 
                 subtituloInterpretacion.SpacingAfter = 8;
                 documento.Add(subtituloInterpretacion);

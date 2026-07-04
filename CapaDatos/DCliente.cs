@@ -210,5 +210,77 @@ namespace CapaDatos
                 return cliente;
             }
         }
+        public List<object> ListarClientesPorMes()
+        {
+            List<object> lista = new List<object>();
+
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    int anioActual = DateTime.Now.Year;
+                    int mesActual = DateTime.Now.Month;
+
+                    var consulta = context.Cliente
+                        .Where(c => c.activo == true &&
+                                    c.createdAt != null &&
+                                    c.createdAt.Year == anioActual)
+                        .GroupBy(c => c.createdAt.Month)
+                        .Select(g => new
+                        {
+                            MesNumero = g.Key,
+                            Cantidad = g.Count()
+                        })
+                        .ToList();
+
+                    for (int mes = 1; mes <= mesActual; mes++)
+                    {
+                        int cantidad = 0;
+
+                        var encontrado = consulta
+                            .Where(c => c.MesNumero == mes)
+                            .FirstOrDefault();
+
+                        if (encontrado != null)
+                        {
+                            cantidad = encontrado.Cantidad;
+                        }
+
+                        lista.Add(new
+                        {
+                            Mes = ObtenerNombreMes(mes),
+                            Cantidad = cantidad
+                        });
+                    }
+
+                    return lista;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return lista;
+            }
+        }
+
+        private string ObtenerNombreMes(int mes)
+        {
+            switch (mes)
+            {
+                case 1: return "Ene";
+                case 2: return "Feb";
+                case 3: return "Mar";
+                case 4: return "Abr";
+                case 5: return "May";
+                case 6: return "Jun";
+                case 7: return "Jul";
+                case 8: return "Ago";
+                case 9: return "Sep";
+                case 10: return "Oct";
+                case 11: return "Nov";
+                case 12: return "Dic";
+                default: return "";
+            }
+        }
     }
 }

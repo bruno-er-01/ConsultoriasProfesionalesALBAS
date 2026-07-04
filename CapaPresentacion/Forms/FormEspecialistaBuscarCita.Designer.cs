@@ -241,7 +241,7 @@
             // 
             // rtxtObservacion
             // 
-            this.rtxtObservacion.Location = new System.Drawing.Point(337, 575);
+            this.rtxtObservacion.Location = new System.Drawing.Point(473, 520);
             this.rtxtObservacion.Name = "rtxtObservacion";
             this.rtxtObservacion.Size = new System.Drawing.Size(365, 119);
             this.rtxtObservacion.TabIndex = 217;
@@ -251,7 +251,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(333, 540);
+            this.label12.Location = new System.Drawing.Point(343, 562);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(108, 20);
             this.label12.TabIndex = 218;
@@ -262,7 +262,7 @@
             this.btnActualizar.BackColor = System.Drawing.Color.Maroon;
             this.btnActualizar.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnActualizar.ForeColor = System.Drawing.Color.White;
-            this.btnActualizar.Location = new System.Drawing.Point(122, 642);
+            this.btnActualizar.Location = new System.Drawing.Point(679, 655);
             this.btnActualizar.Margin = new System.Windows.Forms.Padding(4);
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(159, 38);

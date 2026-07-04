@@ -24,16 +24,16 @@ namespace CapaPresentacion
         {
             InitializeComponent();
         }
-
-        private void btnRegresarLogin_Click(object sender, EventArgs e)
+   
+        private void btnRegresarLoginq_Click(object sender, EventArgs e)
         {
-            FormLogin formLogin = new FormLogin();
+            FormLoginPrincipal formLogin = new FormLoginPrincipal();
             formLogin.Show();
 
             this.Close();
         }
 
-        private void btnEnviarCodigo_Click(object sender, EventArgs e)
+        private void btnEnviarCodigo_Click_1(object sender, EventArgs e)
         {
             string correo = txtCorreo.Text.Trim();
 
@@ -58,7 +58,7 @@ namespace CapaPresentacion
             MessageBox.Show("Código: " + codigoGenerado);
         }
 
-        private void btnVerificarCodigo_Click(object sender, EventArgs e)
+        private void btnVerificarCodigo_Click_1(object sender, EventArgs e)
         {
             string codigoIngresado = txtCodigo.Text.Trim();
 

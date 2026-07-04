@@ -50,7 +50,7 @@ namespace CapaPresentacion.Forms
 
             MessageBox.Show(mensaje);
 
-            FormLogin formLogin = new FormLogin();
+            FormLoginPrincipal formLogin = new FormLoginPrincipal();
             formLogin.Show();
 
             this.Close();

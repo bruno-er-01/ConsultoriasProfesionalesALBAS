@@ -28,26 +28,11 @@ namespace CapaPresentacion
             pnlMenuReportes.Controls.Add(formHijo);
             formHijo.Show();
         }
-        private void btnDashBoardClientes_Click(object sender, EventArgs e)
-        {
-            AbrirFormEnPanel(new FormDashBoardClientes());
-        }
 
         private void btnReporteAreasCasos_Click(object sender, EventArgs e)
         {
            FormDashBoardReporteAreas form =  new FormDashBoardReporteAreas();
            form.ShowDialog();
-        }
-
-        private void FormReportes_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnReporteCitasCanceladasAusentadas_Click(object sender, EventArgs e)
-        {
-            Forms.FormDashBoardReportesCitasCanceladasAusencias pantallaNoShow = new Forms.FormDashBoardReportesCitasCanceladasAusencias();
-            pantallaNoShow.ShowDialog();
         }
 
         private void btnDashBoardAntiguedadCasosPorAreas_Click(object sender, EventArgs e)
@@ -61,5 +46,6 @@ namespace CapaPresentacion
             FormDashboardCargaLaboralxEspecialista form = new FormDashboardCargaLaboralxEspecialista();
             form.Show();
         }
+
     }
 }

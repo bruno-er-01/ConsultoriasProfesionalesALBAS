@@ -171,6 +171,109 @@ namespace CapaDatos
                 return new List<CapaDatos.ReporteNoShowEstructura>();
             }
         }
+
+        public List<ReporteCargaEspecialista> ReporteCargaLaboralPorEspecialista(DateTime fechaInicio, DateTime fechaFin, string orden)
+        {
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    DateTime desde = fechaInicio.Date;
+                    DateTime hasta = fechaFin.Date.AddDays(1);
+
+                    var consulta = from e in context.Especialista
+                                   join u in context.Usuario on e.idEspecialista equals u.idUsuario
+                                   join a in context.Area on e.idArea equals a.idArea
+                                   join c in context.Caso on e.idEspecialista equals c.idEspecialista
+                                   where u.activo == true
+                                         && a.activo == true
+                                         && c.activo == true
+                                         && c.fechaHoraInicio >= desde
+                                         && c.fechaHoraInicio < hasta
+                                   select new
+                                   {
+                                       IdEspecialista = e.idEspecialista,
+                                       NombreCompleto = u.nombre + " " + u.apellido,
+                                       Area = a.nombre,
+                                       IdCaso = c.nroCaso,
+                                       EstadoCaso = c.estado
+                                   };
+
+                    var datosBase = consulta.ToList();
+                    var todasLasCitas = context.Cita.ToList();
+
+                    List<ReporteCargaEspecialista> listaReporte = new List<ReporteCargaEspecialista>();
+                    var grupos = datosBase.GroupBy(x => new { x.IdEspecialista, x.NombreCompleto, x.Area });
+                    int totalCasosGeneral = datosBase.Select(x => x.IdCaso).Distinct().Count();
+
+                    foreach (var g in grupos)
+                    {
+                        ReporteCargaEspecialista fila = new ReporteCargaEspecialista();
+                        fila.IdEspecialista = g.Key.IdEspecialista;
+                        fila.NombreEspecialista = g.Key.NombreCompleto;
+                        fila.Area = g.Key.Area;
+
+                        fila.TotalCasos = g.Select(x => x.IdCaso).Distinct().Count();
+                        fila.CasosActivos = g.Where(x => x.EstadoCaso == "Abierto" || x.EstadoCaso == "En proceso").Select(x => x.IdCaso).Distinct().Count();
+                        fila.CasosCerrados = g.Where(x => x.EstadoCaso == "Cerrado").Select(x => x.IdCaso).Distinct().Count();
+
+                        int contadorCitas = 0;
+                        foreach (var caso in g)
+                        {
+                            foreach (var cita in todasLasCitas)
+                            {
+                                if (cita.nroCaso == caso.IdCaso)
+                                {
+                                    contadorCitas = contadorCitas + 1;
+                                }
+                            }
+                        }
+                        fila.TotalCitas = contadorCitas;
+
+                        if (totalCasosGeneral == 0)
+                        {
+                            fila.PorcentajeDemanda = 0;
+                        }
+                        else
+                        {
+                            double calculo = (fila.TotalCasos * 100.0) / totalCasosGeneral;
+                            fila.PorcentajeDemanda = Math.Round(calculo, 2);
+                        }
+
+                        if (fila.TotalCasos >= 8)
+                        {
+                            fila.Recomendacion = "Sobrecarga detectada. Evaluar redistribución.";
+                        }
+                        else if (fila.TotalCasos >= 4)
+                        {
+                            fila.Recomendacion = "Carga moderada. Flujo de trabajo óptimo.";
+                        }
+                        else
+                        {
+                            fila.Recomendacion = "Carga baja. Disponible para asignación.";
+                        }
+
+                        listaReporte.Add(fila);
+                    }
+
+                    if (orden == "Ascendente")
+                    {
+                        listaReporte = listaReporte.OrderBy(r => r.TotalCasos).ToList();
+                    }
+                    else
+                    {
+                        listaReporte = listaReporte.OrderByDescending(r => r.TotalCasos).ToList();
+                    }
+
+                    return listaReporte;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return new List<ReporteCargaEspecialista>();
+            }
+        }
     }
 }
 

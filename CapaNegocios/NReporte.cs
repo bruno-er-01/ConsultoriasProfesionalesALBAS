@@ -34,5 +34,15 @@ namespace CapaNegocios
         {
             return dReporte.ObtenerPerdidaNoShow();
         }
+
+        public List<ReporteCargaEspecialista> ReporteCargaLaboralPorEspecialista(DateTime fechaInicio, DateTime fechaFin, string orden)
+        {
+            if (fechaInicio > fechaFin)
+            {
+                return new List<ReporteCargaEspecialista>();
+            }
+
+            return dReporte.ReporteCargaLaboralPorEspecialista(fechaInicio, fechaFin, orden);
+        }
     }
 }

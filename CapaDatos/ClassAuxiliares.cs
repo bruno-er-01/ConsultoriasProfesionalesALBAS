@@ -34,4 +34,18 @@ namespace CapaDatos
         public int DiasAntiguedad { get; set; }
         public string Clasificacion { get; set; }
     }
+
+    //REPORTE DE PRODUCTIVIDAD DE ESPECILISTAS
+    public class ReporteCargaEspecialista
+    {
+        public int IdEspecialista { get; set; }
+        public string NombreEspecialista { get; set; }
+        public string Area { get; set; }
+        public int TotalCasos { get; set; }
+        public int CasosActivos { get; set; }
+        public int CasosCerrados { get; set; }
+        public int TotalCitas { get; set; } 
+        public double PorcentajeDemanda { get; set; }
+        public string Recomendacion { get; set; }
+    }
 }

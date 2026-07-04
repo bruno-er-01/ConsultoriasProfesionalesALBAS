@@ -108,7 +108,8 @@ namespace CapaDatos
             {
                 using (var context = new BD_ALBASEntities1())
                 {
-                    var casos = context.Caso.ToList();
+                    var casos = context.Caso.Where(c => c.estado == "Abierto" ||
+                        c.estado == "En proceso").ToList();
 
                     foreach (Caso caso in casos)
                     {

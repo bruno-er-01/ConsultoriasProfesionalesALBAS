@@ -126,7 +126,7 @@
             this.btnBorrarFiltro.BackColor = System.Drawing.Color.Maroon;
             this.btnBorrarFiltro.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBorrarFiltro.ForeColor = System.Drawing.Color.White;
-            this.btnBorrarFiltro.Location = new System.Drawing.Point(862, 429);
+            this.btnBorrarFiltro.Location = new System.Drawing.Point(900, 405);
             this.btnBorrarFiltro.Margin = new System.Windows.Forms.Padding(4);
             this.btnBorrarFiltro.Name = "btnBorrarFiltro";
             this.btnBorrarFiltro.Size = new System.Drawing.Size(202, 39);
@@ -170,7 +170,7 @@
             this.btnExportarExcel.BackColor = System.Drawing.Color.Maroon;
             this.btnExportarExcel.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExportarExcel.ForeColor = System.Drawing.Color.White;
-            this.btnExportarExcel.Location = new System.Drawing.Point(862, 374);
+            this.btnExportarExcel.Location = new System.Drawing.Point(900, 350);
             this.btnExportarExcel.Margin = new System.Windows.Forms.Padding(4);
             this.btnExportarExcel.Name = "btnExportarExcel";
             this.btnExportarExcel.Size = new System.Drawing.Size(202, 38);
@@ -184,7 +184,7 @@
             this.btnDetalleCaso.BackColor = System.Drawing.Color.Maroon;
             this.btnDetalleCaso.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDetalleCaso.ForeColor = System.Drawing.Color.White;
-            this.btnDetalleCaso.Location = new System.Drawing.Point(862, 324);
+            this.btnDetalleCaso.Location = new System.Drawing.Point(900, 300);
             this.btnDetalleCaso.Margin = new System.Windows.Forms.Padding(4);
             this.btnDetalleCaso.Name = "btnDetalleCaso";
             this.btnDetalleCaso.Size = new System.Drawing.Size(202, 42);
@@ -196,11 +196,11 @@
             // dgCasos
             // 
             this.dgCasos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgCasos.Location = new System.Drawing.Point(35, 245);
+            this.dgCasos.Location = new System.Drawing.Point(27, 235);
             this.dgCasos.Name = "dgCasos";
             this.dgCasos.RowHeadersWidth = 51;
             this.dgCasos.RowTemplate.Height = 24;
-            this.dgCasos.Size = new System.Drawing.Size(806, 339);
+            this.dgCasos.Size = new System.Drawing.Size(858, 339);
             this.dgCasos.TabIndex = 154;
             // 
             // FormEspecialistaBuscarCaso

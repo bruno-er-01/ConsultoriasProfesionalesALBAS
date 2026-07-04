@@ -250,7 +250,6 @@ namespace CapaDatos
                         .Where(c => c.nroCaso == nroCaso && c.activo == true)
                         .FirstOrDefault();
                 }
-
                 return caso;
             }
             catch (Exception ex)

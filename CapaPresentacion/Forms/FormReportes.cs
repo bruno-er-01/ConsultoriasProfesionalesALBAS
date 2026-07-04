@@ -47,5 +47,13 @@ namespace CapaPresentacion
             form.Show();
         }
 
+<<<<<<< HEAD
+=======
+        private void btnFinanciero_Click(object sender, EventArgs e)
+        {
+            FormDashBoardMontos form = new FormDashBoardMontos();
+            form.Show();
+        }
+>>>>>>> cb0eedeb11053aa912272791674ec7271919b197
     }
 }

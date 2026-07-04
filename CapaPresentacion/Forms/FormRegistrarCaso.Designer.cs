@@ -46,6 +46,8 @@
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.btnFechaFin = new System.Windows.Forms.TextBox();
             this.cbFechaInicio = new System.Windows.Forms.TextBox();
+            this.txtDocumento = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgCaso)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,21 +56,20 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Leelawadee UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Maroon;
-            this.label1.Location = new System.Drawing.Point(22, 9);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(29, 11);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(344, 40);
+            this.label1.Size = new System.Drawing.Size(435, 50);
             this.label1.TabIndex = 27;
             this.label1.Text = "Registrar o casos y citas";
             // 
             // dgCaso
             // 
             this.dgCaso.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgCaso.Location = new System.Drawing.Point(29, 270);
-            this.dgCaso.Margin = new System.Windows.Forms.Padding(2);
+            this.dgCaso.Location = new System.Drawing.Point(39, 332);
+            this.dgCaso.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgCaso.Name = "dgCaso";
             this.dgCaso.RowHeadersWidth = 51;
-            this.dgCaso.Size = new System.Drawing.Size(807, 368);
+            this.dgCaso.Size = new System.Drawing.Size(1076, 453);
             this.dgCaso.TabIndex = 29;
             this.dgCaso.SelectionChanged += new System.EventHandler(this.dgCaso_SelectionChanged);
             // 
@@ -77,22 +78,22 @@
             this.btnExportarExcel.BackColor = System.Drawing.Color.Maroon;
             this.btnExportarExcel.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExportarExcel.ForeColor = System.Drawing.Color.White;
-            this.btnExportarExcel.Location = new System.Drawing.Point(716, 213);
-            this.btnExportarExcel.Margin = new System.Windows.Forms.Padding(2);
+            this.btnExportarExcel.Location = new System.Drawing.Point(955, 262);
+            this.btnExportarExcel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnExportarExcel.Name = "btnExportarExcel";
-            this.btnExportarExcel.Size = new System.Drawing.Size(120, 43);
+            this.btnExportarExcel.Size = new System.Drawing.Size(160, 53);
             this.btnExportarExcel.TabIndex = 33;
             this.btnExportarExcel.Text = "Exportar Excel";
             this.btnExportarExcel.UseVisualStyleBackColor = false;
+            this.btnExportarExcel.Click += new System.EventHandler(this.btnExportarExcel_Click);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(40, 63);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(53, 78);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(56, 21);
+            this.label4.Size = new System.Drawing.Size(71, 28);
             this.label4.TabIndex = 36;
             this.label4.Text = "Titulo: ";
             // 
@@ -100,29 +101,27 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(40, 100);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(53, 123);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(63, 21);
+            this.label5.Size = new System.Drawing.Size(80, 28);
             this.label5.TabIndex = 37;
             this.label5.Text = "Estado: ";
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(103, 66);
-            this.txtNombre.Margin = new System.Windows.Forms.Padding(2);
+            this.txtNombre.Location = new System.Drawing.Point(137, 81);
+            this.txtNombre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(113, 20);
+            this.txtNombre.Size = new System.Drawing.Size(149, 22);
             this.txtNombre.TabIndex = 43;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(258, 63);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Location = new System.Drawing.Point(344, 78);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(98, 21);
+            this.label7.Size = new System.Drawing.Size(123, 28);
             this.label7.TabIndex = 57;
             this.label7.Text = "Fecha inicio: ";
             // 
@@ -131,10 +130,10 @@
             this.btnRegistrarCita.BackColor = System.Drawing.Color.LightCoral;
             this.btnRegistrarCita.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegistrarCita.ForeColor = System.Drawing.Color.White;
-            this.btnRegistrarCita.Location = new System.Drawing.Point(417, 213);
-            this.btnRegistrarCita.Margin = new System.Windows.Forms.Padding(2);
+            this.btnRegistrarCita.Location = new System.Drawing.Point(556, 262);
+            this.btnRegistrarCita.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRegistrarCita.Name = "btnRegistrarCita";
-            this.btnRegistrarCita.Size = new System.Drawing.Size(120, 43);
+            this.btnRegistrarCita.Size = new System.Drawing.Size(160, 53);
             this.btnRegistrarCita.TabIndex = 62;
             this.btnRegistrarCita.Text = "Registrar Cita";
             this.btnRegistrarCita.UseVisualStyleBackColor = false;
@@ -145,10 +144,10 @@
             this.btnRegistrar.BackColor = System.Drawing.Color.Maroon;
             this.btnRegistrar.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegistrar.ForeColor = System.Drawing.Color.White;
-            this.btnRegistrar.Location = new System.Drawing.Point(29, 213);
-            this.btnRegistrar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnRegistrar.Location = new System.Drawing.Point(39, 262);
+            this.btnRegistrar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRegistrar.Name = "btnRegistrar";
-            this.btnRegistrar.Size = new System.Drawing.Size(120, 43);
+            this.btnRegistrar.Size = new System.Drawing.Size(160, 53);
             this.btnRegistrar.TabIndex = 59;
             this.btnRegistrar.Text = "Registrar";
             this.btnRegistrar.UseVisualStyleBackColor = false;
@@ -159,10 +158,10 @@
             this.btnBuscar.BackColor = System.Drawing.Color.Maroon;
             this.btnBuscar.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuscar.ForeColor = System.Drawing.Color.White;
-            this.btnBuscar.Location = new System.Drawing.Point(157, 213);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnBuscar.Location = new System.Drawing.Point(209, 262);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(120, 43);
+            this.btnBuscar.Size = new System.Drawing.Size(160, 53);
             this.btnBuscar.TabIndex = 60;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = false;
@@ -173,10 +172,10 @@
             this.btnActualizarDatos.BackColor = System.Drawing.Color.Maroon;
             this.btnActualizarDatos.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnActualizarDatos.ForeColor = System.Drawing.Color.White;
-            this.btnActualizarDatos.Location = new System.Drawing.Point(281, 213);
-            this.btnActualizarDatos.Margin = new System.Windows.Forms.Padding(2);
+            this.btnActualizarDatos.Location = new System.Drawing.Point(375, 262);
+            this.btnActualizarDatos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnActualizarDatos.Name = "btnActualizarDatos";
-            this.btnActualizarDatos.Size = new System.Drawing.Size(120, 43);
+            this.btnActualizarDatos.Size = new System.Drawing.Size(160, 53);
             this.btnActualizarDatos.TabIndex = 61;
             this.btnActualizarDatos.Text = "Actualizar Datos";
             this.btnActualizarDatos.UseVisualStyleBackColor = false;
@@ -186,10 +185,9 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(277, 100);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(369, 123);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 21);
+            this.label2.Size = new System.Drawing.Size(98, 28);
             this.label2.TabIndex = 63;
             this.label2.Text = "Fecha fin: ";
             // 
@@ -199,10 +197,10 @@
             this.cbEstado.Items.AddRange(new object[] {
             "Abierto",
             "En proceso"});
-            this.cbEstado.Location = new System.Drawing.Point(103, 99);
-            this.cbEstado.Margin = new System.Windows.Forms.Padding(4);
+            this.cbEstado.Location = new System.Drawing.Point(137, 122);
+            this.cbEstado.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.cbEstado.Name = "cbEstado";
-            this.cbEstado.Size = new System.Drawing.Size(113, 21);
+            this.cbEstado.Size = new System.Drawing.Size(149, 24);
             this.cbEstado.TabIndex = 66;
             // 
             // btnDocumento
@@ -210,54 +208,76 @@
             this.btnDocumento.BackColor = System.Drawing.Color.DarkGray;
             this.btnDocumento.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDocumento.ForeColor = System.Drawing.Color.White;
-            this.btnDocumento.Location = new System.Drawing.Point(592, 213);
-            this.btnDocumento.Margin = new System.Windows.Forms.Padding(2);
+            this.btnDocumento.Location = new System.Drawing.Point(616, 169);
+            this.btnDocumento.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDocumento.Name = "btnDocumento";
-            this.btnDocumento.Size = new System.Drawing.Size(120, 43);
+            this.btnDocumento.Size = new System.Drawing.Size(160, 53);
             this.btnDocumento.TabIndex = 67;
             this.btnDocumento.Text = "Documento";
             this.btnDocumento.UseVisualStyleBackColor = false;
+            this.btnDocumento.Click += new System.EventHandler(this.btnDocumento_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(504, 63);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(672, 78);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(91, 21);
+            this.label3.Size = new System.Drawing.Size(114, 28);
             this.label3.TabIndex = 68;
             this.label3.Text = "Descripción";
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(606, 66);
+            this.richTextBox1.Location = new System.Drawing.Point(808, 81);
+            this.richTextBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(230, 103);
+            this.richTextBox1.Size = new System.Drawing.Size(305, 126);
             this.richTextBox1.TabIndex = 69;
             this.richTextBox1.Text = "";
             // 
             // btnFechaFin
             // 
-            this.btnFechaFin.Location = new System.Drawing.Point(360, 100);
-            this.btnFechaFin.Margin = new System.Windows.Forms.Padding(2);
+            this.btnFechaFin.Location = new System.Drawing.Point(480, 123);
+            this.btnFechaFin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnFechaFin.Name = "btnFechaFin";
-            this.btnFechaFin.Size = new System.Drawing.Size(113, 20);
+            this.btnFechaFin.Size = new System.Drawing.Size(149, 22);
             this.btnFechaFin.TabIndex = 64;
             // 
             // cbFechaInicio
             // 
-            this.cbFechaInicio.Location = new System.Drawing.Point(360, 66);
-            this.cbFechaInicio.Margin = new System.Windows.Forms.Padding(2);
+            this.cbFechaInicio.Location = new System.Drawing.Point(480, 81);
+            this.cbFechaInicio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbFechaInicio.Name = "cbFechaInicio";
-            this.cbFechaInicio.Size = new System.Drawing.Size(113, 20);
+            this.cbFechaInicio.Size = new System.Drawing.Size(149, 22);
             this.cbFechaInicio.TabIndex = 55;
+            // 
+            // txtDocumento
+            // 
+            this.txtDocumento.Location = new System.Drawing.Point(360, 137);
+            this.txtDocumento.Margin = new System.Windows.Forms.Padding(2);
+            this.txtDocumento.Name = "txtDocumento";
+            this.txtDocumento.Size = new System.Drawing.Size(113, 20);
+            this.txtDocumento.TabIndex = 70;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(268, 136);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(98, 21);
+            this.label6.TabIndex = 71;
+            this.label6.Text = "Documento: ";
             // 
             // FormRegistrarCaso
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(873, 661);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.txtDocumento);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnDocumento);
@@ -276,7 +296,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtNombre);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormRegistrarCaso";
             this.Text = "FormRegistrarCaso";
             this.Load += new System.EventHandler(this.FormRegistrarCaso_Load);
@@ -306,5 +326,7 @@
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.TextBox btnFechaFin;
         private System.Windows.Forms.TextBox cbFechaInicio;
+        private System.Windows.Forms.TextBox txtDocumento;
+        private System.Windows.Forms.Label label6;
     }
 }

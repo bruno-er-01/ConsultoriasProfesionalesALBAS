@@ -41,6 +41,7 @@
             this.pnlMisCasos = new System.Windows.Forms.Panel();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
+<<<<<<< HEAD
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pnlBuscarClientes = new System.Windows.Forms.Panel();
@@ -62,6 +63,9 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.label8 = new System.Windows.Forms.Label();
+=======
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+>>>>>>> cb0eedeb11053aa912272791674ec7271919b197
             this.pnlInicio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbInicio)).BeginInit();
             this.pnlFormularios.SuspendLayout();
@@ -70,6 +74,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnlMisCasos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+<<<<<<< HEAD
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.pnlBuscarClientes.SuspendLayout();
@@ -84,6 +89,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+=======
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+>>>>>>> cb0eedeb11053aa912272791674ec7271919b197
             this.SuspendLayout();
             // 
             // pnlInicio
@@ -230,6 +238,7 @@
             this.label5.Text = "Mis casos";
             this.label5.Click += new System.EventHandler(this.pnlMisCasos_Click);
             // 
+<<<<<<< HEAD
             // panel1
             // 
             this.panel1.Controls.Add(this.pictureBox4);
@@ -473,15 +482,33 @@
             this.label8.TabIndex = 0;
             this.label8.Text = "Buscar Casos y Citas";
             // 
+=======
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::CapaPresentacion.Properties.Resources.imgInicio;
+            this.pictureBox4.Location = new System.Drawing.Point(61, 576);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(39, 39);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 2;
+            this.pictureBox4.TabStop = false;
+            // 
+>>>>>>> cb0eedeb11053aa912272791674ec7271919b197
             // FormMenuPrincipalEspecialista
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+<<<<<<< HEAD
             this.BackgroundImage = global::CapaPresentacion.Properties.Resources.imgFondoGeneral;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(2072, 990);
             this.Controls.Add(this.panel2);
+=======
+            this.ClientSize = new System.Drawing.Size(1496, 814);
+            this.Controls.Add(this.pictureBox4);
+>>>>>>> cb0eedeb11053aa912272791674ec7271919b197
             this.Controls.Add(this.pnlMisCasos);
             this.Controls.Add(this.pnlMiPerfil);
             this.Controls.Add(this.pnlFormularios);
@@ -503,6 +530,7 @@
             this.pnlMisCasos.ResumeLayout(false);
             this.pnlMisCasos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+<<<<<<< HEAD
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.pnlBuscarClientes.ResumeLayout(false);
@@ -522,6 +550,9 @@
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+=======
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+>>>>>>> cb0eedeb11053aa912272791674ec7271919b197
             this.ResumeLayout(false);
 
         }
@@ -540,6 +571,7 @@
         private System.Windows.Forms.Panel pnlMisCasos;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label label5;
+<<<<<<< HEAD
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Panel pnlBuscarClientes;
@@ -561,5 +593,8 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.Label label8;
+=======
+        private System.Windows.Forms.PictureBox pictureBox4;
+>>>>>>> cb0eedeb11053aa912272791674ec7271919b197
     }
 }

@@ -16,9 +16,9 @@ namespace CapaNegocios
             return dCita.Registrar(cita);
         }
 
-        public List<Cita> ListarPorCasoCliente(int nroCaso, int idCliente)
+        public List<Cita> ListarPorCaso(int nroCaso)
         {
-            return dCita.ListarPorCasoCliente(nroCaso, idCliente);
+            return dCita.ListarPorCaso(nroCaso);
         }
 
         public string AgregarRecordatorio(int idCita, int tiempoAnticipacion)
@@ -30,6 +30,12 @@ namespace CapaNegocios
         {
             return dCita.Modificar(cita);
         }
+
+        public string EliminarLogico(int idCita)
+        {
+            return dCita.EliminarLogico(idCita);
+        }
+
         public string ModificarAtencionEspecialista(Cita cita)
         {
             return dCita.ModificarAtencionEspecialista(cita);
@@ -64,10 +70,6 @@ namespace CapaNegocios
         public List<object> ListarCitasPendientesPorEspecialista(int idEspecialista)
         {
             return dCita.ListarCitasPendientesPorEspecialista(idEspecialista);
-        }
-        public List<Cita> ListarPorCaso(int nroCaso)
-        {
-            return dCita.ListarPorCaso(nroCaso);
         }
     }
 }

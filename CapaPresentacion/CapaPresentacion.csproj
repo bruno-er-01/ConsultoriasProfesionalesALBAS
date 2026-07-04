@@ -97,6 +97,12 @@
     <Compile Include="Forms\FormDashBoardReporteAreas.Designer.cs">
       <DependentUpon>FormDashBoardReporteAreas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormDashBoardReportesCitasCanceladasAusencias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormDashBoardReportesCitasCanceladasAusencias.Designer.cs">
+      <DependentUpon>FormDashBoardReportesCitasCanceladasAusencias.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormEspecialistaBuscarCaso.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +120,18 @@
     </Compile>
     <Compile Include="Forms\FormEspecialistaBuscarCliente.Designer.cs">
       <DependentUpon>FormEspecialistaBuscarCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormEspecialistaInicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormEspecialistaInicio.Designer.cs">
+      <DependentUpon>FormEspecialistaInicio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormEspecialistaMiCuenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormEspecialistaMiCuenta.Designer.cs">
+      <DependentUpon>FormEspecialistaMiCuenta.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormInicio.cs">
       <SubType>Form</SubType>
@@ -187,6 +205,12 @@
     <Compile Include="Forms\FormRegistrarEspecialista.Designer.cs">
       <DependentUpon>FormRegistrarEspecialista.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormDashboardReporteAntiguedadCasos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormDashboardReporteAntiguedadCasos.Designer.cs">
+      <DependentUpon>FormDashboardReporteAntiguedadCasos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormReportes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -210,6 +234,9 @@
     <EmbeddedResource Include="Forms\FormDashBoardReporteAreas.resx">
       <DependentUpon>FormDashBoardReporteAreas.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormDashBoardReportesCitasCanceladasAusencias.resx">
+      <DependentUpon>FormDashBoardReportesCitasCanceladasAusencias.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormEspecialistaBuscarCaso.resx">
       <DependentUpon>FormEspecialistaBuscarCaso.cs</DependentUpon>
     </EmbeddedResource>
@@ -218,6 +245,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormEspecialistaBuscarCliente.resx">
       <DependentUpon>FormEspecialistaBuscarCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormEspecialistaInicio.resx">
+      <DependentUpon>FormEspecialistaInicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormEspecialistaMiCuenta.resx">
+      <DependentUpon>FormEspecialistaMiCuenta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormInicio.resx">
       <DependentUpon>FormInicio.cs</DependentUpon>
@@ -254,6 +287,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormRegistrarEspecialista.resx">
       <DependentUpon>FormRegistrarEspecialista.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormDashboardReporteAntiguedadCasos.resx">
+      <DependentUpon>FormDashboardReporteAntiguedadCasos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormReportes.resx">
       <DependentUpon>FormReportes.cs</DependentUpon>

@@ -14,12 +14,22 @@ namespace CapaDatos
             {
                 using (var context = new BD_ALBASEntities1())
                 {
-                    caso.estado = "En proceso";
+                    int ultimoNro = context.Caso
+                        .Where(c => c.idCliente == caso.idCliente)
+                        .Select(c => (int?)c.nroCaso)
+                        .DefaultIfEmpty(0)
+                        .Max() ?? 0;
+
+                    caso.nroCaso = ultimoNro + 1;
+
+                    caso.estado = "Abierto";
                     caso.createdAt = DateTime.Now;
+
                     context.Caso.Add(caso);
                     context.SaveChanges();
+
+                    return "Caso Nro " + caso.nroCaso + " registrado correctamente";
                 }
-                return "Registrado correctamente";
             }
             catch (Exception ex)
             {
@@ -79,5 +89,164 @@ namespace CapaDatos
             }
         }
 
+        public Caso BuscarPorId(int nroCaso, int idCliente)
+        {
+            Caso caso = null;
+
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    caso = context.Caso
+                        .Where(c => c.nroCaso == nroCaso
+                                 && c.idCliente == idCliente)
+                        .FirstOrDefault();
+                }
+
+                return caso;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return caso;
+            }
+        }
+
+        public List<ReporteAntiguedadCaso> ListarReporteAntiguedad()
+        {
+            List<ReporteAntiguedadCaso> reporte = new List<ReporteAntiguedadCaso>();
+
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    var casos = context.Caso.ToList();
+
+                    foreach (Caso caso in casos)
+                    {
+                        int diasAntiguedad = (DateTime.Now.Date - caso.fechaHoraInicio.Date).Days;
+                        string clasificacion;
+
+                        if (diasAntiguedad <= 15)
+                        {
+                            clasificacion = "Reciente";
+                        }
+                        else if (diasAntiguedad <= 30)
+                        {
+                            clasificacion = "En seguimiento";
+                        }
+                        else
+                        {
+                            clasificacion = "Crítico";
+                        }
+
+                        ReporteAntiguedadCaso fila = new ReporteAntiguedadCaso();
+
+                        fila.NroCaso = caso.nroCaso;
+                        fila.Titulo = caso.titulo;
+                        fila.Cliente = caso.Cliente.nombre + " " + caso.Cliente.apellido;
+                        fila.Area = caso.Especialista.Area.nombre;
+                        fila.Especialista = caso.Especialista.Usuario.nombre + " " + caso.Especialista.Usuario.apellido;
+                        fila.FechaInicio = caso.fechaHoraInicio;
+                        fila.Estado = caso.estado;
+                        fila.DiasAntiguedad = diasAntiguedad;
+                        fila.Clasificacion = clasificacion;
+
+                        reporte.Add(fila);
+                    }
+                }
+
+                return reporte;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return reporte;
+            }
+        }
+        public int ContarCasosActivos(int idEspecialista)
+        {
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    return context.Caso
+                        .Count(c =>
+                            c.idEspecialista == idEspecialista &&
+                            (c.estado == "Abierto" || c.estado == "En proceso"));
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return 0;
+            }
+        }
+        public int ContarCasosCerrados(int idEspecialista)
+        {
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    return context.Caso
+                        .Count(c =>
+                            c.idEspecialista == idEspecialista &&
+                            c.estado == "Cerrado");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return 0;
+            }
+        }
+        public List<object> ListarCasosPorEspecialista(int idEspecialista, string estado, string texto)
+        {
+            List<object> lista = new List<object>();
+
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    var consulta = context.Caso
+                        .Where(c => c.idEspecialista == idEspecialista);
+
+                    if (estado != "Todos" && estado != "")
+                    {
+                        consulta = consulta.Where(c => c.estado == estado);
+                    }
+
+                    if (texto != "")
+                    {
+                        consulta = consulta.Where(c =>
+                            c.Cliente.nombre.Contains(texto) ||
+                            c.Cliente.apellido.Contains(texto) ||
+                            c.Cliente.dni.Contains(texto) ||
+                            c.titulo.Contains(texto));
+                    }
+
+                    lista = consulta
+                        .OrderByDescending(c => c.nroCaso)
+                        .Select(c => new
+                        {
+                            NroCaso = c.nroCaso,
+                            IdCliente = c.idCliente,
+                            Cliente = c.Cliente.nombre + " " + c.Cliente.apellido,
+                            DNI = c.Cliente.dni,
+                            Titulo = c.titulo,
+                            Estado = c.estado,
+                            FechaInicio = c.fechaHoraInicio
+                        })
+                        .ToList<object>();
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return lista;
+            }
+        }
     }
 }

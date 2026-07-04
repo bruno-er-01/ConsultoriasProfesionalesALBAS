@@ -20,9 +20,32 @@ namespace CapaNegocios
         {
             return dCaso.ListarTodo();
         }
+
         public string Modificar(Caso caso)
         {
             return dCaso.Modificar(caso);
+        }
+
+        public Caso BuscarPorId(int nroCaso, int idCliente)
+        {
+            return dCaso.BuscarPorId(nroCaso, idCliente);
+        }
+
+        public List<ReporteAntiguedadCaso> ListarReporteAntiguedad()
+        {
+            return dCaso.ListarReporteAntiguedad();
+        }
+        public int ContarCasosActivos(int idEspecialista)
+        {
+            return dCaso.ContarCasosActivos(idEspecialista);
+        }
+        public int ContarCasosCerrados(int idEspecialista)
+        {
+            return dCaso.ContarCasosCerrados(idEspecialista);
+        }
+        public List<object> ListarCasosPorEspecialista(int idEspecialista, string estado, string texto)
+        {
+            return dCaso.ListarCasosPorEspecialista(idEspecialista, estado, texto);
         }
     }
 }

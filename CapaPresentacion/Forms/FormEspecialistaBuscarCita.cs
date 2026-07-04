@@ -15,7 +15,8 @@ namespace CapaPresentacion
     public partial class FormEspecialistaBuscarCita : Form
     {
         private NCita nCita = new NCita();
-
+        private int nroCaso;
+        private int idCliente;
         public FormEspecialistaBuscarCita()
         {
             InitializeComponent();
@@ -25,7 +26,7 @@ namespace CapaPresentacion
         private void CargarTabla()
         {
             dgCita.DataSource = null;
-            var lista = nCita.ListarTodo();
+            var lista = nCita.ListarPorCasoCliente(nroCaso, idCliente);
             if (lista != null && lista.Count > 0)
             {
                 dgCita.DataSource = lista;
@@ -82,7 +83,7 @@ namespace CapaPresentacion
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            var listaCompleta = nCita.ListarTodo();
+            var listaCompleta = nCita.ListarPorCasoCliente(nroCaso, idCliente);
             if (listaCompleta != null && listaCompleta.Count > 0)
             {
                 var filtrado = listaCompleta.AsEnumerable();

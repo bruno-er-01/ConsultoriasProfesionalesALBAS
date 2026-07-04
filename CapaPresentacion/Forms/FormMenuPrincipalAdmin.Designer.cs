@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnlReportes = new System.Windows.Forms.Panel();
             this.pcbReportes = new System.Windows.Forms.PictureBox();
@@ -46,6 +47,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCerrarSesion = new System.Windows.Forms.Button();
             this.pnlFormularios = new System.Windows.Forms.Panel();
+            this.timerRecordatorio = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnlReportes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbReportes)).BeginInit();
@@ -280,6 +282,12 @@
             this.pnlFormularios.Size = new System.Drawing.Size(889, 662);
             this.pnlFormularios.TabIndex = 16;
             // 
+            // timerRecordatorio
+            // 
+            this.timerRecordatorio.Enabled = true;
+            this.timerRecordatorio.Interval = 60000;
+            this.timerRecordatorio.Tick += new System.EventHandler(this.timerRecordatorio_Tick);
+            // 
             // FormMenuPrincipalAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -337,5 +345,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCerrarSesion;
         private System.Windows.Forms.Panel pnlFormularios;
+        private System.Windows.Forms.Timer timerRecordatorio;
     }
 }

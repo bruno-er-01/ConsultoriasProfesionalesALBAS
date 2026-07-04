@@ -1,5 +1,6 @@
 ﻿using CapaDatos;
 using CapaNegocios;
+using CapaPresentacion.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -38,7 +39,7 @@ namespace CapaPresentacion
 
         private void pnlInicio_Click(object sender, EventArgs e)
         {
-            AbrirFormEnPanel(new FormInicio());
+            AbrirFormEnPanel(new FormEspecialistaInicio(usuarioActual));
         }
 
  
@@ -54,7 +55,17 @@ namespace CapaPresentacion
 
         private void pnlBuscarClientes_Click(object sender, EventArgs e)
         {
-            AbrirFormEnPanel( new FormEspecialistaBuscarCliente());
+            AbrirFormEnPanel(new FormEspecialistaBuscarCliente());
+        }
+        
+        private void pnlMiPerfil_Click(object sender, EventArgs e)
+        {
+            AbrirFormEnPanel(new FormEspecialistaMiCuenta(usuarioActual));
+        }
+
+        private void pnlMisCasos_Click(object sender, EventArgs e)
+        {
+            AbrirFormEnPanel(new FormEspecialistaBuscarCaso(usuarioActual));
         }
         //jiji
     }

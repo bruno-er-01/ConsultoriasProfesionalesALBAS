@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaPresentacion.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -32,15 +33,27 @@ namespace CapaPresentacion
             AbrirFormEnPanel(new FormDashBoardClientes());
         }
 
-        private void btnDashBoardCitas_Click(object sender, EventArgs e)
-        {
-            AbrirFormEnPanel(new FormDashBoardCitas());
-        }
-
         private void btnReporteAreasCasos_Click(object sender, EventArgs e)
         {
            FormDashBoardReporteAreas form =  new FormDashBoardReporteAreas();
            form.ShowDialog();
+        }
+
+        private void FormReportes_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnReporteCitasCanceladasAusentadas_Click(object sender, EventArgs e)
+        {
+            Forms.FormDashBoardReportesCitasCanceladasAusencias pantallaNoShow = new Forms.FormDashBoardReportesCitasCanceladasAusencias();
+            pantallaNoShow.ShowDialog();
+        }
+
+        private void btnDashBoardAntiguedadCasosPorAreas_Click(object sender, EventArgs e)
+        {
+            FormDashboardReporteAntiguedadCasos form = new FormDashboardReporteAntiguedadCasos();
+            form.Show();
         }
     }
 }

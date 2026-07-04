@@ -28,103 +28,77 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tbDniCliente = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.cbRecordatorio = new System.Windows.Forms.ComboBox();
+            this.cbTiempoAnticipacion = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.btnAceptar = new System.Windows.Forms.Button();
-            this.btnBuscar = new System.Windows.Forms.Button();
-            this.dgCliente = new System.Windows.Forms.DataGridView();
+            this.btnAñadir = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dgCliente)).BeginInit();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lblHoraInicio = new System.Windows.Forms.Label();
+            this.lblFechaCita = new System.Windows.Forms.Label();
+            this.lblModalidad = new System.Windows.Forms.Label();
+            this.dgRecordatorio = new System.Windows.Forms.DataGridView();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtDNICliente = new System.Windows.Forms.TextBox();
+            this.txtDNIEspecialista = new System.Windows.Forms.TextBox();
+            this.btnLimpiar = new System.Windows.Forms.Button();
+            this.btnModificarRecordatorio = new System.Windows.Forms.Button();
+            this.btnBuscar = new System.Windows.Forms.Button();
+            this.btnCancelarRecordatorio = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dgRecordatorio)).BeginInit();
             this.SuspendLayout();
             // 
-            // tbDniCliente
+            // cbTiempoAnticipacion
             // 
-            this.tbDniCliente.Location = new System.Drawing.Point(321, 140);
-            this.tbDniCliente.Name = "tbDniCliente";
-            this.tbDniCliente.Size = new System.Drawing.Size(110, 20);
-            this.tbDniCliente.TabIndex = 145;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(226, 139);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(89, 21);
-            this.label10.TabIndex = 144;
-            this.label10.Text = "DNI cliente:";
-            // 
-            // cbRecordatorio
-            // 
-            this.cbRecordatorio.FormattingEnabled = true;
-            this.cbRecordatorio.Items.AddRange(new object[] {
-            "5 min",
-            "15 min",
-            "20 min",
-            "25 min",
-            "30 min",
-            "1 hora"});
-            this.cbRecordatorio.Location = new System.Drawing.Point(215, 447);
-            this.cbRecordatorio.Name = "cbRecordatorio";
-            this.cbRecordatorio.Size = new System.Drawing.Size(110, 21);
-            this.cbRecordatorio.TabIndex = 143;
+            this.cbTiempoAnticipacion.FormattingEnabled = true;
+            this.cbTiempoAnticipacion.Items.AddRange(new object[] {
+            "5 minutos",
+            "10 minutos",
+            "15 minutos",
+            "20 minutos",
+            "25 minutos",
+            "30 minutos",
+            "60 minutos"});
+            this.cbTiempoAnticipacion.Location = new System.Drawing.Point(240, 245);
+            this.cbTiempoAnticipacion.Name = "cbTiempoAnticipacion";
+            this.cbTiempoAnticipacion.Size = new System.Drawing.Size(160, 21);
+            this.cbTiempoAnticipacion.TabIndex = 143;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(53, 443);
+            this.label6.Location = new System.Drawing.Point(53, 245);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(149, 21);
+            this.label6.Size = new System.Drawing.Size(173, 21);
             this.label6.TabIndex = 142;
-            this.label6.Text = "Añadir recordatorio:";
+            this.label6.Text = "Tiempo de anticipación:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(53, 95);
+            this.label4.Location = new System.Drawing.Point(53, 66);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(108, 21);
+            this.label4.Size = new System.Drawing.Size(92, 21);
             this.label4.TabIndex = 141;
-            this.label4.Text = "Buscar cliente:";
+            this.label4.Text = "DNI Cliente:";
             // 
-            // btnAceptar
+            // btnAñadir
             // 
-            this.btnAceptar.BackColor = System.Drawing.Color.Maroon;
-            this.btnAceptar.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAceptar.ForeColor = System.Drawing.Color.White;
-            this.btnAceptar.Location = new System.Drawing.Point(424, 443);
-            this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(103, 41);
-            this.btnAceptar.TabIndex = 140;
-            this.btnAceptar.Text = "Aceptar";
-            this.btnAceptar.UseVisualStyleBackColor = false;
-            // 
-            // btnBuscar
-            // 
-            this.btnBuscar.BackColor = System.Drawing.Color.Maroon;
-            this.btnBuscar.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuscar.ForeColor = System.Drawing.Color.White;
-            this.btnBuscar.Location = new System.Drawing.Point(457, 131);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(102, 39);
-            this.btnBuscar.TabIndex = 139;
-            this.btnBuscar.Text = "Buscar";
-            this.btnBuscar.UseVisualStyleBackColor = false;
-            // 
-            // dgCliente
-            // 
-            this.dgCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgCliente.Location = new System.Drawing.Point(43, 180);
-            this.dgCliente.Name = "dgCliente";
-            this.dgCliente.RowHeadersWidth = 51;
-            this.dgCliente.Size = new System.Drawing.Size(516, 246);
-            this.dgCliente.TabIndex = 138;
+            this.btnAñadir.BackColor = System.Drawing.Color.Maroon;
+            this.btnAñadir.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAñadir.ForeColor = System.Drawing.Color.White;
+            this.btnAñadir.Location = new System.Drawing.Point(28, 579);
+            this.btnAñadir.Name = "btnAñadir";
+            this.btnAñadir.Size = new System.Drawing.Size(84, 45);
+            this.btnAñadir.TabIndex = 140;
+            this.btnAñadir.Text = "Añadir";
+            this.btnAñadir.UseVisualStyleBackColor = false;
+            this.btnAñadir.Click += new System.EventHandler(this.btnAñadir_Click);
             // 
             // btnSalir
             // 
@@ -137,53 +111,218 @@
             this.btnSalir.TabIndex = 137;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = false;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Leelawadee UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Maroon;
-            this.label1.Location = new System.Drawing.Point(37, 41);
+            this.label1.Location = new System.Drawing.Point(36, 17);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(290, 40);
             this.label1.TabIndex = 136;
             this.label1.Text = "Añadir recordatorio";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(54, 169);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(102, 21);
+            this.label2.TabIndex = 144;
+            this.label2.Text = "Fecha de cita:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(53, 207);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(87, 21);
+            this.label3.TabIndex = 145;
+            this.label3.Text = "Modalidad:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(54, 134);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(113, 21);
+            this.label5.TabIndex = 146;
+            this.label5.Text = "Hora de inicio: ";
+            // 
+            // lblHoraInicio
+            // 
+            this.lblHoraInicio.AutoSize = true;
+            this.lblHoraInicio.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHoraInicio.Location = new System.Drawing.Point(236, 134);
+            this.lblHoraInicio.Name = "lblHoraInicio";
+            this.lblHoraInicio.Size = new System.Drawing.Size(16, 21);
+            this.lblHoraInicio.TabIndex = 147;
+            this.lblHoraInicio.Text = "-";
+            // 
+            // lblFechaCita
+            // 
+            this.lblFechaCita.AutoSize = true;
+            this.lblFechaCita.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFechaCita.Location = new System.Drawing.Point(236, 169);
+            this.lblFechaCita.Name = "lblFechaCita";
+            this.lblFechaCita.Size = new System.Drawing.Size(16, 21);
+            this.lblFechaCita.TabIndex = 148;
+            this.lblFechaCita.Text = "-";
+            // 
+            // lblModalidad
+            // 
+            this.lblModalidad.AutoSize = true;
+            this.lblModalidad.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblModalidad.Location = new System.Drawing.Point(235, 207);
+            this.lblModalidad.Name = "lblModalidad";
+            this.lblModalidad.Size = new System.Drawing.Size(16, 21);
+            this.lblModalidad.TabIndex = 150;
+            this.lblModalidad.Text = "-";
+            // 
+            // dgRecordatorio
+            // 
+            this.dgRecordatorio.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgRecordatorio.Location = new System.Drawing.Point(28, 284);
+            this.dgRecordatorio.Name = "dgRecordatorio";
+            this.dgRecordatorio.Size = new System.Drawing.Size(544, 270);
+            this.dgRecordatorio.TabIndex = 151;
+            this.dgRecordatorio.SelectionChanged += new System.EventHandler(this.dgRecordatorio_SelectionChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(54, 98);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(123, 21);
+            this.label7.TabIndex = 152;
+            this.label7.Text = "DNI Especialista:";
+            // 
+            // txtDNICliente
+            // 
+            this.txtDNICliente.Location = new System.Drawing.Point(240, 69);
+            this.txtDNICliente.Name = "txtDNICliente";
+            this.txtDNICliente.Size = new System.Drawing.Size(168, 20);
+            this.txtDNICliente.TabIndex = 154;
+            // 
+            // txtDNIEspecialista
+            // 
+            this.txtDNIEspecialista.Location = new System.Drawing.Point(240, 102);
+            this.txtDNIEspecialista.Name = "txtDNIEspecialista";
+            this.txtDNIEspecialista.Size = new System.Drawing.Size(168, 20);
+            this.txtDNIEspecialista.TabIndex = 155;
+            // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.BackColor = System.Drawing.Color.Maroon;
+            this.btnLimpiar.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiar.ForeColor = System.Drawing.Color.White;
+            this.btnLimpiar.Location = new System.Drawing.Point(488, 231);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(84, 45);
+            this.btnLimpiar.TabIndex = 156;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = false;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
+            // btnModificarRecordatorio
+            // 
+            this.btnModificarRecordatorio.BackColor = System.Drawing.Color.Maroon;
+            this.btnModificarRecordatorio.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModificarRecordatorio.ForeColor = System.Drawing.Color.White;
+            this.btnModificarRecordatorio.Location = new System.Drawing.Point(136, 579);
+            this.btnModificarRecordatorio.Name = "btnModificarRecordatorio";
+            this.btnModificarRecordatorio.Size = new System.Drawing.Size(144, 45);
+            this.btnModificarRecordatorio.TabIndex = 157;
+            this.btnModificarRecordatorio.Text = "Modificar recordatorio";
+            this.btnModificarRecordatorio.UseVisualStyleBackColor = false;
+            this.btnModificarRecordatorio.Click += new System.EventHandler(this.btnModificarRecordatorio_Click);
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.BackColor = System.Drawing.Color.Maroon;
+            this.btnBuscar.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscar.ForeColor = System.Drawing.Color.White;
+            this.btnBuscar.Location = new System.Drawing.Point(475, 579);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(84, 45);
+            this.btnBuscar.TabIndex = 158;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.UseVisualStyleBackColor = false;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            // 
+            // btnCancelarRecordatorio
+            // 
+            this.btnCancelarRecordatorio.BackColor = System.Drawing.Color.Maroon;
+            this.btnCancelarRecordatorio.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelarRecordatorio.ForeColor = System.Drawing.Color.White;
+            this.btnCancelarRecordatorio.Location = new System.Drawing.Point(306, 579);
+            this.btnCancelarRecordatorio.Name = "btnCancelarRecordatorio";
+            this.btnCancelarRecordatorio.Size = new System.Drawing.Size(144, 45);
+            this.btnCancelarRecordatorio.TabIndex = 159;
+            this.btnCancelarRecordatorio.Text = "Cancelar recordatorio";
+            this.btnCancelarRecordatorio.UseVisualStyleBackColor = false;
+            this.btnCancelarRecordatorio.Click += new System.EventHandler(this.btnCancelarRecordatorio_Click);
+            // 
             // FormRecordatorio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(596, 556);
-            this.Controls.Add(this.tbDniCliente);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.cbRecordatorio);
+            this.ClientSize = new System.Drawing.Size(596, 636);
+            this.Controls.Add(this.btnCancelarRecordatorio);
+            this.Controls.Add(this.btnBuscar);
+            this.Controls.Add(this.btnModificarRecordatorio);
+            this.Controls.Add(this.btnLimpiar);
+            this.Controls.Add(this.txtDNIEspecialista);
+            this.Controls.Add(this.txtDNICliente);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.dgRecordatorio);
+            this.Controls.Add(this.lblModalidad);
+            this.Controls.Add(this.lblFechaCita);
+            this.Controls.Add(this.lblHoraInicio);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.cbTiempoAnticipacion);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.btnAceptar);
-            this.Controls.Add(this.btnBuscar);
-            this.Controls.Add(this.dgCliente);
+            this.Controls.Add(this.btnAñadir);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormRecordatorio";
             this.Text = "FormRecordatorio";
-            ((System.ComponentModel.ISupportInitialize)(this.dgCliente)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgRecordatorio)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox tbDniCliente;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ComboBox cbRecordatorio;
+        private System.Windows.Forms.ComboBox cbTiempoAnticipacion;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button btnAceptar;
-        private System.Windows.Forms.Button btnBuscar;
-        private System.Windows.Forms.DataGridView dgCliente;
+        private System.Windows.Forms.Button btnAñadir;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblHoraInicio;
+        private System.Windows.Forms.Label lblFechaCita;
+        private System.Windows.Forms.Label lblModalidad;
+        private System.Windows.Forms.DataGridView dgRecordatorio;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtDNICliente;
+        private System.Windows.Forms.TextBox txtDNIEspecialista;
+        private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.Button btnModificarRecordatorio;
+        private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.Button btnCancelarRecordatorio;
     }
 }

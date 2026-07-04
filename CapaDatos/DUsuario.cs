@@ -27,7 +27,7 @@ namespace CapaDatos
                 return 0;
             }
         }
-        //
+        
         public Usuario BuscarPorCorreo(string correo)
         {
             Usuario usuario = null;
@@ -78,7 +78,33 @@ namespace CapaDatos
                 return ex.Message;
             }
         }
-        //
+        public string ActualizarPassword(int idUsuario, string nuevaPassword)
+        {
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    var modificado = context.Usuario.Find(idUsuario);
+
+                    if (modificado == null)
+                    {
+                        return "Usuario no encontrado.";
+                    }
+
+                    modificado.password = nuevaPassword;
+                    modificado.modifiedAt = DateTime.Now;
+
+                    context.SaveChanges();
+                }
+
+                return "Contraseña actualizada correctamente.";
+            }
+            catch (Exception ex)
+            {
+                return "Error al actualizar contraseña: " + ex.Message;
+            }
+        }
+        
         public List<Usuario> ListarAdministradores()
         {
             try
@@ -139,8 +165,7 @@ namespace CapaDatos
             {
                 using (var context = new BD_ALBASEntities1())
                 {
-                    return context.Usuario
-                        .FirstOrDefault(u => u.dni == dni && u.activo == true);
+                    return context.Usuario.FirstOrDefault(u => u.dni == dni && u.activo == true);
                 }
             }
             catch (Exception ex)

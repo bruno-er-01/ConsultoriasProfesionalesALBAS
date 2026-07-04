@@ -76,6 +76,19 @@ namespace CapaNegocios
         {
             return dUsuario.ActualizarPasswordPorCorreo(correo, nuevaPassword);
         }
+        public string ActualizarPassword(Usuario usuario, string contraActual, string contraNueva)
+        {
+            if (usuario.password != contraActual)
+            {
+                return "La contraseña actual es incorrecta.";
+            }
+
+            if (contraNueva.Length < 4)
+            {
+                return "La nueva contraseña debe tener como mínimo 12 caracteres.";
+            }
+            return dUsuario.ActualizarPassword(usuario.idUsuario, contraNueva);
+        }
 
         public List<Usuario> ListarAdministradores()
         {
@@ -128,7 +141,7 @@ namespace CapaNegocios
                                  " | Fecha: " + DateTime.Now.ToShortDateString() +
                                  " | Hora: " + DateTime.Now.ToLongTimeString();
 
-                fileLogger.RegistrarLog(mensaje);
+                //fileLogger.RegistrarLog(mensaje);
             }
 
             return usuario;
@@ -157,6 +170,15 @@ namespace CapaNegocios
         public string EliminarLogico(int idUsuario, int idUsuarioModificador)
         {
             return dUsuario.EliminarLogico(idUsuario, idUsuarioModificador);
+        }
+        public string BuscarAreaEspecialista(int idUsuario)
+        {
+            return dEspecialista.BuscarAreaEspecialista(idUsuario);
+        }
+
+        public bool BuscarDisponibilidadEspecialista(int idUsuario)
+        {
+            return dEspecialista.BuscarDisponibilidadEspecialista(idUsuario);
         }
     }
 }

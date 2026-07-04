@@ -48,5 +48,10 @@ namespace CapaNegocios
         {
             return dCliente.EliminarLogico(idCliente);
         }
+
+        public Cliente BuscarPorId(int idCliente)
+        {
+            return dCliente.BuscarPorId(idCliente);
+        }
     }
 }

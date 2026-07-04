@@ -29,5 +29,10 @@ namespace CapaNegocios
 
             return dReporte.ReporteDemandaPorArea(fechaInicio, fechaFin, estado, orden);
         }
+
+        public List<ReporteNoShowEstructura> ObtenerPerdidaNoShow()
+        {
+            return dReporte.ObtenerPerdidaNoShow();
+        }
     }
 }

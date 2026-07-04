@@ -123,6 +123,24 @@ namespace CapaDatos
             }
         }
 
+        public List<Usuario> ListarTodoAdministrador()
+        {
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    return context.Usuario
+                        .Where(u => u.rol == "Administrador")
+                        .ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return new List<Usuario>();
+            }
+        }
+
         public List<Usuario> ListarEspecialistas()
         {
             try
@@ -290,6 +308,36 @@ namespace CapaDatos
                 return false;
             }
         }
+
+        public string ActualizarActivo(int idUsuario, bool activo, int idUsuarioModificador)
+        {
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    var usuario = context.Usuario.Find(idUsuario);
+
+                    if (usuario == null)
+                    {
+                        return "Usuario no encontrado.";
+                    }
+
+                    usuario.activo = activo;
+                    usuario.modifiedBy = idUsuarioModificador;
+                    usuario.modifiedAt = DateTime.Now;
+
+                    context.SaveChanges();
+                }
+
+                return "Estado actualizado correctamente.";
+            }
+            catch (Exception ex)
+            {
+                return "Error al actualizar estado: " + ex.Message;
+            }
+        }
+
+
 
         public string EliminarLogico(int idUsuario, int idUsuarioModificador)
         {

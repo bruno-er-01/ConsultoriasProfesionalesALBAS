@@ -54,6 +54,7 @@
             this.tbEstado = new System.Windows.Forms.Label();
             this.cbEstado = new System.Windows.Forms.ComboBox();
             this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnListarActivos = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgUsuarios)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,19 +63,19 @@
             this.btnListar.BackColor = System.Drawing.Color.Maroon;
             this.btnListar.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnListar.ForeColor = System.Drawing.Color.White;
-            this.btnListar.Location = new System.Drawing.Point(425, 210);
+            this.btnListar.Location = new System.Drawing.Point(396, 210);
             this.btnListar.Margin = new System.Windows.Forms.Padding(2);
             this.btnListar.Name = "btnListar";
-            this.btnListar.Size = new System.Drawing.Size(120, 43);
+            this.btnListar.Size = new System.Drawing.Size(103, 43);
             this.btnListar.TabIndex = 112;
-            this.btnListar.Text = "Listar";
+            this.btnListar.Text = "Listar todo";
             this.btnListar.UseVisualStyleBackColor = false;
             this.btnListar.Click += new System.EventHandler(this.btnListar_Click);
             // 
             // tbCorreo
             // 
             this.tbCorreo.Location = new System.Drawing.Point(135, 62);
-            this.tbCorreo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbCorreo.Margin = new System.Windows.Forms.Padding(2);
             this.tbCorreo.Name = "tbCorreo";
             this.tbCorreo.Size = new System.Drawing.Size(113, 20);
             this.tbCorreo.TabIndex = 110;
@@ -82,7 +83,7 @@
             // tbTelefono
             // 
             this.tbTelefono.Location = new System.Drawing.Point(566, 62);
-            this.tbTelefono.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbTelefono.Margin = new System.Windows.Forms.Padding(2);
             this.tbTelefono.Name = "tbTelefono";
             this.tbTelefono.Size = new System.Drawing.Size(113, 20);
             this.tbTelefono.TabIndex = 109;
@@ -112,7 +113,7 @@
             // tbDNI
             // 
             this.tbDNI.Location = new System.Drawing.Point(347, 131);
-            this.tbDNI.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbDNI.Margin = new System.Windows.Forms.Padding(2);
             this.tbDNI.Name = "tbDNI";
             this.tbDNI.Size = new System.Drawing.Size(113, 20);
             this.tbDNI.TabIndex = 105;
@@ -120,7 +121,7 @@
             // tbApellido
             // 
             this.tbApellido.Location = new System.Drawing.Point(347, 95);
-            this.tbApellido.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbApellido.Margin = new System.Windows.Forms.Padding(2);
             this.tbApellido.Name = "tbApellido";
             this.tbApellido.Size = new System.Drawing.Size(113, 20);
             this.tbApellido.TabIndex = 104;
@@ -128,7 +129,7 @@
             // tbNombre
             // 
             this.tbNombre.Location = new System.Drawing.Point(347, 62);
-            this.tbNombre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbNombre.Margin = new System.Windows.Forms.Padding(2);
             this.tbNombre.Name = "tbNombre";
             this.tbNombre.Size = new System.Drawing.Size(113, 20);
             this.tbNombre.TabIndex = 103;
@@ -136,7 +137,7 @@
             // tbContrasena
             // 
             this.tbContrasena.Location = new System.Drawing.Point(135, 131);
-            this.tbContrasena.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbContrasena.Margin = new System.Windows.Forms.Padding(2);
             this.tbContrasena.Name = "tbContrasena";
             this.tbContrasena.Size = new System.Drawing.Size(113, 20);
             this.tbContrasena.TabIndex = 102;
@@ -144,7 +145,7 @@
             // tbUsername
             // 
             this.tbUsername.Location = new System.Drawing.Point(135, 97);
-            this.tbUsername.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbUsername.Margin = new System.Windows.Forms.Padding(2);
             this.tbUsername.Name = "tbUsername";
             this.tbUsername.Size = new System.Drawing.Size(113, 20);
             this.tbUsername.TabIndex = 101;
@@ -209,21 +210,22 @@
             this.btnExportarExcel.BackColor = System.Drawing.Color.Maroon;
             this.btnExportarExcel.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExportarExcel.ForeColor = System.Drawing.Color.White;
-            this.btnExportarExcel.Location = new System.Drawing.Point(718, 210);
-            this.btnExportarExcel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnExportarExcel.Location = new System.Drawing.Point(716, 210);
+            this.btnExportarExcel.Margin = new System.Windows.Forms.Padding(2);
             this.btnExportarExcel.Name = "btnExportarExcel";
             this.btnExportarExcel.Size = new System.Drawing.Size(120, 43);
             this.btnExportarExcel.TabIndex = 93;
             this.btnExportarExcel.Text = "Exportar Excel";
             this.btnExportarExcel.UseVisualStyleBackColor = false;
+            this.btnExportarExcel.Click += new System.EventHandler(this.btnExportarExcel_Click);
             // 
             // btnActualizarDatos
             // 
             this.btnActualizarDatos.BackColor = System.Drawing.Color.Maroon;
             this.btnActualizarDatos.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnActualizarDatos.ForeColor = System.Drawing.Color.White;
-            this.btnActualizarDatos.Location = new System.Drawing.Point(287, 210);
-            this.btnActualizarDatos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnActualizarDatos.Location = new System.Drawing.Point(258, 210);
+            this.btnActualizarDatos.Margin = new System.Windows.Forms.Padding(2);
             this.btnActualizarDatos.Name = "btnActualizarDatos";
             this.btnActualizarDatos.Size = new System.Drawing.Size(134, 43);
             this.btnActualizarDatos.TabIndex = 92;
@@ -236,8 +238,8 @@
             this.btnBuscar.BackColor = System.Drawing.Color.Maroon;
             this.btnBuscar.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuscar.ForeColor = System.Drawing.Color.White;
-            this.btnBuscar.Location = new System.Drawing.Point(153, 210);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBuscar.Location = new System.Drawing.Point(124, 210);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(130, 43);
             this.btnBuscar.TabIndex = 91;
@@ -251,9 +253,9 @@
             this.btnRegistrar.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegistrar.ForeColor = System.Drawing.Color.White;
             this.btnRegistrar.Location = new System.Drawing.Point(29, 210);
-            this.btnRegistrar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnRegistrar.Margin = new System.Windows.Forms.Padding(2);
             this.btnRegistrar.Name = "btnRegistrar";
-            this.btnRegistrar.Size = new System.Drawing.Size(120, 43);
+            this.btnRegistrar.Size = new System.Drawing.Size(91, 43);
             this.btnRegistrar.TabIndex = 90;
             this.btnRegistrar.Text = "Registrar";
             this.btnRegistrar.UseVisualStyleBackColor = false;
@@ -263,7 +265,7 @@
             // 
             this.dgUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgUsuarios.Location = new System.Drawing.Point(29, 257);
-            this.dgUsuarios.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgUsuarios.Margin = new System.Windows.Forms.Padding(2);
             this.dgUsuarios.Name = "dgUsuarios";
             this.dgUsuarios.RowHeadersWidth = 51;
             this.dgUsuarios.Size = new System.Drawing.Size(807, 258);
@@ -329,20 +331,35 @@
             this.btnEliminar.BackColor = System.Drawing.Color.Maroon;
             this.btnEliminar.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEliminar.ForeColor = System.Drawing.Color.White;
-            this.btnEliminar.Location = new System.Drawing.Point(549, 210);
+            this.btnEliminar.Location = new System.Drawing.Point(610, 210);
             this.btnEliminar.Margin = new System.Windows.Forms.Padding(2);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(120, 43);
+            this.btnEliminar.Size = new System.Drawing.Size(90, 43);
             this.btnEliminar.TabIndex = 117;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = false;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
+            // btnListarActivos
+            // 
+            this.btnListarActivos.BackColor = System.Drawing.Color.Maroon;
+            this.btnListarActivos.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListarActivos.ForeColor = System.Drawing.Color.White;
+            this.btnListarActivos.Location = new System.Drawing.Point(503, 210);
+            this.btnListarActivos.Margin = new System.Windows.Forms.Padding(2);
+            this.btnListarActivos.Name = "btnListarActivos";
+            this.btnListarActivos.Size = new System.Drawing.Size(103, 43);
+            this.btnListarActivos.TabIndex = 118;
+            this.btnListarActivos.Text = "Listar activos";
+            this.btnListarActivos.UseVisualStyleBackColor = false;
+            this.btnListarActivos.Click += new System.EventHandler(this.btnListarActivos_Click);
             // 
             // FormRegistrarAdministrador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(855, 526);
+            this.Controls.Add(this.btnListarActivos);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.tbEstado);
             this.Controls.Add(this.cbEstado);
@@ -369,7 +386,7 @@
             this.Controls.Add(this.tbContrasena);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.tbUsername);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormRegistrarAdministrador";
             this.Text = "FormRegistrarAdministrador";
             ((System.ComponentModel.ISupportInitialize)(this.dgUsuarios)).EndInit();
@@ -405,5 +422,6 @@
         private System.Windows.Forms.Label tbEstado;
         private System.Windows.Forms.ComboBox cbEstado;
         private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.Button btnListarActivos;
     }
 }

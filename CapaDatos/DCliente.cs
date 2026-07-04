@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -28,6 +29,25 @@ namespace CapaDatos
         }
 
         public List<Cliente> ListarTodo()
+        {
+            List<Cliente> clientes = new List<Cliente>();
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    clientes = context.Cliente.ToList();
+                }
+
+                return clientes;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return clientes;
+            }
+        }
+
+        public List<Cliente> ListarTodoActivos()
         {
             List<Cliente> clientes = new List<Cliente>();
             try
@@ -80,6 +100,42 @@ namespace CapaDatos
                 return ex.Message;
             }
         }
+
+        public Cliente EncontrarClienteDNI(string dni)
+        {
+            Cliente cliente = new Cliente();
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    cliente = context.Cliente.Where(c => c.dni == dni && c.activo == true).FirstOrDefault();
+                }
+                return cliente;
+            }
+            catch (Exception ex) {
+                Console.WriteLine(ex.Message);
+                return cliente;
+            }
+        }
+
+        public Cliente EncontrarCliente(int id)
+        {
+            Cliente cliente = new Cliente();
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    cliente = context.Cliente.Find(id);
+                }
+                return cliente;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return cliente;
+            }
+        }
+
         public string EliminarLogico(int idCliente)
         {
             try
@@ -106,26 +162,31 @@ namespace CapaDatos
                 return ex.Message;
             }
         }
-
-        public Cliente BuscarPorId(int idCliente)
+        public string ActualizarActivo(int idCliente, bool activo, int idUsuario)
         {
-            Cliente cliente = null;
-
             try
             {
                 using (var context = new BD_ALBASEntities1())
                 {
-                    cliente = context.Cliente
-                        .Where(c => c.idCliente == idCliente)
-                        .FirstOrDefault();
+                    var cliente = context.Cliente.Find(idCliente);
+
+                    if (cliente == null)
+                    {
+                        return "Cliente no encontrado";
+                    }
+
+                    cliente.activo = activo;
+                    cliente.modifiedBy = idUsuario;
+                    cliente.modifiedAt = DateTime.Now;
+
+                    context.SaveChanges();
                 }
 
-                return cliente;
+                return "Estado actualizado";
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return cliente;
+                return ex.Message;
             }
         }
     }

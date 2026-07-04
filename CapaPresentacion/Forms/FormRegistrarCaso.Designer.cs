@@ -84,6 +84,7 @@
             this.btnExportarExcel.TabIndex = 33;
             this.btnExportarExcel.Text = "Exportar Excel";
             this.btnExportarExcel.UseVisualStyleBackColor = false;
+            this.btnExportarExcel.Click += new System.EventHandler(this.btnExportarExcel_Click);
             // 
             // label4
             // 
@@ -217,6 +218,7 @@
             this.btnDocumento.TabIndex = 67;
             this.btnDocumento.Text = "Documento";
             this.btnDocumento.UseVisualStyleBackColor = false;
+            this.btnDocumento.Click += new System.EventHandler(this.btnDocumento_Click);
             // 
             // label3
             // 

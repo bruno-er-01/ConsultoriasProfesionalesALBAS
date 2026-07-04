@@ -61,5 +61,11 @@ namespace CapaPresentacion
             FormDashboardCargaLaboralxEspecialista form = new FormDashboardCargaLaboralxEspecialista();
             form.Show();
         }
+
+        private void btnFinanciero_Click(object sender, EventArgs e)
+        {
+            FormDashBoardMontos form = new FormDashBoardMontos();
+            form.Show();
+        }
     }
 }

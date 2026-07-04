@@ -73,6 +73,12 @@
     <Compile Include="Forms\FormActualizarContrasena.Designer.cs">
       <DependentUpon>FormActualizarContrasena.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormDashboardCargaLaboralxEspecialista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormDashboardCargaLaboralxEspecialista.Designer.cs">
+      <DependentUpon>FormDashboardCargaLaboralxEspecialista.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormDashBoardCitas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -227,6 +233,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\FormActualizarContrasena.resx">
       <DependentUpon>FormActualizarContrasena.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormDashboardCargaLaboralxEspecialista.resx">
+      <DependentUpon>FormDashboardCargaLaboralxEspecialista.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormDashBoardCitas.resx">
       <DependentUpon>FormDashBoardCitas.cs</DependentUpon>

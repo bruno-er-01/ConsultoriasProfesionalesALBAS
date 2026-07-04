@@ -55,5 +55,11 @@ namespace CapaPresentacion
             FormDashboardReporteAntiguedadCasos form = new FormDashboardReporteAntiguedadCasos();
             form.Show();
         }
+
+        private void btnReporteCargaLaboralXEspecialista_Click(object sender, EventArgs e)
+        {
+            FormDashboardCargaLaboralxEspecialista form = new FormDashboardCargaLaboralxEspecialista();
+            form.Show();
+        }
     }
 }

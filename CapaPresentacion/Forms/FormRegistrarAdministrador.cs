@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace CapaPresentacion
 {
@@ -21,6 +22,8 @@ namespace CapaPresentacion
         {
             InitializeComponent();
             this.usuarioActual = usuario;
+            dgUsuarios.CurrentCellDirtyStateChanged += dgUsuarios_CurrentCellDirtyStateChanged;
+            dgUsuarios.CellValueChanged += dgUsuarios_CellValueChanged;
         }
 
         void MostrarDatagrid(List<Usuario> lista)
@@ -30,14 +33,15 @@ namespace CapaPresentacion
             {
                 dgUsuarios.DataSource = lista;
 
-                if (dgUsuarios.Columns["activo"] != null)
-                    dgUsuarios.Columns["activo"].Visible = false;
-
                 if (dgUsuarios.Columns["Administrador"] != null)
                     dgUsuarios.Columns["Administrador"].Visible = false;
 
                 if (dgUsuarios.Columns["Especialista"] != null)
                     dgUsuarios.Columns["Especialista"].Visible = false;
+
+                if (dgUsuarios.Columns["idUsuario"] != null)
+                    dgUsuarios.Columns["idUsuario"].Visible = false;
+
             }
         }
 
@@ -62,7 +66,8 @@ namespace CapaPresentacion
                 username = tbUsername.Text,
                 password = tbContrasena.Text,
                 direccion = tbDireccion.Text,
-                createdBy = usuarioActual.idUsuario
+                createdBy = usuarioActual.idUsuario,
+                createdAt = DateTime.Now
             };
 
             string mensaje = nusuario.RegistrarAdministrador(usuario);
@@ -122,7 +127,7 @@ namespace CapaPresentacion
         {
             if (dgUsuarios.CurrentRow == null)
             {
-                MessageBox.Show("Seleccione un retiro");
+                MessageBox.Show("Seleccione un usuario");
                 return;
             }
 
@@ -148,7 +153,8 @@ namespace CapaPresentacion
                 username = tbUsername.Text,
                 password = tbContrasena.Text,
                 direccion = tbDireccion.Text,
-                createdBy = usuarioActual.idUsuario
+                modifiedBy = usuarioActual.idUsuario,
+                modifiedAt = DateTime.Now
             };
 
             string mensaje = nusuario.Modificar(usuario);
@@ -168,14 +174,37 @@ namespace CapaPresentacion
             MessageBox.Show(mensaje);
             MostrarDatagrid(nusuario.ListarAdministradores());
         }
-
-
-
         private void btnListar_Click(object sender, EventArgs e)
+        {
+            MostrarDatagrid(nusuario.ListarTodoadministradores());
+        }
+
+        private void btnListarActivos_Click(object sender, EventArgs e)
         {
             MostrarDatagrid(nusuario.ListarAdministradores());
         }
 
+        private void dgUsuarios_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            if (dgUsuarios.IsCurrentCellDirty)
+            {
+                dgUsuarios.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+        }
+
+        private void dgUsuarios_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            if (dgUsuarios.Columns[e.ColumnIndex].Name == "activo")
+            {
+                int idUsuario = Convert.ToInt32(dgUsuarios.Rows[e.RowIndex].Cells["idUsuario"].Value);
+                bool activo = Convert.ToBoolean(dgUsuarios.Rows[e.RowIndex].Cells["activo"].Value);
+
+                string mensaje = nusuario.ActualizarActivo(idUsuario, activo, usuarioActual.idUsuario);
+                MessageBox.Show(mensaje);
+            }
+        }
         private void dgUsuarios_SelectionChanged(object sender, EventArgs e)
         {
             if (dgUsuarios.CurrentRow == null) return;
@@ -194,6 +223,62 @@ namespace CapaPresentacion
             tbContrasena.Text = usuario.password;
             tbDireccion.Text = usuario.direccion;
         }
-        //Re:Zero bonito anime y Konosuba
+
+        private void btnExportarExcel_Click(object sender, EventArgs e)
+        {
+            if (dgUsuarios.Rows.Count == 0)
+            {
+                MessageBox.Show("No hay datos para exportar");
+                return;
+            }
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Archivo Excel (*.xlsx)|*.xlsx";
+            saveFileDialog.FileName = "Administradores.xlsx";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                Excel.Application excel = new Excel.Application();
+                Excel.Workbook libro = excel.Workbooks.Add();
+                Excel.Worksheet hoja = libro.ActiveSheet;
+
+                int columnaExcel = 1;
+
+                // Encabezados
+                for (int i = 0; i < dgUsuarios.Columns.Count; i++)
+                {
+                    if (dgUsuarios.Columns[i].Visible)
+                    {
+                        hoja.Cells[1, columnaExcel] = dgUsuarios.Columns[i].HeaderText;
+                        columnaExcel++;
+                    }
+                }
+
+                // Datos
+                for (int i = 0; i < dgUsuarios.Rows.Count; i++)
+                {
+                    columnaExcel = 1;
+
+                    for (int j = 0; j < dgUsuarios.Columns.Count; j++)
+                    {
+                        if (dgUsuarios.Columns[j].Visible)
+                        {
+                            object valor = dgUsuarios.Rows[i].Cells[j].Value;
+
+                            hoja.Cells[i + 2, columnaExcel] = valor != null ? valor.ToString() : "";
+                            columnaExcel++;
+                        }
+                    }
+                }
+
+                hoja.Columns.AutoFit();
+
+                libro.SaveAs(saveFileDialog.FileName);
+                libro.Close();
+                excel.Quit();
+
+                MessageBox.Show("Excel exportado correctamente");
+            }
+        }
     }
 }

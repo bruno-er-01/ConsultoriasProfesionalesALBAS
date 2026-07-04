@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace CapaPresentacion
 {
@@ -43,14 +44,14 @@ namespace CapaPresentacion
             {
                 dgUsuarios.DataSource = lista;
 
-                if (dgUsuarios.Columns["activo"] != null)
-                    dgUsuarios.Columns["activo"].Visible = false;
-
                 if (dgUsuarios.Columns["Administrador"] != null)
                     dgUsuarios.Columns["Administrador"].Visible = false;
 
                 if (dgUsuarios.Columns["Especialista"] != null)
                     dgUsuarios.Columns["Especialista"].Visible = false;
+
+                if (dgUsuarios.Columns["idUsuario"] != null)
+                    dgUsuarios.Columns["idUsuario"].Visible = false;
             }
         }
 
@@ -78,12 +79,13 @@ namespace CapaPresentacion
                 username = tbUsername.Text,
                 password = tbContrasena.Text,
                 direccion = tbDireccion.Text,
-                createdBy = usuarioActual.idUsuario
+                createdBy = usuarioActual.idUsuario,
+                createdAt = DateTime.Now
             };
 
             string mensaje = nusuario.RegistrarEspecialista(usuario, idArea, disponible);
             MessageBox.Show(mensaje);
-            MostrarDatagrid(nusuario.ListarEspecialistas());
+            MostrarDatagrid(nusuario.ListarEspecialistasConDatosActivos());
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -165,17 +167,23 @@ namespace CapaPresentacion
                 username = tbUsername.Text,
                 password = tbContrasena.Text,
                 direccion = tbDireccion.Text,
-                modifiedBy = usuarioActual.idUsuario
+                modifiedBy = usuarioActual.idUsuario,
+                modifiedAt = DateTime.Now
             };
 
             string mensaje = nusuario.Modificar(usuario);
             MessageBox.Show(mensaje);
-            MostrarDatagrid(nusuario.ListarEspecialistasConDatos());
+            MostrarDatagrid(nusuario.ListarEspecialistasConDatosActivos());
         }
 
-        private void btnListar_Click(object sender, EventArgs e)
+        private void btnListarActivo_Click(object sender, EventArgs e)
         {
-            MostrarDatagrid(nusuario.ListarEspecialistasConDatos());
+            MostrarDatagrid(nusuario.ListarEspecialistasConDatosActivos());
+        }
+
+        private void btnListarTodoEspecialista_Click(object sender, EventArgs e)
+        {
+            MostrarDatagrid(nusuario.ListarTodoEspecialistas());
         }
 
         private void btnEiminar_Click(object sender, EventArgs e)
@@ -190,35 +198,63 @@ namespace CapaPresentacion
 
             string mensaje = nusuario.EliminarLogico(usuarioId, usuarioActual.idUsuario);
             MessageBox.Show(mensaje);
-            MostrarDatagrid(nusuario.ListarEspecialistasConDatos());
+            MostrarDatagrid(nusuario.ListarEspecialistasConDatosActivos());
         }
-
-        private void dgUsuarios_SelectionChanged(object sender, EventArgs e)
+        private void btnExportarExcel_Click(object sender, EventArgs e)
         {
-            if (dgUsuarios.CurrentRow == null) { return;}
-
-            Usuario usuario = dgUsuarios.CurrentRow.DataBoundItem as Usuario;
-
-            //Permite la lista vacíá
-            if (usuario == null) return;
-
-            tbNombre.Text = usuario.nombre;
-            tbApellido.Text = usuario.apellido;
-            tbDNI.Text = usuario.dni;
-            tbTelefono.Text = usuario.telefono;
-            tbCorreo.Text = usuario.correo;
-            tbUsername.Text = usuario.username;
-            tbContrasena.Text = usuario.password;
-            tbDireccion.Text = usuario.direccion;
-
-
-            if (dgUsuarios.Columns["idArea"] != null)
+            if (dgUsuarios.Rows.Count == 0)
             {
-                cbAreaAtencion.SelectedValue = Convert.ToInt32(
-                    dgUsuarios.CurrentRow.Cells["idArea"].Value
-                );
-                //cambioss
+                MessageBox.Show("No hay datos para exportar");
+                return;
+            }
 
+            SaveFileDialog guardar = new SaveFileDialog();
+            guardar.Filter = "Archivo Excel (*.xlsx)|*.xlsx";
+            guardar.FileName = "Especialistas.xlsx";
+
+            if (guardar.ShowDialog() == DialogResult.OK)
+            {
+                Excel.Application excel = new Excel.Application();
+                Excel.Workbook libro = excel.Workbooks.Add();
+                Excel.Worksheet hoja = libro.ActiveSheet;
+
+                int columnaExcel = 1;
+
+                // Encabezados
+                for (int i = 0; i < dgUsuarios.Columns.Count; i++)
+                {
+                    if (dgUsuarios.Columns[i].Visible)
+                    {
+                        hoja.Cells[1, columnaExcel] = dgUsuarios.Columns[i].HeaderText;
+                        columnaExcel++;
+                    }
+                }
+
+                // Datos
+                for (int i = 0; i < dgUsuarios.Rows.Count; i++)
+                {
+                    if (dgUsuarios.Rows[i].IsNewRow) continue;
+
+                    columnaExcel = 1;
+
+                    for (int j = 0; j < dgUsuarios.Columns.Count; j++)
+                    {
+                        if (dgUsuarios.Columns[j].Visible)
+                        {
+                            object valor = dgUsuarios.Rows[i].Cells[j].Value;
+                            hoja.Cells[i + 2, columnaExcel] = valor == null ? "" : valor.ToString();
+                            columnaExcel++;
+                        }
+                    }
+                }
+
+                hoja.Columns.AutoFit();
+
+                libro.SaveAs(guardar.FileName);
+                libro.Close();
+                excel.Quit();
+
+                MessageBox.Show("Excel exportado correctamente");
             }
         }
     }

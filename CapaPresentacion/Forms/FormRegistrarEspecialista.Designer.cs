@@ -48,12 +48,13 @@
             this.btnRegistrar = new System.Windows.Forms.Button();
             this.dgUsuarios = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnListar = new System.Windows.Forms.Button();
+            this.btnListarActivo = new System.Windows.Forms.Button();
             this.tbUsername = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.tbContrasena = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.btnEiminar = new System.Windows.Forms.Button();
+            this.btnListarTodoEspecialista = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgUsuarios)).BeginInit();
             this.SuspendLayout();
             // 
@@ -203,13 +204,14 @@
             this.btnExportarExcel.TabIndex = 33;
             this.btnExportarExcel.Text = "Exportar Excel";
             this.btnExportarExcel.UseVisualStyleBackColor = false;
+            this.btnExportarExcel.Click += new System.EventHandler(this.btnExportarExcel_Click);
             // 
             // btnActualizarDatos
             // 
             this.btnActualizarDatos.BackColor = System.Drawing.Color.Maroon;
             this.btnActualizarDatos.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnActualizarDatos.ForeColor = System.Drawing.Color.White;
-            this.btnActualizarDatos.Location = new System.Drawing.Point(274, 210);
+            this.btnActualizarDatos.Location = new System.Drawing.Point(215, 210);
             this.btnActualizarDatos.Margin = new System.Windows.Forms.Padding(2);
             this.btnActualizarDatos.Name = "btnActualizarDatos";
             this.btnActualizarDatos.Size = new System.Drawing.Size(120, 43);
@@ -223,10 +225,10 @@
             this.btnBuscar.BackColor = System.Drawing.Color.Maroon;
             this.btnBuscar.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuscar.ForeColor = System.Drawing.Color.White;
-            this.btnBuscar.Location = new System.Drawing.Point(147, 210);
+            this.btnBuscar.Location = new System.Drawing.Point(118, 210);
             this.btnBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(120, 43);
+            this.btnBuscar.Size = new System.Drawing.Size(93, 43);
             this.btnBuscar.TabIndex = 31;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = false;
@@ -240,7 +242,7 @@
             this.btnRegistrar.Location = new System.Drawing.Point(23, 210);
             this.btnRegistrar.Margin = new System.Windows.Forms.Padding(2);
             this.btnRegistrar.Name = "btnRegistrar";
-            this.btnRegistrar.Size = new System.Drawing.Size(120, 43);
+            this.btnRegistrar.Size = new System.Drawing.Size(91, 43);
             this.btnRegistrar.TabIndex = 30;
             this.btnRegistrar.Text = "Registrar";
             this.btnRegistrar.UseVisualStyleBackColor = false;
@@ -255,7 +257,7 @@
             this.dgUsuarios.RowHeadersWidth = 51;
             this.dgUsuarios.Size = new System.Drawing.Size(807, 258);
             this.dgUsuarios.TabIndex = 29;
-            this.dgUsuarios.SelectionChanged += new System.EventHandler(this.dgUsuarios_SelectionChanged);
+            
             // 
             // label1
             // 
@@ -269,19 +271,19 @@
             this.label1.TabIndex = 27;
             this.label1.Text = "Registrar o buscar especialista";
             // 
-            // btnListar
+            // btnListarActivo
             // 
-            this.btnListar.BackColor = System.Drawing.Color.Maroon;
-            this.btnListar.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnListar.ForeColor = System.Drawing.Color.White;
-            this.btnListar.Location = new System.Drawing.Point(398, 210);
-            this.btnListar.Margin = new System.Windows.Forms.Padding(2);
-            this.btnListar.Name = "btnListar";
-            this.btnListar.Size = new System.Drawing.Size(120, 43);
-            this.btnListar.TabIndex = 58;
-            this.btnListar.Text = "Listar";
-            this.btnListar.UseVisualStyleBackColor = false;
-            this.btnListar.Click += new System.EventHandler(this.btnListar_Click);
+            this.btnListarActivo.BackColor = System.Drawing.Color.Maroon;
+            this.btnListarActivo.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListarActivo.ForeColor = System.Drawing.Color.White;
+            this.btnListarActivo.Location = new System.Drawing.Point(339, 210);
+            this.btnListarActivo.Margin = new System.Windows.Forms.Padding(2);
+            this.btnListarActivo.Name = "btnListarActivo";
+            this.btnListarActivo.Size = new System.Drawing.Size(108, 43);
+            this.btnListarActivo.TabIndex = 58;
+            this.btnListarActivo.Text = "Listar Activos";
+            this.btnListarActivo.UseVisualStyleBackColor = false;
+            this.btnListarActivo.Click += new System.EventHandler(this.btnListarActivo_Click);
             // 
             // tbUsername
             // 
@@ -326,26 +328,41 @@
             this.btnEiminar.BackColor = System.Drawing.Color.Maroon;
             this.btnEiminar.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEiminar.ForeColor = System.Drawing.Color.White;
-            this.btnEiminar.Location = new System.Drawing.Point(522, 210);
+            this.btnEiminar.Location = new System.Drawing.Point(563, 210);
             this.btnEiminar.Margin = new System.Windows.Forms.Padding(2);
             this.btnEiminar.Name = "btnEiminar";
-            this.btnEiminar.Size = new System.Drawing.Size(120, 43);
+            this.btnEiminar.Size = new System.Drawing.Size(98, 43);
             this.btnEiminar.TabIndex = 119;
             this.btnEiminar.Text = "Eliminar";
             this.btnEiminar.UseVisualStyleBackColor = false;
             this.btnEiminar.Click += new System.EventHandler(this.btnEiminar_Click);
+            // 
+            // btnListarTodoEspecialista
+            // 
+            this.btnListarTodoEspecialista.BackColor = System.Drawing.Color.Maroon;
+            this.btnListarTodoEspecialista.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListarTodoEspecialista.ForeColor = System.Drawing.Color.White;
+            this.btnListarTodoEspecialista.Location = new System.Drawing.Point(451, 210);
+            this.btnListarTodoEspecialista.Margin = new System.Windows.Forms.Padding(2);
+            this.btnListarTodoEspecialista.Name = "btnListarTodoEspecialista";
+            this.btnListarTodoEspecialista.Size = new System.Drawing.Size(108, 43);
+            this.btnListarTodoEspecialista.TabIndex = 120;
+            this.btnListarTodoEspecialista.Text = "Listar Todo";
+            this.btnListarTodoEspecialista.UseVisualStyleBackColor = false;
+            this.btnListarTodoEspecialista.Click += new System.EventHandler(this.btnListarTodoEspecialista_Click);
             // 
             // FormRegistrarEspecialista
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(855, 526);
+            this.Controls.Add(this.btnListarTodoEspecialista);
             this.Controls.Add(this.btnEiminar);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.tbContrasena);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.tbUsername);
-            this.Controls.Add(this.btnListar);
+            this.Controls.Add(this.btnListarActivo);
             this.Controls.Add(this.dgUsuarios);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label1);
@@ -396,11 +413,12 @@
         private System.Windows.Forms.Button btnRegistrar;
         private System.Windows.Forms.DataGridView dgUsuarios;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnListar;
+        private System.Windows.Forms.Button btnListarActivo;
         private System.Windows.Forms.TextBox tbUsername;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox tbContrasena;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button btnEiminar;
+        private System.Windows.Forms.Button btnListarTodoEspecialista;
     }
 }

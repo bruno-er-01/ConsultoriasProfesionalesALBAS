@@ -82,17 +82,27 @@ namespace CapaNegocios
             return dUsuario.ListarAdministradores();
         }
 
-        //Borrar Muestra solo los usuarios con el rol de Especialista
-        public List<Usuario> ListarEspecialistas()
+        public List<Usuario> ListarTodoadministradores()
         {
-            return dUsuario.ListarEspecialistas();
+            return dUsuario.ListarTodoAdministrador();
         }
 
-        //Agregar Muestra los Especialistas con datos de Usuario
-        public object ListarEspecialistasConDatos()
+        //------------------------------------------------------------------------// para no confundirme
+        public object ListarEspecialistasConDatosActivos()
+        {
+            return dEspecialista.ListarTodoActivos();
+        }
+
+        public object ListarTodoEspecialistas()
         {
             return dEspecialista.ListarTodo();
         }
+
+        public string ActualizarDisponibleEspecialista(int idEspecialista, bool disponible)
+        {
+            return dEspecialista.ActualizarDisponible(idEspecialista, disponible);
+        }
+        //-----------------------------------------------------------------------// para no confundirme
 
         public Usuario BuscarPorDni(string dni)
         {
@@ -137,6 +147,11 @@ namespace CapaNegocios
             }
 
             return dUsuario.Modificar(usuario);
+        }
+
+        public string ActualizarActivo(int idUsuario, bool activo, int idUsuarioModificador)
+        {
+            return dUsuario.ActualizarActivo(idUsuario, activo, idUsuarioModificador);
         }
 
         public string EliminarLogico(int idUsuario, int idUsuarioModificador)

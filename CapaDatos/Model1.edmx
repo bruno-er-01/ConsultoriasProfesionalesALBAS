@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="BD_ALBASModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="BD_ALBASModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Administrador">
           <Key>
             <PropertyRef Name="idAdministrador" />
@@ -255,7 +255,8 @@
             <End Role="Reporte" EntitySet="Reporte" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BD_ALBASModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -317,12 +318,12 @@
           <Property Name="modalidad" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="confirmacionAsistencia" Type="Boolean" Nullable="false" />
           <Property Name="activo" Type="Boolean" />
+          <Property Name="tiempoAnticipacion" Type="Int32" />
           <Property Name="createdBy" Type="Int32" />
           <Property Name="createdAt" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="modifiedBy" Type="Int32" />
           <Property Name="modifiedAt" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Caso" Relationship="Self.FK_Cita_Caso1" FromRole="Cita" ToRole="Caso" />
-          <Property Name="tiempoAnticipacion" Type="Int32" />
         </EntityType>
         <EntityType Name="Cliente">
           <Key>
@@ -573,7 +574,6 @@
           <EntitySetMapping Name="Cita">
             <EntityTypeMapping TypeName="BD_ALBASModel.Cita">
               <MappingFragment StoreEntitySet="Cita">
-                <ScalarProperty Name="tiempoAnticipacion" ColumnName="tiempoAnticipacion" />
                 <ScalarProperty Name="idCita" ColumnName="idCita" />
                 <ScalarProperty Name="nroCaso" ColumnName="nroCaso" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
@@ -584,6 +584,7 @@
                 <ScalarProperty Name="modalidad" ColumnName="modalidad" />
                 <ScalarProperty Name="confirmacionAsistencia" ColumnName="confirmacionAsistencia" />
                 <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="tiempoAnticipacion" ColumnName="tiempoAnticipacion" />
                 <ScalarProperty Name="createdBy" ColumnName="createdBy" />
                 <ScalarProperty Name="createdAt" ColumnName="createdAt" />
                 <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />

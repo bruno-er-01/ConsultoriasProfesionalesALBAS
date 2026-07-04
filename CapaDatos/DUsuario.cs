@@ -27,7 +27,7 @@ namespace CapaDatos
                 return 0;
             }
         }
-        
+
         public Usuario BuscarPorCorreo(string correo)
         {
             Usuario usuario = null;
@@ -78,6 +78,7 @@ namespace CapaDatos
                 return ex.Message;
             }
         }
+
         public string ActualizarPassword(int idUsuario, string nuevaPassword)
         {
             try
@@ -104,7 +105,7 @@ namespace CapaDatos
                 return "Error al actualizar contraseña: " + ex.Message;
             }
         }
-        
+
         public List<Usuario> ListarAdministradores()
         {
             try
@@ -165,7 +166,8 @@ namespace CapaDatos
             {
                 using (var context = new BD_ALBASEntities1())
                 {
-                    return context.Usuario.FirstOrDefault(u => u.dni == dni && u.activo == true);
+                    return context.Usuario
+                        .FirstOrDefault(u => u.dni == dni && u.activo == true);
                 }
             }
             catch (Exception ex)
@@ -275,6 +277,7 @@ namespace CapaDatos
                 return "Error al modificar usuario: " + ex.Message;
             }
         }
+
         public bool ExisteDniEnOtroUsuario(string dni, int idUsuario)
         {
             try
@@ -336,8 +339,6 @@ namespace CapaDatos
                 return "Error al actualizar estado: " + ex.Message;
             }
         }
-
-
 
         public string EliminarLogico(int idUsuario, int idUsuarioModificador)
         {

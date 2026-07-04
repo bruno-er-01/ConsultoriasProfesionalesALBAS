@@ -62,5 +62,9 @@ namespace CapaNegocios
         {
             return dCita.ListarCitasPendientesPorEspecialista(idEspecialista);
         }
+        public List<Cita> ListarPorCaso(int nroCaso)
+        {
+            return dCita.ListarPorCaso(nroCaso);
+        }
     }
 }

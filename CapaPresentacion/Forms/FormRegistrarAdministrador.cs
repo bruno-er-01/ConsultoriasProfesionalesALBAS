@@ -231,19 +231,19 @@ namespace CapaPresentacion
                 MessageBox.Show("No hay datos para exportar");
                 return;
             }
-
+        
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Archivo Excel (*.xlsx)|*.xlsx";
             saveFileDialog.FileName = "Administradores.xlsx";
-
+        
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 Excel.Application excel = new Excel.Application();
                 Excel.Workbook libro = excel.Workbooks.Add();
                 Excel.Worksheet hoja = libro.ActiveSheet;
-
+        
                 int columnaExcel = 1;
-
+        
                 // Encabezados
                 for (int i = 0; i < dgUsuarios.Columns.Count; i++)
                 {
@@ -253,30 +253,30 @@ namespace CapaPresentacion
                         columnaExcel++;
                     }
                 }
-
+        
                 // Datos
                 for (int i = 0; i < dgUsuarios.Rows.Count; i++)
                 {
                     columnaExcel = 1;
-
+        
                     for (int j = 0; j < dgUsuarios.Columns.Count; j++)
                     {
                         if (dgUsuarios.Columns[j].Visible)
                         {
                             object valor = dgUsuarios.Rows[i].Cells[j].Value;
-
+        
                             hoja.Cells[i + 2, columnaExcel] = valor != null ? valor.ToString() : "";
                             columnaExcel++;
                         }
                     }
                 }
-
+        
                 hoja.Columns.AutoFit();
-
+        
                 libro.SaveAs(saveFileDialog.FileName);
                 libro.Close();
                 excel.Quit();
-
+        
                 MessageBox.Show("Excel exportado correctamente");
             }
             //pusha

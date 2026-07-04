@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Excel = Microsoft.Office.Interop.Excel;
+//using Excel = Microsoft.Office.Interop.Excel;
 
 namespace CapaPresentacion
 {
@@ -200,62 +200,62 @@ namespace CapaPresentacion
             MessageBox.Show(mensaje);
             MostrarDatagrid(nusuario.ListarEspecialistasConDatosActivos());
         }
-        private void btnExportarExcel_Click(object sender, EventArgs e)
-        {
-            if (dgUsuarios.Rows.Count == 0)
-            {
-                MessageBox.Show("No hay datos para exportar");
-                return;
-            }
-
-            SaveFileDialog guardar = new SaveFileDialog();
-            guardar.Filter = "Archivo Excel (*.xlsx)|*.xlsx";
-            guardar.FileName = "Especialistas.xlsx";
-
-            if (guardar.ShowDialog() == DialogResult.OK)
-            {
-                Excel.Application excel = new Excel.Application();
-                Excel.Workbook libro = excel.Workbooks.Add();
-                Excel.Worksheet hoja = libro.ActiveSheet;
-
-                int columnaExcel = 1;
-
-                // Encabezados
-                for (int i = 0; i < dgUsuarios.Columns.Count; i++)
-                {
-                    if (dgUsuarios.Columns[i].Visible)
-                    {
-                        hoja.Cells[1, columnaExcel] = dgUsuarios.Columns[i].HeaderText;
-                        columnaExcel++;
-                    }
-                }
-
-                // Datos
-                for (int i = 0; i < dgUsuarios.Rows.Count; i++)
-                {
-                    if (dgUsuarios.Rows[i].IsNewRow) continue;
-
-                    columnaExcel = 1;
-
-                    for (int j = 0; j < dgUsuarios.Columns.Count; j++)
-                    {
-                        if (dgUsuarios.Columns[j].Visible)
-                        {
-                            object valor = dgUsuarios.Rows[i].Cells[j].Value;
-                            hoja.Cells[i + 2, columnaExcel] = valor == null ? "" : valor.ToString();
-                            columnaExcel++;
-                        }
-                    }
-                }
-
-                hoja.Columns.AutoFit();
-
-                libro.SaveAs(guardar.FileName);
-                libro.Close();
-                excel.Quit();
-
-                MessageBox.Show("Excel exportado correctamente");
-            }
-        }
+        //private void btnExportarExcel_Click(object sender, EventArgs e)
+        //{
+        //    if (dgUsuarios.Rows.Count == 0)
+        //    {
+        //        MessageBox.Show("No hay datos para exportar");
+        //        return;
+        //    }
+        //
+        //    SaveFileDialog guardar = new SaveFileDialog();
+        //    guardar.Filter = "Archivo Excel (*.xlsx)|*.xlsx";
+        //    guardar.FileName = "Especialistas.xlsx";
+        //
+        //    if (guardar.ShowDialog() == DialogResult.OK)
+        //    {
+        //        Excel.Application excel = new Excel.Application();
+        //        Excel.Workbook libro = excel.Workbooks.Add();
+        //        Excel.Worksheet hoja = libro.ActiveSheet;
+        //
+        //        int columnaExcel = 1;
+        //
+        //        // Encabezados
+        //        for (int i = 0; i < dgUsuarios.Columns.Count; i++)
+        //        {
+        //            if (dgUsuarios.Columns[i].Visible)
+        //            {
+        //                hoja.Cells[1, columnaExcel] = dgUsuarios.Columns[i].HeaderText;
+        //                columnaExcel++;
+        //            }
+        //        }
+        //
+        //        // Datos
+        //        for (int i = 0; i < dgUsuarios.Rows.Count; i++)
+        //        {
+        //            if (dgUsuarios.Rows[i].IsNewRow) continue;
+        //
+        //            columnaExcel = 1;
+        //
+        //            for (int j = 0; j < dgUsuarios.Columns.Count; j++)
+        //            {
+        //                if (dgUsuarios.Columns[j].Visible)
+        //                {
+        //                    object valor = dgUsuarios.Rows[i].Cells[j].Value;
+        //                    hoja.Cells[i + 2, columnaExcel] = valor == null ? "" : valor.ToString();
+        //                    columnaExcel++;
+        //                }
+        //            }
+        //        }
+        //
+        //        hoja.Columns.AutoFit();
+        //
+        //        libro.SaveAs(guardar.FileName);
+        //        libro.Close();
+        //        excel.Quit();
+        //
+        //        MessageBox.Show("Excel exportado correctamente");
+        //    }
+        //}
     }
 }

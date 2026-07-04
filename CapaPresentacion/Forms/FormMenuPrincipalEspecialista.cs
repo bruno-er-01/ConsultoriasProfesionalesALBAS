@@ -45,7 +45,7 @@ namespace CapaPresentacion
  
         private void pnlBuscarCasosCitas_Click(object sender, EventArgs e)
         {
-            AbrirFormEnPanel(new FormEspecialistaBuscarCita());
+            //AbrirFormEnPanel(new FormEspecialistaBuscarCita());
         }
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)

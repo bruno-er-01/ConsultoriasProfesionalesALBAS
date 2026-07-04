@@ -123,6 +123,7 @@ namespace CapaDatos
                     }
 
                     especialista.disponible = disponible;
+
                     context.SaveChanges();
                 }
 
@@ -131,6 +132,95 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 return "Error al actualizar disponibilidad: " + ex.Message;
+            }
+        }
+        public string BuscarAreaEspecialista(int idUsuario)
+        {
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    var area = (from e in context.Especialista
+                                join a in context.Area
+                                    on e.idArea equals a.idArea
+                                where e.idEspecialista == idUsuario
+                                select a.nombre)
+                                .FirstOrDefault();
+
+                    if (area == null)
+                    {
+                        return "Sin área asignada";
+                    }
+
+                    return area;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return "Error al cargar área";
+            }
+        }
+
+        public bool BuscarDisponibilidadEspecialista(int idUsuario)
+        {
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    bool disponible = context.Especialista
+                        .Where(e => e.idEspecialista == idUsuario)
+                        .Select(e => e.disponible)
+                        .FirstOrDefault();
+
+                    return disponible;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+        public Usuario BuscarPorId(int idEspecialista)
+        {
+            Usuario usuario = null;
+
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    usuario = context.Usuario
+                        .Where(u => u.idUsuario == idEspecialista)
+                        .FirstOrDefault();
+                }
+
+                return usuario;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return usuario;
+            }
+        }
+
+        public int ContarClientesAsignados(int idEspecialista)
+        {
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    return context.Caso
+                        .Where(c => c.idEspecialista == idEspecialista && c.activo == true)
+                        .Select(c => c.idCliente)
+                        .Distinct()
+                        .Count();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return 0;
             }
         }
     }

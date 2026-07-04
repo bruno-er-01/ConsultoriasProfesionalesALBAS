@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Excel = Microsoft.Office.Interop.Excel;
+//using Excel = Microsoft.Office.Interop.Excel;
 
 namespace CapaPresentacion
 {
@@ -177,60 +177,60 @@ namespace CapaPresentacion
 
         private void btnExportarExcel_Click(object sender, EventArgs e)
         {
-            if (dgClientes.Rows.Count == 0)
-            {
-                MessageBox.Show("No hay datos para exportar");
-                return;
-            }
-
-            SaveFileDialog guardar = new SaveFileDialog();
-            guardar.Filter = "Archivo Excel (*.xlsx)|*.xlsx";
-            guardar.FileName = "Clientes.xlsx";
-
-            if (guardar.ShowDialog() == DialogResult.OK)
-            {
-                Excel.Application excel = new Excel.Application();
-                Excel.Workbook libro = excel.Workbooks.Add();
-                Excel.Worksheet hoja = libro.ActiveSheet;
-
-                int columnaExcel = 1;
-
-                // Encabezados
-                for (int i = 0; i < dgClientes.Columns.Count; i++)
-                {
-                    if (dgClientes.Columns[i].Visible)
-                    {
-                        hoja.Cells[1, columnaExcel] = dgClientes.Columns[i].HeaderText;
-                        columnaExcel++;
-                    }
-                }
-
-                // Datos
-                for (int i = 0; i < dgClientes.Rows.Count; i++)
-                {
-                    if (dgClientes.Rows[i].IsNewRow) continue;
-
-                    columnaExcel = 1;
-
-                    for (int j = 0; j < dgClientes.Columns.Count; j++)
-                    {
-                        if (dgClientes.Columns[j].Visible)
-                        {
-                            object valor = dgClientes.Rows[i].Cells[j].Value;
-                            hoja.Cells[i + 2, columnaExcel] = valor == null ? "" : valor.ToString();
-                            columnaExcel++;
-                        }
-                    }
-                }
-
-                hoja.Columns.AutoFit();
-
-                libro.SaveAs(guardar.FileName);
-                libro.Close();
-                excel.Quit();
-
-                MessageBox.Show("Excel de clientes exportado correctamente");
-            }
+        //    if (dgClientes.Rows.Count == 0)
+        //    {
+        //        MessageBox.Show("No hay datos para exportar");
+        //        return;
+        //    }
+        //
+        //    SaveFileDialog guardar = new SaveFileDialog();
+        //    guardar.Filter = "Archivo Excel (*.xlsx)|*.xlsx";
+        //    guardar.FileName = "Clientes.xlsx";
+        //
+        //    if (guardar.ShowDialog() == DialogResult.OK)
+        //    {
+        //        Excel.Application excel = new Excel.Application();
+        //        Excel.Workbook libro = excel.Workbooks.Add();
+        //        Excel.Worksheet hoja = libro.ActiveSheet;
+        //
+        //        int columnaExcel = 1;
+        //
+        //        // Encabezados
+        //        for (int i = 0; i < dgClientes.Columns.Count; i++)
+        //        {
+        //            if (dgClientes.Columns[i].Visible)
+        //            {
+        //                hoja.Cells[1, columnaExcel] = dgClientes.Columns[i].HeaderText;
+        //                columnaExcel++;
+        //            }
+        //        }
+        //
+        //        // Datos
+        //        for (int i = 0; i < dgClientes.Rows.Count; i++)
+        //        {
+        //            if (dgClientes.Rows[i].IsNewRow) continue;
+        //
+        //            columnaExcel = 1;
+        //
+        //            for (int j = 0; j < dgClientes.Columns.Count; j++)
+        //            {
+        //                if (dgClientes.Columns[j].Visible)
+        //                {
+        //                    object valor = dgClientes.Rows[i].Cells[j].Value;
+        //                    hoja.Cells[i + 2, columnaExcel] = valor == null ? "" : valor.ToString();
+        //                    columnaExcel++;
+        //                }
+        //            }
+        //        }
+        //
+        //        hoja.Columns.AutoFit();
+        //
+        //        libro.SaveAs(guardar.FileName);
+        //        libro.Close();
+        //        excel.Quit();
+        //
+        //        MessageBox.Show("Excel de clientes exportado correctamente");
+        //    }
         }
     }     
 }

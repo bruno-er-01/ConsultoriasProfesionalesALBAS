@@ -20,38 +20,76 @@ namespace CapaPresentacion
         private NEspecialista nEspecialista = new NEspecialista();
 
         private int nroCaso;
-        private int idCliente;
         private String tituloCaso;
         private bool fechaAscendente = true;
 
-        public FormRegistrarCitas(int nroCaso, int idCliente, String tituloCaso)
+        public FormRegistrarCitas(int nroCaso, String tituloCaso)
         {
             InitializeComponent();
             this.nroCaso = nroCaso;
-            this.idCliente = idCliente;
             this.tituloCaso = tituloCaso;
 
             CargarDatosCaso();
-            CargarTabla(nCita.ListarPorCasoCliente(nroCaso, idCliente));
+            CargarTabla(nCita.ListarPorCaso(nroCaso));
         }
 
         private void CargarTabla(List<Cita> citas)
         {
             dgCita.DataSource = null;
-        
+
             if (citas.Count > 0)
             {
                 dgCita.DataSource = citas;
-                dgCita.Columns["fecha"].SortMode = DataGridViewColumnSortMode.Automatic;
-                dgCita.Columns["idCita"].Visible = false;
-                dgCita.Columns["nroCaso"].Visible = false;
-                dgCita.Columns["idCliente"].Visible = false;
-                dgCita.Columns["Caso"].Visible = false;
-                dgCita.Columns["tiempoAnticipacion"].Visible = false;
-                dgCita.Columns["createdBy"].Visible = false;
-                dgCita.Columns["createdAt"].Visible = false;
-                dgCita.Columns["modifiedBy"].Visible = false;
-                dgCita.Columns["modifiedAt"].Visible = false;
+
+                if (dgCita.Columns["fecha"] != null)
+                {
+                    dgCita.Columns["fecha"].SortMode = DataGridViewColumnSortMode.Automatic;
+                }
+
+                if (dgCita.Columns["idCita"] != null)
+                {
+                    dgCita.Columns["idCita"].Visible = false;
+                }
+
+                if (dgCita.Columns["nroCaso"] != null)
+                {
+                    dgCita.Columns["nroCaso"].Visible = false;
+                }
+
+                if (dgCita.Columns["Caso"] != null)
+                {
+                    dgCita.Columns["Caso"].Visible = false;
+                }
+
+                if (dgCita.Columns["tiempoAnticipacion"] != null)
+                {
+                    dgCita.Columns["tiempoAnticipacion"].Visible = false;
+                }
+
+                if (dgCita.Columns["activo"] != null)
+                {
+                    dgCita.Columns["activo"].Visible = false;
+                }
+
+                if (dgCita.Columns["createdBy"] != null)
+                {
+                    dgCita.Columns["createdBy"].Visible = false;
+                }
+
+                if (dgCita.Columns["createdAt"] != null)
+                {
+                    dgCita.Columns["createdAt"].Visible = false;
+                }
+
+                if (dgCita.Columns["modifiedBy"] != null)
+                {
+                    dgCita.Columns["modifiedBy"].Visible = false;
+                }
+
+                if (dgCita.Columns["modifiedAt"] != null)
+                {
+                    dgCita.Columns["modifiedAt"].Visible = false;
+                }
             }
         }
 
@@ -73,13 +111,23 @@ namespace CapaPresentacion
             {
                 return;
             }
+
             var fila = dgCita.SelectedRows[0];
 
             cbModalidad.Text = fila.Cells["modalidad"].Value.ToString();
             cbEstado.Text = fila.Cells["estado"].Value.ToString();
             dtpHoraInicio.Text = fila.Cells["horaInicio"].Value.ToString();
             dtpHoraFin.Text = fila.Cells["horaFin"].Value.ToString();
-            chkAsistencia.Checked = Convert.ToBoolean(fila.Cells["confirmacionAsistencia"].Value); 
+            chkAsistencia.Checked = Convert.ToBoolean(fila.Cells["confirmacionAsistencia"].Value);
+
+            if (fila.Cells["observacion"].Value != null)
+            {
+                rtbObservacion.Text = fila.Cells["observacion"].Value.ToString();
+            }
+            else
+            {
+                rtbObservacion.Text = "";
+            }
 
             if (fila.Cells["fecha"].Value != null)
             {
@@ -87,25 +135,24 @@ namespace CapaPresentacion
 
                 clCitas.SelectionStart = fecha;
                 txtFecha.Text = fecha.ToShortDateString();
-            }  
+            }
         }
 
         private void CargarDatosCaso()
         {
             lblTituloCaso.Text = tituloCaso;
 
-            Cliente cliente = nCliente.BuscarPorId(idCliente);
-
-            if (cliente != null)
-            {
-                lblCliente.Text = cliente.nombre + " " + cliente.apellido + " - " + cliente.dni;
-            }
-
-            Caso caso = nCaso.BuscarPorId(nroCaso, idCliente);
+            Caso caso = nCaso.BuscarPorNroCaso(nroCaso);
 
             if (caso != null)
             {
+                if (caso.Cliente != null)
+                {
+                    lblCliente.Text = caso.Cliente.nombre + " " + caso.Cliente.apellido + " - " + caso.Cliente.dni;
+                }
+
                 Usuario especialista = nEspecialista.BuscarPorId(caso.idEspecialista);
+
                 if (especialista != null)
                 {
                     lblEspecialista.Text = especialista.nombre + " " + especialista.apellido + " - " + especialista.dni;
@@ -124,7 +171,7 @@ namespace CapaPresentacion
                 return;
             }
 
-            if(cbModalidad.Text == "")
+            if (cbModalidad.Text == "")
             {
                 MessageBox.Show("Complete todos los campos");
                 return;
@@ -133,7 +180,6 @@ namespace CapaPresentacion
             Cita cita = new Cita()
             {
                 nroCaso = nroCaso,
-                idCliente = idCliente,
                 fecha = clCitas.SelectionStart,
                 modalidad = cbModalidad.Text,
                 horaInicio = horaInicio,
@@ -145,7 +191,7 @@ namespace CapaPresentacion
             string mensaje = nCita.Registrar(cita);
             MessageBox.Show(mensaje);
 
-            CargarTabla(nCita.ListarPorCasoCliente(nroCaso, idCliente));
+            CargarTabla(nCita.ListarPorCaso(nroCaso));
             LimpiarCampos();
         }
 
@@ -157,7 +203,7 @@ namespace CapaPresentacion
                 return;
             }
 
-            var lista = nCita.ListarPorCasoCliente(nroCaso, idCliente)
+            var lista = nCita.ListarPorCaso(nroCaso)
                 .Where(c => c.estado == cbEstado.Text).ToList();
 
             CargarTabla(lista);
@@ -172,14 +218,13 @@ namespace CapaPresentacion
                 return;
             }
 
-            if (cbModalidad.Text == "" || cbEstado.Text == "" ||txtFecha.Text == "")
+            if (cbModalidad.Text == "" || cbEstado.Text == "" || txtFecha.Text == "")
             {
                 MessageBox.Show("Complete todos los campos");
                 return;
             }
 
             TimeSpan horaInicio = TimeSpan.Parse(dtpHoraInicio.Text);
-
             TimeSpan horaFin = TimeSpan.Parse(dtpHoraFin.Text);
 
             if (horaFin <= horaInicio)
@@ -194,7 +239,6 @@ namespace CapaPresentacion
             {
                 idCita = int.Parse(fila.Cells["idCita"].Value.ToString()),
                 nroCaso = nroCaso,
-                idCliente = idCliente,
                 fecha = clCitas.SelectionStart,
                 estado = cbEstado.Text,
                 modalidad = cbModalidad.Text,
@@ -207,9 +251,8 @@ namespace CapaPresentacion
             string mensaje = nCita.Modificar(cita);
             MessageBox.Show(mensaje);
 
-            CargarTabla(nCita.ListarPorCasoCliente(nroCaso, idCliente));
+            CargarTabla(nCita.ListarPorCaso(nroCaso));
             LimpiarCampos();
-
         }
 
         private void btnAgregarRecordatorio_Click(object sender, EventArgs e)
@@ -232,7 +275,7 @@ namespace CapaPresentacion
         {
             if (dgCita.Columns[e.ColumnIndex].Name == "fecha")
             {
-                var lista = nCita.ListarPorCasoCliente(nroCaso, idCliente);
+                var lista = nCita.ListarPorCaso(nroCaso);
 
                 if (fechaAscendente)
                 {

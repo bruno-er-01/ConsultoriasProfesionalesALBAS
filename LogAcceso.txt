@@ -61,3 +61,4 @@ Inicio de sesión | Usuario: aldo.admin | Rol: Administrador | Fecha: 3/07/2026 
 Inicio de sesión | Usuario: aldo.admin | Rol: Administrador | Fecha: 3/07/2026 | Hora: 22:05:10
 Inicio de sesión | Usuario: aldo.admin | Rol: Administrador | Fecha: 3/07/2026 | Hora: 22:08:18
 Inicio de sesión | Usuario: aldo.admin | Rol: Administrador | Fecha: 3/07/2026 | Hora: 22:12:58
+Inicio de sesión | Usuario: bruno.admin | Rol: Administrador | Fecha: 3/07/2026 | Hora: 23:29:03

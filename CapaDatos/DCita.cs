@@ -36,7 +36,7 @@ namespace CapaDatos
                 using (var context = new BD_ALBASEntities1())
                 {
                     return context.Cita.Where(c => c.nroCaso == nroCaso 
-                        && c.idCliente == idCliente)
+                        && c.id == idCliente)
                         .ToList();
                 }
             }

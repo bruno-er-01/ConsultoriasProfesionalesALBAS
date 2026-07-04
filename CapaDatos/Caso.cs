@@ -33,6 +33,7 @@ namespace CapaDatos
         public Nullable<int> createdBy { get; set; }
         public System.DateTime createdAt { get; set; }
         public Nullable<int> modifiedBy { get; set; }
+        public Nullable<bool> activo { get; set; }
         public Nullable<System.DateTime> modifiedAt { get; set; }
     
         public virtual Administrador Administrador { get; set; }

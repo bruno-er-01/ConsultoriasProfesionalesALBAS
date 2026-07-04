@@ -40,6 +40,7 @@
             this.pnlMisCasos = new System.Windows.Forms.Panel();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pnlInicio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbInicio)).BeginInit();
             this.pnlMiPerfil.SuspendLayout();
@@ -47,6 +48,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnlMisCasos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlInicio
@@ -192,12 +194,24 @@
             this.label5.Text = "Mis casos";
             this.label5.Click += new System.EventHandler(this.pnlMisCasos_Click);
             // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::CapaPresentacion.Properties.Resources.imgInicio;
+            this.pictureBox4.Location = new System.Drawing.Point(61, 576);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(39, 39);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 2;
+            this.pictureBox4.TabStop = false;
+            // 
             // FormMenuPrincipalEspecialista
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.ClientSize = new System.Drawing.Size(1496, 814);
+            this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.pnlMisCasos);
             this.Controls.Add(this.pnlMiPerfil);
             this.Controls.Add(this.pnlFormularios);
@@ -217,6 +231,7 @@
             this.pnlMisCasos.ResumeLayout(false);
             this.pnlMisCasos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -235,5 +250,6 @@
         private System.Windows.Forms.Panel pnlMisCasos;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.PictureBox pictureBox4;
     }
 }

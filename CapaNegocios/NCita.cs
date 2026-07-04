@@ -30,7 +30,10 @@ namespace CapaNegocios
         {
             return dCita.Modificar(cita);
         }
-
+        public string ModificarAtencionEspecialista(Cita cita)
+        {
+            return dCita.ModificarAtencionEspecialista(cita);
+        }
         public string ModificarRecordatorio(int idCita, int tiempoAnticipacion)
         {
             return dCita.ModificarRecordatorio(idCita, tiempoAnticipacion);

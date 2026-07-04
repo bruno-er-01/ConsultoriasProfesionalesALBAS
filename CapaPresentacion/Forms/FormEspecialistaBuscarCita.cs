@@ -16,184 +16,155 @@ namespace CapaPresentacion
     {
         private NCita nCita = new NCita();
         private int nroCaso;
+        private Usuario usuarioActual;
 
-        public FormEspecialistaBuscarCita(int nroCaso)
+        public FormEspecialistaBuscarCita(Usuario usuarioActual, int nroCaso)
         {
             InitializeComponent();
             this.nroCaso = nroCaso;
-            CargarTabla();
+            this.usuarioActual = usuarioActual;
+            MostrarData(nCita.ListarPorCaso(nroCaso));
         }
 
-        private void CargarTabla()
+        private void MostrarData(List<Cita> citas)
         {
-            dgCita.DataSource = null;
+            dgCitas.DataSource = null;
 
-            var lista = nCita.ListarPorCaso(nroCaso);
-
-            if (lista != null && lista.Count > 0)
+            if (citas.Count > 0)
             {
-                dgCita.DataSource = lista;
-
-                if (dgCita.Columns["idCita"] != null)
-                {
-                    dgCita.Columns["idCita"].Visible = false;
-                }
-
-                if (dgCita.Columns["nroCaso"] != null)
-                {
-                    dgCita.Columns["nroCaso"].Visible = false;
-                }
-
-                if (dgCita.Columns["Caso"] != null)
-                {
-                    dgCita.Columns["Caso"].Visible = false;
-                }
-
-                if (dgCita.Columns["tiempoAnticipacion"] != null)
-                {
-                    dgCita.Columns["tiempoAnticipacion"].Visible = false;
-                }
-
-                if (dgCita.Columns["activo"] != null)
-                {
-                    dgCita.Columns["activo"].Visible = false;
-                }
-
-                if (dgCita.Columns["createdBy"] != null)
-                {
-                    dgCita.Columns["createdBy"].Visible = false;
-                }
-
-                if (dgCita.Columns["createdAt"] != null)
-                {
-                    dgCita.Columns["createdAt"].Visible = false;
-                }
-
-                if (dgCita.Columns["modifiedBy"] != null)
-                {
-                    dgCita.Columns["modifiedBy"].Visible = false;
-                }
-
-                if (dgCita.Columns["modifiedAt"] != null)
-                {
-                    dgCita.Columns["modifiedAt"].Visible = false;
-                }
+                dgCitas.DataSource = citas;
             }
-        }
-
-        private void dgCita_SelectionChanged(object sender, EventArgs e)
-        {
-            if (dgCita.SelectedRows.Count > 0)
+            else
             {
-                var fila = dgCita.SelectedRows[0];
-
-                if (fila.Cells["idCita"].Value != null)
-                {
-                    tbId.Text = fila.Cells["idCita"].Value.ToString();
-                }
-
-                if (fila.Cells["fecha"].Value != null)
-                {
-                    tbFecha.Text = Convert.ToDateTime(fila.Cells["fecha"].Value).ToShortDateString();
-                }
-
-                if (fila.Cells["estado"].Value != null)
-                {
-                    cbEstado.Text = fila.Cells["estado"].Value.ToString();
-                }
-
-                if (fila.Cells["confirmacionAsistencia"].Value != null)
-                {
-                    bool asistencia = Convert.ToBoolean(fila.Cells["confirmacionAsistencia"].Value);
-
-                    if (asistencia == true)
-                    {
-                        cbAsistencia.Text = "Si";
-                    }
-                    else
-                    {
-                        cbAsistencia.Text = "No";
-                    }
-                }
-
-                if (fila.Cells["observacion"].Value != null)
-                {
-                    rtcDescripcion.Text = fila.Cells["observacion"].Value.ToString();
-                }
-                else
-                {
-                    rtcDescripcion.Text = "";
-                }
-            }
-        }
-
-        private void btnActualizarDatos_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(tbId.Text))
-            {
-                MessageBox.Show("Seleccione una cita de la lista para actualizar.");
                 return;
             }
 
-            if (dgCita.SelectedRows.Count > 0)
-            {
-                var fila = dgCita.SelectedRows[0];
-
-                Cita cita = new Cita()
-                {
-                    idCita = int.Parse(tbId.Text),
-                    nroCaso = nroCaso,
-                    fecha = Convert.ToDateTime(tbFecha.Text),
-                    horaInicio = (TimeSpan)fila.Cells["horaInicio"].Value,
-                    horaFin = (TimeSpan)fila.Cells["horaFin"].Value,
-                    estado = cbEstado.Text,
-                    observacion = rtcDescripcion.Text,
-                    modalidad = fila.Cells["modalidad"].Value.ToString(),
-                    confirmacionAsistencia = cbAsistencia.Text == "Si"
-                };
-
-                string mensaje = nCita.Modificar(cita);
-                MessageBox.Show(mensaje);
-                CargarTabla();
-            }
+            dgCitas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgCitas.Columns["idCita"].Visible = false;
+            dgCitas.Columns["nroCaso"].Visible = false;
+            dgCitas.Columns["Caso"].Visible = false;
+            dgCitas.Columns["activo"].Visible = false;
+            dgCitas.Columns["tiempoAnticipacion"].Visible = false;
+            dgCitas.Columns["createdBy"].Visible = false;
+            dgCitas.Columns["createdAt"].Visible = false;
+            dgCitas.Columns["modifiedBy"].Visible = false;
+            dgCitas.Columns["modifiedAt"].Visible = false;
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
+        private void btnBuscar_Click_1(object sender, EventArgs e)
         {
-            var listaCompleta = nCita.ListarPorCaso(nroCaso);
+            List<Cita> lista = nCita.ListarPorCaso(nroCaso);
 
-            if (listaCompleta != null && listaCompleta.Count > 0)
+            if (cbEstado.Text != "" || cbAsistencia.Text != "")
             {
-                var filtrado = listaCompleta.AsEnumerable();
-
-                if (!string.IsNullOrWhiteSpace(tbId.Text) && int.TryParse(tbId.Text.Trim(), out int idBuscado))
-                {
-                    filtrado = filtrado.Where(c => c.idCita == idBuscado);
-                }
-
-                if (cbEstado.SelectedIndex != -1 && !string.IsNullOrWhiteSpace(cbEstado.Text))
-                {
-                    filtrado = filtrado.Where(c => c.estado.Equals(cbEstado.Text, StringComparison.OrdinalIgnoreCase));
-                }
-
-                dgCita.DataSource = null;
-                dgCita.DataSource = filtrado.ToList();
+                MessageBox.Show("Ingrese los filtros");
+                return;
             }
+            bool asistencia = cbAsistencia.Text == "Si";
+            lista = lista.Where(c => c.estado == cbEstado.Text && c.confirmacionAsistencia == asistencia).ToList();
+            MostrarData(lista);
         }
 
-        private void btnListar_Click(object sender, EventArgs e)
+        private void btnBorrarFiltro_Click(object sender, EventArgs e)
         {
-            tbId.Clear();
-            tbFecha.Clear();
             cbEstado.SelectedIndex = -1;
             cbAsistencia.SelectedIndex = -1;
-            rtcDescripcion.Clear();
-            CargarTabla();
+            cbEstadoActualizado.SelectedIndex = -1;
+            rtxtObservacion.Text = "";
+            dgCitas.ClearSelection();
+
+            MostrarData(nCita.ListarPorCaso(nroCaso));
         }
 
-        private void FormEspecialistaBuscarCita_Load(object sender, EventArgs e)
+        private void btnActualizar_Click(object sender, EventArgs e)
         {
-            CargarTabla();
+            if (dgCitas.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Seleccione una cita.");
+                return;
+            }
+
+            if (cbEstadoActualizado.Text == "" || cbAreaActualizada.Text == "")
+            {
+                MessageBox.Show("Complete el estado y la asistencia.");
+                return;
+            }
+
+            if (cbEstadoActualizado.Text == "Cancelado" && cbAreaActualizada.Text == "Si")
+            {
+                MessageBox.Show("Una cita cancelada no puede figurar como asistida.");
+                return;
+            }
+
+            if (cbEstadoActualizado.Text == "Atendido" && cbAreaActualizada.Text == "No")
+            {
+                MessageBox.Show("Una cita atendida debe figurar como asistida.");
+                return;
+            }
+
+            DataGridViewRow fila = dgCitas.SelectedRows[0];
+
+            Cita cita = new Cita()
+            {
+                idCita = Convert.ToInt32(fila.Cells["idCita"].Value),
+                estado = cbEstadoActualizado.Text,
+                observacion = rtxtObservacion.Text,
+                confirmacionAsistencia = cbAsistencia.Text == "Si",
+                modifiedBy = usuarioActual.idUsuario
+            };
+
+            string mensaje = nCita.ModificarAtencionEspecialista(cita);
+            MessageBox.Show(mensaje);
+
+            MostrarData(nCita.ListarPorCaso(nroCaso));
+            dgCitas.ClearSelection();
+        }
+
+        private void btnExportarExcel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void dgCitas_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgCitas.SelectedRows.Count > 0)
+            {
+                var fila = dgCitas.SelectedRows[0];
+                cbEstadoActualizado.Text = fila.Cells["estado"].Value.ToString();
+                bool asistencia = Convert.ToBoolean(fila.Cells["confirmacionAsistencia"].Value);
+                if (asistencia == true)
+                {
+                    cbAreaActualizada.Text = "Si";
+                }
+                else
+                {
+                    cbAreaActualizada.Text = "No";
+                }
+                rtxtObservacion.Text = fila.Cells["observacion"].Value.ToString();
+            }
+        }
+
+        private void cbEstadoActualizado_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbEstadoActualizado.Text == "Cancelado")
+            {
+                cbAsistencia.Text = "No";
+                cbAsistencia.Enabled = false;
+            }
+            else if (cbEstadoActualizado.Text == "Atendido")
+            {
+                cbAsistencia.Text = "Si";
+                cbAsistencia.Enabled = false;
+            }
+            else
+            {
+                cbAsistencia.Enabled = true;
+            }
         }
     }
 }

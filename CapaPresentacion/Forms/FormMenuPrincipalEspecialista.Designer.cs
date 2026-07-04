@@ -28,12 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pnlBuscarClientes = new System.Windows.Forms.Panel();
-            this.pcbRegistrarClientes = new System.Windows.Forms.PictureBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.pnlBuscarCasosCitas = new System.Windows.Forms.Panel();
-            this.pcbRegistrarCasosCitas = new System.Windows.Forms.PictureBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.pnlInicio = new System.Windows.Forms.Panel();
             this.pcbInicio = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -46,10 +40,6 @@
             this.pnlMisCasos = new System.Windows.Forms.Panel();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.pnlBuscarClientes.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbRegistrarClientes)).BeginInit();
-            this.pnlBuscarCasosCitas.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbRegistrarCasosCitas)).BeginInit();
             this.pnlInicio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbInicio)).BeginInit();
             this.pnlMiPerfil.SuspendLayout();
@@ -59,84 +49,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
-            // pnlBuscarClientes
-            // 
-            this.pnlBuscarClientes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
-            this.pnlBuscarClientes.Controls.Add(this.pcbRegistrarClientes);
-            this.pnlBuscarClientes.Controls.Add(this.label4);
-            this.pnlBuscarClientes.Location = new System.Drawing.Point(0, 438);
-            this.pnlBuscarClientes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pnlBuscarClientes.Name = "pnlBuscarClientes";
-            this.pnlBuscarClientes.Size = new System.Drawing.Size(311, 47);
-            this.pnlBuscarClientes.TabIndex = 28;
-            this.pnlBuscarClientes.Click += new System.EventHandler(this.pnlBuscarClientes_Click);
-            // 
-            // pcbRegistrarClientes
-            // 
-            this.pcbRegistrarClientes.Image = global::CapaPresentacion.Properties.Resources.imgClientes;
-            this.pcbRegistrarClientes.Location = new System.Drawing.Point(27, 2);
-            this.pcbRegistrarClientes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pcbRegistrarClientes.Name = "pcbRegistrarClientes";
-            this.pcbRegistrarClientes.Size = new System.Drawing.Size(39, 39);
-            this.pcbRegistrarClientes.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pcbRegistrarClientes.TabIndex = 4;
-            this.pcbRegistrarClientes.TabStop = false;
-            this.pcbRegistrarClientes.Click += new System.EventHandler(this.pnlInicio_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(101, 17);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(115, 23);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Buscar cliente";
-            this.label4.Click += new System.EventHandler(this.pnlBuscarClientes_Click);
-            // 
-            // pnlBuscarCasosCitas
-            // 
-            this.pnlBuscarCasosCitas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
-            this.pnlBuscarCasosCitas.Controls.Add(this.pcbRegistrarCasosCitas);
-            this.pnlBuscarCasosCitas.Controls.Add(this.label2);
-            this.pnlBuscarCasosCitas.Location = new System.Drawing.Point(0, 500);
-            this.pnlBuscarCasosCitas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pnlBuscarCasosCitas.Name = "pnlBuscarCasosCitas";
-            this.pnlBuscarCasosCitas.Size = new System.Drawing.Size(311, 47);
-            this.pnlBuscarCasosCitas.TabIndex = 27;
-            this.pnlBuscarCasosCitas.Click += new System.EventHandler(this.pnlBuscarCasosCitas_Click);
-            // 
-            // pcbRegistrarCasosCitas
-            // 
-            this.pcbRegistrarCasosCitas.Image = global::CapaPresentacion.Properties.Resources.imgCasos;
-            this.pcbRegistrarCasosCitas.Location = new System.Drawing.Point(27, 4);
-            this.pcbRegistrarCasosCitas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pcbRegistrarCasosCitas.Name = "pcbRegistrarCasosCitas";
-            this.pcbRegistrarCasosCitas.Size = new System.Drawing.Size(39, 39);
-            this.pcbRegistrarCasosCitas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pcbRegistrarCasosCitas.TabIndex = 2;
-            this.pcbRegistrarCasosCitas.TabStop = false;
-            this.pcbRegistrarCasosCitas.Click += new System.EventHandler(this.pnlBuscarCasosCitas_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(101, 17);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(164, 23);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Buscar Casos y Citas";
-            this.label2.Click += new System.EventHandler(this.pnlBuscarCasosCitas_Click);
-            // 
             // pnlInicio
             // 
             this.pnlInicio.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.pnlInicio.Controls.Add(this.pcbInicio);
             this.pnlInicio.Controls.Add(this.label1);
-            this.pnlInicio.Location = new System.Drawing.Point(0, 195);
+            this.pnlInicio.Location = new System.Drawing.Point(0, 268);
             this.pnlInicio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlInicio.Name = "pnlInicio";
             this.pnlInicio.Size = new System.Drawing.Size(311, 47);
@@ -174,7 +92,7 @@
             this.btnCerrarSesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCerrarSesion.Font = new System.Drawing.Font("Leelawadee UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCerrarSesion.ForeColor = System.Drawing.Color.White;
-            this.btnCerrarSesion.Location = new System.Drawing.Point(105, 668);
+            this.btnCerrarSesion.Location = new System.Drawing.Point(93, 496);
             this.btnCerrarSesion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCerrarSesion.Name = "btnCerrarSesion";
             this.btnCerrarSesion.Size = new System.Drawing.Size(125, 43);
@@ -197,7 +115,7 @@
             this.pnlMiPerfil.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.pnlMiPerfil.Controls.Add(this.pictureBox2);
             this.pnlMiPerfil.Controls.Add(this.label3);
-            this.pnlMiPerfil.Location = new System.Drawing.Point(0, 267);
+            this.pnlMiPerfil.Location = new System.Drawing.Point(0, 340);
             this.pnlMiPerfil.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlMiPerfil.Name = "pnlMiPerfil";
             this.pnlMiPerfil.Size = new System.Drawing.Size(311, 47);
@@ -243,7 +161,7 @@
             this.pnlMisCasos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.pnlMisCasos.Controls.Add(this.pictureBox3);
             this.pnlMisCasos.Controls.Add(this.label5);
-            this.pnlMisCasos.Location = new System.Drawing.Point(0, 334);
+            this.pnlMisCasos.Location = new System.Drawing.Point(0, 407);
             this.pnlMisCasos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnlMisCasos.Name = "pnlMisCasos";
             this.pnlMisCasos.Size = new System.Drawing.Size(311, 47);
@@ -284,19 +202,11 @@
             this.Controls.Add(this.pnlMiPerfil);
             this.Controls.Add(this.pnlFormularios);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.pnlBuscarClientes);
-            this.Controls.Add(this.pnlBuscarCasosCitas);
             this.Controls.Add(this.pnlInicio);
             this.Controls.Add(this.btnCerrarSesion);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormMenuPrincipalEspecialista";
             this.Text = "                               ";
-            this.pnlBuscarClientes.ResumeLayout(false);
-            this.pnlBuscarClientes.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbRegistrarClientes)).EndInit();
-            this.pnlBuscarCasosCitas.ResumeLayout(false);
-            this.pnlBuscarCasosCitas.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbRegistrarCasosCitas)).EndInit();
             this.pnlInicio.ResumeLayout(false);
             this.pnlInicio.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbInicio)).EndInit();
@@ -314,12 +224,6 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Panel pnlBuscarClientes;
-        private System.Windows.Forms.PictureBox pcbRegistrarClientes;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Panel pnlBuscarCasosCitas;
-        private System.Windows.Forms.PictureBox pcbRegistrarCasosCitas;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel pnlInicio;
         private System.Windows.Forms.PictureBox pcbInicio;
         private System.Windows.Forms.Label label1;

@@ -180,5 +180,13 @@ namespace CapaNegocios
         {
             return dEspecialista.BuscarDisponibilidadEspecialista(idUsuario);
         }
+        public int ContarUsuariosActivos()
+        {
+            return dUsuario.ContarUsuariosActivos();
+        }
+        public int ContarEspecialistasDisponibles()
+        {
+            return dEspecialista.ContarEspecialistasDisponibles();
+        }
     }
 }

@@ -250,7 +250,6 @@ namespace CapaDatos
                         .Where(c => c.nroCaso == nroCaso && c.activo == true)
                         .FirstOrDefault();
                 }
-
                 return caso;
             }
             catch (Exception ex)
@@ -299,6 +298,51 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 return "Error al actualizar estado: " + ex.Message;
+            }
+        }
+        public int ContarCasosActivos()
+        {
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    return context.Caso
+                        .Where(c => c.activo == true &&
+                                   (c.estado == "Abierto" || c.estado == "En proceso"))
+                        .Count();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return 0;
+            }
+        }
+        public List<object> ListarCasosPorEstado()
+        {
+            List<object> lista = new List<object>();
+
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    lista = context.Caso
+                        .Where(c => c.activo == true)
+                        .GroupBy(c => c.estado)
+                        .Select(g => new
+                        {
+                            Estado = g.Key,
+                            Cantidad = g.Count()
+                        })
+                        .ToList<object>();
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return lista;
             }
         }
     }

@@ -241,5 +241,7 @@ namespace CapaPresentacion
                 MessageBox.Show("Ocurrió un error al exportar a Excel: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+ 
     }
 }

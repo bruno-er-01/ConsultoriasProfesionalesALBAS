@@ -46,6 +46,8 @@
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.btnFechaFin = new System.Windows.Forms.TextBox();
             this.cbFechaInicio = new System.Windows.Forms.TextBox();
+            this.txtDocumento = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgCaso)).BeginInit();
             this.SuspendLayout();
             // 
@@ -255,11 +257,32 @@
             this.cbFechaInicio.Size = new System.Drawing.Size(113, 20);
             this.cbFechaInicio.TabIndex = 55;
             // 
+            // txtDocumento
+            // 
+            this.txtDocumento.Location = new System.Drawing.Point(360, 137);
+            this.txtDocumento.Margin = new System.Windows.Forms.Padding(2);
+            this.txtDocumento.Name = "txtDocumento";
+            this.txtDocumento.Size = new System.Drawing.Size(113, 20);
+            this.txtDocumento.TabIndex = 70;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(268, 136);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(98, 21);
+            this.label6.TabIndex = 71;
+            this.label6.Text = "Documento: ";
+            // 
             // FormRegistrarCaso
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(873, 661);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.txtDocumento);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnDocumento);
@@ -308,5 +331,7 @@
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.TextBox btnFechaFin;
         private System.Windows.Forms.TextBox cbFechaInicio;
+        private System.Windows.Forms.TextBox txtDocumento;
+        private System.Windows.Forms.Label label6;
     }
 }

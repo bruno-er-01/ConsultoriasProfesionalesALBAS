@@ -367,5 +367,22 @@ namespace CapaDatos
                 return "Error al eliminar usuario: " + ex.Message;
             }
         }
+        public int ContarUsuariosActivos()
+        {
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    return context.Usuario
+                        .Where(u => u.activo == true)
+                        .Count();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return 0;
+            }
+        }
     }
 }

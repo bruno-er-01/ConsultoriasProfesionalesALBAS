@@ -234,10 +234,10 @@
             this.btnActualizarEstado.BackColor = System.Drawing.Color.Maroon;
             this.btnActualizarEstado.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnActualizarEstado.ForeColor = System.Drawing.Color.White;
-            this.btnActualizarEstado.Location = new System.Drawing.Point(121, 581);
+            this.btnActualizarEstado.Location = new System.Drawing.Point(123, 585);
             this.btnActualizarEstado.Margin = new System.Windows.Forms.Padding(4);
             this.btnActualizarEstado.Name = "btnActualizarEstado";
-            this.btnActualizarEstado.Size = new System.Drawing.Size(202, 42);
+            this.btnActualizarEstado.Size = new System.Drawing.Size(202, 38);
             this.btnActualizarEstado.TabIndex = 180;
             this.btnActualizarEstado.Text = "Actualizar estado";
             this.btnActualizarEstado.UseVisualStyleBackColor = false;

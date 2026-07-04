@@ -223,5 +223,22 @@ namespace CapaDatos
                 return 0;
             }
         }
+        public int ContarEspecialistasDisponibles()
+        {
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    return context.Especialista
+                        .Where(e => e.disponible == true && e.Usuario.activo == true)
+                        .Count();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return 0;
+            }
+        }
     }
 }

@@ -81,6 +81,35 @@ namespace CapaDatos
             }
         }
 
+        public string ModificarAtencionEspecialista(Cita cita)
+        {
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    var modificado = context.Cita.Find(cita.idCita);
+
+                    if (modificado == null)
+                    {
+                        return "Cita no encontrada";
+                    }
+
+                    modificado.estado = cita.estado;
+                    modificado.observacion = cita.observacion;
+                    modificado.confirmacionAsistencia = cita.confirmacionAsistencia;
+                    modificado.modifiedBy = cita.modifiedBy;
+                    modificado.modifiedAt = DateTime.Now;
+
+                    context.SaveChanges();
+                }
+
+                return "Cita actualizada correctamente";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
         public string AgregarRecordatorio(int idCita, int tiempoAnticipacion)
         {
             try

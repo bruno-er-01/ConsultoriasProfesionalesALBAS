@@ -22,7 +22,7 @@ namespace CapaPresentacion.Forms
             InitializeComponent();
             this.usuarioActual = usuarioActual;
             this.nroCaso = nroCaso;
-
+            CargarDatosCaso();
         }
         private void CargarDatosCaso()
         {
@@ -75,18 +75,6 @@ namespace CapaPresentacion.Forms
 
             string estadoNuevo = cbEstadoCaso.Text;
 
-            DialogResult respuesta = MessageBox.Show(
-                "¿Está seguro de actualizar el estado del caso a " + estadoNuevo + "?",
-                "Confirmar actualización",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question
-            );
-
-            if (respuesta != DialogResult.Yes)
-            {
-                return;
-            }
-
             string mensaje = nCaso.ActualizarEstadoEspecialista(
                 nroCaso,
                 estadoNuevo,
@@ -100,9 +88,8 @@ namespace CapaPresentacion.Forms
 
         private void btnVerCitas_Click(object sender, EventArgs e)
         {
-            //falta modificar
-            //FormEspecialistaBuscarCita form = new FormEspecialistaBuscarCita(nroCaso);
-            //form.ShowDialog();
+            FormEspecialistaBuscarCita form = new FormEspecialistaBuscarCita(usuarioActual,nroCaso);
+            form.ShowDialog();
 
         }
 

@@ -38,7 +38,7 @@ namespace CapaPresentacion
 
         private void pnlInicio_Click(object sender, EventArgs e)
         {
-            AbrirFormEnPanel(new FormInicio());
+            AbrirFormEnPanel(new FormInicio(usuarioActual));
         }
 
         private void pnlUsuarios_Click(object sender, EventArgs e)

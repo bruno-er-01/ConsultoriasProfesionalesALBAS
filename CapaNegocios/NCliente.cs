@@ -53,5 +53,13 @@ namespace CapaNegocios
         {
             return dCliente.BuscarPorId(idCliente);
         }
+        public int ContarClientesRegistrados()
+        {
+            return dCliente.ListarTodoActivos().Count();
+        }
+        public List<object> ListarClientesPorMes()
+        {
+            return dCliente.ListarClientesPorMes();
+        }
     }
 }

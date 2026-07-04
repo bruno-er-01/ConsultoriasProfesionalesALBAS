@@ -68,5 +68,13 @@ namespace CapaNegocios
 
             return dCaso.ActualizarEstadoEspecialista(nroCaso, estadoNuevo, idUsuarioModificador);
         }
+        public int ContarCasosActivos()
+        {
+            return dCaso.ContarCasosActivos();
+        }
+        public List<object> ListarCasosPorEstado()
+        {
+            return dCaso.ListarCasosPorEstado();
+        }
     }
 }

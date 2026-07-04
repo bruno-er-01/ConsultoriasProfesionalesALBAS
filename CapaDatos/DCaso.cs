@@ -12,10 +12,15 @@ namespace CapaDatos
             {
                 using (var context = new BD_ALBASEntities1())
                 {
+                    caso.estado = "Abierto";
+
+                    caso.createdAt = DateTime.Now;
+                    caso.createdBy = caso.idAdministrador;
+
                     context.Caso.Add(caso);
                     context.SaveChanges();
 
-                    return "Caso Nro " + caso.nroCaso + " registrado correctamente";
+                    return "Caso registrado correctamente";
                 }
             }
             catch (Exception ex)
@@ -57,7 +62,7 @@ namespace CapaDatos
                         return "Caso no encontrado en la base de datos.";
                     }
 
-                    modificado.idCliente = caso.idCliente; 
+                    modificado.idCliente = caso.idCliente;
                     modificado.idEspecialista = caso.idEspecialista;
                     modificado.idAdministrador = caso.idAdministrador;
                     modificado.titulo = caso.titulo;
@@ -65,10 +70,10 @@ namespace CapaDatos
                     modificado.estado = caso.estado;
                     modificado.fechaHoraInicio = caso.fechaHoraInicio;
                     modificado.fechaHoraFin = caso.fechaHoraFin;
-                    modificado.documento = caso.documento; 
+                    modificado.documento = caso.documento;
 
-                    modificado.modifiedBy = caso.modifiedBy;
                     modificado.modifiedAt = DateTime.Now;
+                    modificado.modifiedBy = caso.idAdministrador;
 
                     context.SaveChanges();
                 }
@@ -349,6 +354,30 @@ namespace CapaDatos
             {
                 Console.WriteLine(ex.Message);
                 return lista;
+            }
+        }
+
+        public string EliminarLogico(int nroCaso, int idUsuarioModificador)
+        {
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    var caso = context.Caso.Find(nroCaso);
+                    if (caso == null) return "Caso no encontrado";
+
+                    caso.estado = "Cerrado";
+
+                    caso.modifiedAt = DateTime.Now;
+                    caso.modifiedBy = idUsuarioModificador;
+
+                    context.SaveChanges();
+                }
+                return "Caso eliminado (cerrado) lógicamente";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
             }
         }
     }

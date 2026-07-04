@@ -1,4 +1,5 @@
-﻿using CapaNegocios;
+﻿using CapaDatos;
+using CapaNegocios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,9 +15,12 @@ namespace CapaPresentacion
     public partial class FormRecordatorio : Form
     {
         private NCita nCita = new NCita();
-        public FormRecordatorio()
+        private Usuario usuarioActual;
+
+        public FormRecordatorio(Usuario usuarioActual)
         {
             InitializeComponent();
+            this.usuarioActual = usuarioActual;
             List<object> citas = nCita.ListarCitasParaRecordatorio();
             CargarTabla(citas);
         }
@@ -127,10 +131,7 @@ namespace CapaPresentacion
                 return;
             }
 
-            string mensaje = nCita.AgregarRecordatorio(
-                idCita,
-                tiempoAnticipacion
-            );
+            string mensaje = nCita.AgregarRecordatorio(idCita, tiempoAnticipacion, usuarioActual.idUsuario);
 
             MessageBox.Show(mensaje);
 
@@ -199,10 +200,7 @@ namespace CapaPresentacion
                 return;
             }
 
-            string mensaje = nCita.ModificarRecordatorio(
-                idCita,
-                tiempoAnticipacion
-            );
+            string mensaje = nCita.ModificarRecordatorio(idCita, tiempoAnticipacion, usuarioActual.idUsuario);
 
             MessageBox.Show(mensaje);
 
@@ -227,7 +225,7 @@ namespace CapaPresentacion
             }
 
             int idCita = int.Parse(fila.Cells["IdCita"].Value.ToString());
-            string mensaje = nCita.CancelarRecordatorio(idCita);
+            string mensaje = nCita.CancelarRecordatorio(idCita, usuarioActual.idUsuario);
             MessageBox.Show(mensaje);
 
             CargarTabla(nCita.ListarCitasParaRecordatorio());

@@ -82,7 +82,7 @@ namespace CapaDatos
             }
         }
 
-        public string EliminarLogico(int idCita)
+        public string EliminarLogico(int idCita, int idUsuarioActual)
         {
             try
             {
@@ -96,6 +96,7 @@ namespace CapaDatos
                     }
 
                     cita.activo = false;
+                    cita.modifiedBy = idUsuarioActual;
                     cita.modifiedAt = DateTime.Now;
 
                     context.SaveChanges();
@@ -138,7 +139,7 @@ namespace CapaDatos
                 return ex.Message;
             }
         }
-        public string AgregarRecordatorio(int idCita, int tiempoAnticipacion)
+        public string AgregarRecordatorio(int idCita, int tiempoAnticipacion, int idUsuarioActual)
         {
             try
             {
@@ -157,6 +158,7 @@ namespace CapaDatos
                     }
 
                     cita.tiempoAnticipacion = tiempoAnticipacion;
+                    cita.modifiedBy = idUsuarioActual;
                     cita.modifiedAt = DateTime.Now;
 
                     context.SaveChanges();
@@ -170,7 +172,7 @@ namespace CapaDatos
             }
         }
 
-        public string ModificarRecordatorio(int idCita, int tiempoAnticipacion)
+        public string ModificarRecordatorio(int idCita, int tiempoAnticipacion, int idUsuarioActual)
         {
             try
             {
@@ -189,6 +191,7 @@ namespace CapaDatos
                     }
 
                     cita.tiempoAnticipacion = tiempoAnticipacion;
+                    cita.modifiedBy = idUsuarioActual;
                     cita.modifiedAt = DateTime.Now;
 
                     context.SaveChanges();
@@ -202,7 +205,7 @@ namespace CapaDatos
             }
         }
 
-        public string CancelarRecordatorio(int idCita)
+        public string CancelarRecordatorio(int idCita, int idUsuarioActual)
         {
             try
             {
@@ -221,6 +224,7 @@ namespace CapaDatos
                     }
 
                     cita.tiempoAnticipacion = null;
+                    cita.modifiedBy = idUsuarioActual;
                     cita.modifiedAt = DateTime.Now;
 
                     context.SaveChanges();

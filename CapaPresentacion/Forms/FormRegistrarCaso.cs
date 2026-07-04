@@ -14,19 +14,15 @@ namespace CapaPresentacion
 {
     public partial class FormRegistrarCaso : Form
     {
+        private Usuario usuarioActual;
         private NCaso nCaso = new NCaso();
         private int idClienteAsociado = 1;
 
-        public FormRegistrarCaso()
+        public FormRegistrarCaso(Usuario usuarioActual)
         {
             InitializeComponent();
-            CargarTabla();
-        }
-
-        public FormRegistrarCaso(int idCliente)
-        {
-            InitializeComponent();
-            this.idClienteAsociado = idCliente;
+            this.usuarioActual = usuarioActual;
+            //this.idClienteAsociado = idCliente;
             CargarTabla();
         }
 
@@ -162,10 +158,9 @@ namespace CapaPresentacion
             var fila = dgCaso.SelectedRows[0];
 
             int nroCaso = int.Parse(fila.Cells["nroCaso"].Value.ToString());
-            int idCliente = int.Parse(fila.Cells["idCliente"].Value.ToString());
             string tituloCaso = fila.Cells["titulo"].Value.ToString();
 
-            FormRegistrarCitas formRegistrarCitas = new FormRegistrarCitas(nroCaso, tituloCaso);
+            FormRegistrarCitas formRegistrarCitas = new FormRegistrarCitas(nroCaso, tituloCaso, usuarioActual);
             formRegistrarCitas.Show();
         }
 

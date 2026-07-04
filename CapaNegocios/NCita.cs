@@ -21,9 +21,9 @@ namespace CapaNegocios
             return dCita.ListarPorCaso(nroCaso);
         }
 
-        public string AgregarRecordatorio(int idCita, int tiempoAnticipacion)
+        public string AgregarRecordatorio(int idCita, int tiempoAnticipacion, int idUsuarioActual)
         {
-            return dCita.AgregarRecordatorio(idCita, tiempoAnticipacion);
+            return dCita.AgregarRecordatorio(idCita, tiempoAnticipacion, idUsuarioActual);
         }
 
         public string Modificar(Cita cita)
@@ -31,23 +31,23 @@ namespace CapaNegocios
             return dCita.Modificar(cita);
         }
 
-        public string EliminarLogico(int idCita)
+        public string EliminarLogico(int idCita, int idUsuarioActual)
         {
-            return dCita.EliminarLogico(idCita);
+            return dCita.EliminarLogico(idCita, idUsuarioActual);
         }
 
         public string ModificarAtencionEspecialista(Cita cita)
         {
             return dCita.ModificarAtencionEspecialista(cita);
         }
-        public string ModificarRecordatorio(int idCita, int tiempoAnticipacion)
+        public string ModificarRecordatorio(int idCita, int tiempoAnticipacion, int idUsuarioActual)
         {
-            return dCita.ModificarRecordatorio(idCita, tiempoAnticipacion);
+            return dCita.ModificarRecordatorio(idCita, tiempoAnticipacion, idUsuarioActual);
         }
 
-        public string CancelarRecordatorio(int idCita)
+        public string CancelarRecordatorio(int idCita, int idUsuarioActual)
         {
-            return dCita.CancelarRecordatorio(idCita);
+            return dCita.CancelarRecordatorio(idCita, idUsuarioActual);
         }
         public List<object> BuscarCitasParaRecordatorio(string dniCliente, string dniEspecialista)
         {

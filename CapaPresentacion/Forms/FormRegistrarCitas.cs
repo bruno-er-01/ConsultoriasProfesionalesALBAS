@@ -185,7 +185,8 @@ namespace CapaPresentacion
                 horaInicio = horaInicio,
                 horaFin = horaFin,
                 confirmacionAsistencia = chkAsistencia.Checked,
-                observacion = rtbObservacion.Text
+                observacion = rtbObservacion.Text,
+                //activo = true
             };
 
             string mensaje = nCita.Registrar(cita);
@@ -207,7 +208,6 @@ namespace CapaPresentacion
                 .Where(c => c.estado == cbEstado.Text).ToList();
 
             CargarTabla(lista);
-            LimpiarCampos();
         }
 
         private void btnActualizarDatos_Click(object sender, EventArgs e)
@@ -290,10 +290,27 @@ namespace CapaPresentacion
             }
         }
 
-        private void btnLimpiarCampos_Click(object sender, EventArgs e)
+        private void btnListar_Click(object sender, EventArgs e)
         {
             LimpiarCampos();
             CargarTabla(nCita.ListarPorCaso(nroCaso));
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (dgCita.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Seleccione una cita");
+                return;
+            }
+
+            int idCita = int.Parse(dgCita.SelectedRows[0].Cells["idCita"].Value.ToString());
+
+            string mensaje = nCita.EliminarLogico(idCita);
+            MessageBox.Show(mensaje);
+
+            CargarTabla(nCita.ListarPorCaso(nroCaso));
+            LimpiarCampos();
         }
     }
 }

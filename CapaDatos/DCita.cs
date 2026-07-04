@@ -15,6 +15,7 @@ namespace CapaDatos
                 using (var context = new BD_ALBASEntities1())
                 {
                     cita.estado = "Pendiente";
+                    cita.activo = true;
                     cita.createdAt = DateTime.Now;
                     context.Cita.Add(cita);
                     context.SaveChanges();
@@ -28,7 +29,7 @@ namespace CapaDatos
             }
         }
 
-        public List<Cita> ListarPorCasoCliente(int nroCaso, int idCliente)
+        public List<Cita> ListarPorCaso(int nroCaso)
         {
             List<Cita> citas = new List<Cita>();
             try
@@ -74,6 +75,33 @@ namespace CapaDatos
                 }
 
                 return "Cita modificada correctamente";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        public string EliminarLogico(int idCita)
+        {
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    Cita cita = context.Cita.Find(idCita);
+
+                    if (cita == null)
+                    {
+                        return "Cita no encontrada";
+                    }
+
+                    cita.activo = false;
+                    cita.modifiedAt = DateTime.Now;
+
+                    context.SaveChanges();
+
+                    return "Cita eliminada correctamente";
+                }
             }
             catch (Exception ex)
             {
@@ -217,9 +245,9 @@ namespace CapaDatos
                     DateTime fechaActual = DateTime.Now.Date;
                     TimeSpan horaActual = DateTime.Now.TimeOfDay;
 
-                    lista = context.Cita.Where(c =>
-                            (c.estado == "Pendiente" || c.estado == "Reprogramado") 
-                            && (c.fecha > fechaActual || (c.fecha == fechaActual && c.horaInicio > horaActual)))
+                    lista = context.Cita.Where(c => c.activo == true
+                             && (c.estado == "Pendiente" ||c.estado == "Reprogramado") 
+                             && (c.fecha > fechaActual || (c.fecha == fechaActual && c.horaInicio > horaActual)))
                             .Select(c => new
                             {
                                 IdCita = c.idCita,
@@ -254,8 +282,9 @@ namespace CapaDatos
                     TimeSpan horaActual = DateTime.Now.TimeOfDay;
 
                     lista = context.Cita
-                        .Where(c =>
-                        (c.estado == "Pendiente" || c.estado == "Reprogramado")
+                        .Where(c => 
+                        c.activo == true
+                        && (c.estado == "Pendiente" || c.estado == "Reprogramado")
                         && (c.fecha > fechaActual || (c.fecha == fechaActual && c.horaInicio > horaActual))
                         && (dniCliente == "" || c.Caso.Cliente.dni == dniCliente)
                         && (dniEspecialista == "" || c.Caso.Especialista.Usuario.dni == dniEspecialista)).
@@ -291,8 +320,9 @@ namespace CapaDatos
                 using (var context = new BD_ALBASEntities1())
                 {
                     citas = context.Cita
-                        .Where(c => c.tiempoAnticipacion != null
-                                 && (c.estado == "Pendiente" || c.estado == "Reprogramado")).ToList();
+                        .Where(c => c.activo == true 
+                        && c.tiempoAnticipacion != null
+                        && (c.estado == "Pendiente" || c.estado == "Reprogramado")).ToList();
                 }
                 return citas;
             }
@@ -337,8 +367,8 @@ namespace CapaDatos
                     TimeSpan horaActual = DateTime.Now.TimeOfDay;
 
                     lista = context.Cita
-                        .Where(c =>
-                            c.Caso.idEspecialista == idEspecialista &&
+                        .Where(c => c.activo == true
+                            && c.Caso.idEspecialista == idEspecialista &&
                             (c.estado == "Pendiente" || c.estado == "Reprogramado") &&
                             (
                                 c.fecha > fechaActual ||
@@ -368,25 +398,6 @@ namespace CapaDatos
             {
                 Console.WriteLine(ex.Message);
                 return lista;
-            }
-        }
-        public List<Cita> ListarPorCaso(int nroCaso)
-        {
-            List<Cita> citas = new List<Cita>();
-
-            try
-            {
-                using (var context = new BD_ALBASEntities1())
-                {
-                    return context.Cita
-                        .Where(c => c.nroCaso == nroCaso && c.activo == true)
-                        .ToList();
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                return citas;
             }
         }
     }

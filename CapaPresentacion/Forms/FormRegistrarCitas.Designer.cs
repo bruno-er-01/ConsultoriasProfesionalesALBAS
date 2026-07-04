@@ -55,7 +55,8 @@
             this.lblCliente = new System.Windows.Forms.Label();
             this.lblEspecialista = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.btnLimpiarCampos = new System.Windows.Forms.Button();
+            this.btnListar = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgCita)).BeginInit();
             this.SuspendLayout();
             // 
@@ -113,7 +114,7 @@
             this.btnBuscar.BackColor = System.Drawing.Color.Maroon;
             this.btnBuscar.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBuscar.ForeColor = System.Drawing.Color.White;
-            this.btnBuscar.Location = new System.Drawing.Point(198, 298);
+            this.btnBuscar.Location = new System.Drawing.Point(201, 298);
             this.btnBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(148, 43);
@@ -127,7 +128,7 @@
             this.btnActualizarDatos.BackColor = System.Drawing.Color.Maroon;
             this.btnActualizarDatos.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnActualizarDatos.ForeColor = System.Drawing.Color.White;
-            this.btnActualizarDatos.Location = new System.Drawing.Point(360, 298);
+            this.btnActualizarDatos.Location = new System.Drawing.Point(533, 298);
             this.btnActualizarDatos.Margin = new System.Windows.Forms.Padding(2);
             this.btnActualizarDatos.Name = "btnActualizarDatos";
             this.btnActualizarDatos.Size = new System.Drawing.Size(148, 43);
@@ -196,7 +197,7 @@
             this.btnAgregarRecordatorio.BackColor = System.Drawing.Color.Maroon;
             this.btnAgregarRecordatorio.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregarRecordatorio.ForeColor = System.Drawing.Color.White;
-            this.btnAgregarRecordatorio.Location = new System.Drawing.Point(523, 298);
+            this.btnAgregarRecordatorio.Location = new System.Drawing.Point(695, 298);
             this.btnAgregarRecordatorio.Margin = new System.Windows.Forms.Padding(2);
             this.btnAgregarRecordatorio.Name = "btnAgregarRecordatorio";
             this.btnAgregarRecordatorio.Size = new System.Drawing.Size(148, 43);
@@ -356,26 +357,41 @@
             this.label11.TabIndex = 105;
             this.label11.Text = "Especialista:";
             // 
-            // btnLimpiarCampos
+            // btnListar
             // 
-            this.btnLimpiarCampos.BackColor = System.Drawing.Color.Maroon;
-            this.btnLimpiarCampos.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpiarCampos.ForeColor = System.Drawing.Color.White;
-            this.btnLimpiarCampos.Location = new System.Drawing.Point(694, 298);
-            this.btnLimpiarCampos.Margin = new System.Windows.Forms.Padding(2);
-            this.btnLimpiarCampos.Name = "btnLimpiarCampos";
-            this.btnLimpiarCampos.Size = new System.Drawing.Size(148, 43);
-            this.btnLimpiarCampos.TabIndex = 107;
-            this.btnLimpiarCampos.Text = "Limpiar campos";
-            this.btnLimpiarCampos.UseVisualStyleBackColor = false;
-            this.btnLimpiarCampos.Click += new System.EventHandler(this.btnLimpiarCampos_Click);
+            this.btnListar.BackColor = System.Drawing.Color.Maroon;
+            this.btnListar.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListar.ForeColor = System.Drawing.Color.White;
+            this.btnListar.Location = new System.Drawing.Point(620, 16);
+            this.btnListar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnListar.Name = "btnListar";
+            this.btnListar.Size = new System.Drawing.Size(106, 36);
+            this.btnListar.TabIndex = 107;
+            this.btnListar.Text = "Listar citas";
+            this.btnListar.UseVisualStyleBackColor = false;
+            this.btnListar.Click += new System.EventHandler(this.btnListar_Click);
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.BackColor = System.Drawing.Color.Maroon;
+            this.btnEliminar.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminar.ForeColor = System.Drawing.Color.White;
+            this.btnEliminar.Location = new System.Drawing.Point(370, 298);
+            this.btnEliminar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(148, 43);
+            this.btnEliminar.TabIndex = 108;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = false;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // FormRegistrarCitas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(873, 661);
-            this.Controls.Add(this.btnLimpiarCampos);
+            this.Controls.Add(this.btnEliminar);
+            this.Controls.Add(this.btnListar);
             this.Controls.Add(this.lblEspecialista);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.lblCliente);
@@ -440,6 +456,7 @@
         private System.Windows.Forms.Label lblCliente;
         private System.Windows.Forms.Label lblEspecialista;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Button btnLimpiarCampos;
+        private System.Windows.Forms.Button btnListar;
+        private System.Windows.Forms.Button btnEliminar;
     }
 }

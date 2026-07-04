@@ -14,6 +14,7 @@ namespace CapaPresentacion
 {
     public partial class FormRegistrarCitas : Form
     {
+        private Usuario usuarioActual;
         private NCita nCita = new NCita();
         private NCliente nCliente = new NCliente();
         private NCaso nCaso = new NCaso();
@@ -23,11 +24,12 @@ namespace CapaPresentacion
         private String tituloCaso;
         private bool fechaAscendente = true;
 
-        public FormRegistrarCitas(int nroCaso, String tituloCaso)
+        public FormRegistrarCitas(int nroCaso, String tituloCaso, Usuario usuarioActual)
         {
             InitializeComponent();
             this.nroCaso = nroCaso;
             this.tituloCaso = tituloCaso;
+            this.usuarioActual = usuarioActual;
 
             CargarDatosCaso();
             CargarTabla(nCita.ListarPorCaso(nroCaso));
@@ -186,7 +188,8 @@ namespace CapaPresentacion
                 horaFin = horaFin,
                 confirmacionAsistencia = chkAsistencia.Checked,
                 observacion = rtbObservacion.Text,
-                //activo = true
+                activo = true,
+                createdBy = usuarioActual.idUsuario,
             };
 
             string mensaje = nCita.Registrar(cita);
@@ -245,7 +248,8 @@ namespace CapaPresentacion
                 horaInicio = horaInicio,
                 horaFin = horaFin,
                 observacion = rtbObservacion.Text,
-                confirmacionAsistencia = chkAsistencia.Checked
+                confirmacionAsistencia = chkAsistencia.Checked,
+                modifiedBy = usuarioActual.idUsuario
             };
 
             string mensaje = nCita.Modificar(cita);
@@ -257,7 +261,7 @@ namespace CapaPresentacion
 
         private void btnAgregarRecordatorio_Click(object sender, EventArgs e)
         {
-            FormRecordatorio formRecordatorio = new FormRecordatorio();
+            FormRecordatorio formRecordatorio = new FormRecordatorio(usuarioActual);
             formRecordatorio.Show();
         }
 
@@ -306,7 +310,7 @@ namespace CapaPresentacion
 
             int idCita = int.Parse(dgCita.SelectedRows[0].Cells["idCita"].Value.ToString());
 
-            string mensaje = nCita.EliminarLogico(idCita);
+            string mensaje = nCita.EliminarLogico(idCita, usuarioActual.idUsuario);
             MessageBox.Show(mensaje);
 
             CargarTabla(nCita.ListarPorCaso(nroCaso));

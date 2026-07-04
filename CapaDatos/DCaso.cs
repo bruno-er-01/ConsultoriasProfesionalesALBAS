@@ -50,19 +50,22 @@ namespace CapaDatos
             {
                 using (var context = new BD_ALBASEntities1())
                 {
-                    var modificado = context.Caso.Find(caso.nroCaso, caso.idCliente);
+                    var modificado = context.Caso.Find(caso.nroCaso);
 
                     if (modificado == null)
                     {
                         return "Caso no encontrado en la base de datos.";
                     }
 
+                    modificado.idCliente = caso.idCliente; 
+                    modificado.idEspecialista = caso.idEspecialista;
+                    modificado.idAdministrador = caso.idAdministrador;
                     modificado.titulo = caso.titulo;
                     modificado.descripcion = caso.descripcion;
                     modificado.estado = caso.estado;
                     modificado.fechaHoraInicio = caso.fechaHoraInicio;
                     modificado.fechaHoraFin = caso.fechaHoraFin;
-                    modificado.documento = caso.documento;
+                    modificado.documento = caso.documento; 
 
                     modificado.modifiedBy = caso.modifiedBy;
                     modificado.modifiedAt = DateTime.Now;

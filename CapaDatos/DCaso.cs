@@ -248,5 +248,27 @@ namespace CapaDatos
                 return lista;
             }
         }
+        public Caso BuscarPorNroCaso(int nroCaso)
+        {
+            Caso caso = null;
+
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    caso = context.Caso
+                        .Include("Cliente")
+                        .Where(c => c.nroCaso == nroCaso && c.activo == true)
+                        .FirstOrDefault();
+                }
+
+                return caso;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return caso;
+            }
+        }
     }
 }

@@ -40,7 +40,7 @@
             this.cbEstadoCaso = new System.Windows.Forms.ComboBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnExportarExcel = new System.Windows.Forms.Button();
-            this.btnCitasCaso = new System.Windows.Forms.Button();
+            this.btnDetalleCaso = new System.Windows.Forms.Button();
             this.dgCasos = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgCasos)).BeginInit();
             this.SuspendLayout();
@@ -179,19 +179,19 @@
             this.btnExportarExcel.UseVisualStyleBackColor = false;
             this.btnExportarExcel.Click += new System.EventHandler(this.btnExportarExcel_Click);
             // 
-            // btnCitasCaso
+            // btnDetalleCaso
             // 
-            this.btnCitasCaso.BackColor = System.Drawing.Color.Maroon;
-            this.btnCitasCaso.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCitasCaso.ForeColor = System.Drawing.Color.White;
-            this.btnCitasCaso.Location = new System.Drawing.Point(862, 324);
-            this.btnCitasCaso.Margin = new System.Windows.Forms.Padding(4);
-            this.btnCitasCaso.Name = "btnCitasCaso";
-            this.btnCitasCaso.Size = new System.Drawing.Size(202, 42);
-            this.btnCitasCaso.TabIndex = 152;
-            this.btnCitasCaso.Text = "Ver cistas del caso";
-            this.btnCitasCaso.UseVisualStyleBackColor = false;
-            this.btnCitasCaso.Click += new System.EventHandler(this.btnCitasCaso_Click);
+            this.btnDetalleCaso.BackColor = System.Drawing.Color.Maroon;
+            this.btnDetalleCaso.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDetalleCaso.ForeColor = System.Drawing.Color.White;
+            this.btnDetalleCaso.Location = new System.Drawing.Point(862, 324);
+            this.btnDetalleCaso.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDetalleCaso.Name = "btnDetalleCaso";
+            this.btnDetalleCaso.Size = new System.Drawing.Size(202, 42);
+            this.btnDetalleCaso.TabIndex = 152;
+            this.btnDetalleCaso.Text = "Ver detalle del caso";
+            this.btnDetalleCaso.UseVisualStyleBackColor = false;
+            this.btnDetalleCaso.Click += new System.EventHandler(this.btnDetalleCaso_Click);
             // 
             // dgCasos
             // 
@@ -209,7 +209,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1149, 686);
             this.Controls.Add(this.dgCasos);
-            this.Controls.Add(this.btnCitasCaso);
+            this.Controls.Add(this.btnDetalleCaso);
             this.Controls.Add(this.btnExportarExcel);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.cbEstadoCaso);
@@ -244,7 +244,7 @@
         private System.Windows.Forms.ComboBox cbEstadoCaso;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnExportarExcel;
-        private System.Windows.Forms.Button btnCitasCaso;
+        private System.Windows.Forms.Button btnDetalleCaso;
         private System.Windows.Forms.DataGridView dgCasos;
     }
 }

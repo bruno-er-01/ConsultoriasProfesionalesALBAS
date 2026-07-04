@@ -47,5 +47,9 @@ namespace CapaNegocios
         {
             return dCaso.ListarCasosPorEspecialista(idEspecialista, estado, texto);
         }
+        public Caso BuscarPorNroCaso(int nroCaso)
+        {
+            return dCaso.BuscarPorNroCaso(nroCaso);
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using CapaDatos;
 using CapaNegocios;
+using CapaPresentacion.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -44,16 +45,7 @@ namespace CapaPresentacion
             MostrarData(nCaso.ListarCasosPorEspecialista(usuarioActual.idUsuario, cbEstadoCaso.Text, ""));
         }
 
-        private void btnCitasCaso_Click(object sender, EventArgs e)
-        {
-            if(dgCasos.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Selecciones un caso");
-                return;
-            }
-            FormEspecialistaBuscarCita form = new FormEspecialistaBuscarCita();
-            form.ShowDialog();
-        }
+        
         // si quiero excel debo instalar nuggets
         private void btnExportarExcel_Click(object sender, EventArgs e)
         {
@@ -131,6 +123,21 @@ namespace CapaPresentacion
         private void txtDataCliente_TextChanged(object sender, EventArgs e)
         {
             MostrarData(nCaso.ListarCasosPorEspecialista(usuarioActual.idUsuario, "", txtDataCliente.Text));
+        }
+
+        private void btnDetalleCaso_Click(object sender, EventArgs e)
+        {
+            if (dgCasos.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Seleccione un caso.");
+                return;
+            }
+
+            int nroCaso = Convert.ToInt32(dgCasos.SelectedRows[0].Cells["NroCaso"].Value);
+
+            FormEspecialistaCaso form = new FormEspecialistaCaso(usuarioActual, nroCaso);
+            form.ShowDialog();
+
         }
     }
 }

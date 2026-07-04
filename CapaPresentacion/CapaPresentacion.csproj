@@ -67,6 +67,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\FormDashBoardMontos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormDashBoardMontos.Designer.cs">
+      <DependentUpon>FormDashBoardMontos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormActualizarContrasena.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -245,6 +251,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormDashBoardClientes.resx">
       <DependentUpon>FormDashBoardClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormDashBoardMontos.resx">
+      <DependentUpon>FormDashBoardMontos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormDashBoardReporteAreas.resx">
       <DependentUpon>FormDashBoardReporteAreas.cs</DependentUpon>

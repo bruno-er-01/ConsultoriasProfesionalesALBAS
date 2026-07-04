@@ -171,6 +171,119 @@ namespace CapaDatos
                 return new List<CapaDatos.ReporteNoShowEstructura>();
             }
         }
+
+        // Otenemos los montos de area
+        public List<object> ReporteMontosPorArea(DateTime fechaInicio, DateTime fechaFin, int idArea, string modalidad, string orden)
+        {
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    var query = from c in context.Cita
+                                join ca in context.Caso on c.nroCaso equals ca.nroCaso
+                                join e in context.Especialista on ca.idEspecialista equals e.idEspecialista
+                                join a in context.Area on e.idArea equals a.idArea
+                                where c.fecha >= fechaInicio
+                                   && c.fecha <= fechaFin
+                                   && c.estado != "Cancelado"
+                                   && c.confirmacionAsistencia == true
+                                select new
+                                {
+                                    Fecha = c.fecha,
+                                    Modalidad = c.modalidad,
+                                    IdArea = a.idArea,
+                                    Area = a.nombre,
+                                    Costo = a.costo
+                                };
+
+                    if (idArea != 0)
+                    {
+                        query = query.Where(x => x.IdArea == idArea);
+                    }
+
+                    if (modalidad != "Todos")
+                    {
+                        query = query.Where(x => x.Modalidad == modalidad);
+                    }
+
+                    var reporte = query
+                        .GroupBy(x => new
+                        {
+                            Anio = x.Fecha.Year,
+                            Mes = x.Fecha.Month
+                        })
+                        .Select(g => new
+                        {
+                            Anio = g.Key.Anio,
+                            Mes = g.Key.Mes,
+                            MontoTotal = g.Sum(x => x.Costo),
+                            CantidadCitas = g.Count()
+                        });
+
+                    if (orden == "Descendente")
+                    {
+                        reporte = reporte.OrderByDescending(x => x.MontoTotal);
+                    }
+                    else
+                    {
+                        reporte = reporte.OrderBy(x => x.Anio).ThenBy(x => x.Mes);
+                    }
+
+                    return reporte.ToList<object>();
+                }
+            }
+            catch
+            {
+                return new List<object>();
+            }
+        }
+
+        //Montos para el grafico pastel
+        public List<object> ReporteMontosPorModalidad(DateTime fechaInicio, DateTime fechaFin, int idArea)
+        {
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    var query = from c in context.Cita
+                                join ca in context.Caso on c.nroCaso equals ca.nroCaso
+                                join e in context.Especialista on ca.idEspecialista equals e.idEspecialista
+                                join a in context.Area on e.idArea equals a.idArea
+                                where c.fecha >= fechaInicio
+                                   && c.fecha <= fechaFin
+                                   && c.estado != "Cancelado"
+                                   && c.confirmacionAsistencia == true
+                                select new
+                                {
+                                    Modalidad = c.modalidad,
+                                    IdArea = a.idArea,
+                                    Costo = a.costo
+                                };
+
+                    if (idArea != 0)
+                    {
+                        query = query.Where(x => x.IdArea == idArea);
+                    }
+
+                    var reporte = query
+                        .GroupBy(x => x.Modalidad)
+                        .Select(g => new
+                        {
+                            Modalidad = g.Key,
+                            MontoTotal = g.Sum(x => x.Costo),
+                            CantidadCitas = g.Count()
+                        })
+                        .ToList<object>();
+
+                    return reporte;
+                }
+            }
+            catch
+            {
+                return new List<object>();
+            }
+        }
+
     }
 }
 

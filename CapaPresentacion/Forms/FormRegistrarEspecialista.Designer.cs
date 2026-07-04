@@ -204,6 +204,7 @@
             this.btnExportarExcel.TabIndex = 33;
             this.btnExportarExcel.Text = "Exportar Excel";
             this.btnExportarExcel.UseVisualStyleBackColor = false;
+            this.btnExportarExcel.Click += new System.EventHandler(this.btnExportarExcel_Click_1);
             // 
             // btnActualizarDatos
             // 
@@ -256,7 +257,6 @@
             this.dgUsuarios.RowHeadersWidth = 51;
             this.dgUsuarios.Size = new System.Drawing.Size(807, 258);
             this.dgUsuarios.TabIndex = 29;
-            
             // 
             // label1
             // 

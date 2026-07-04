@@ -100,6 +100,7 @@ namespace CapaPresentacion.Forms
 
         private void btnVerCitas_Click(object sender, EventArgs e)
         {
+            //falta modificar
             //FormEspecialistaBuscarCita form = new FormEspecialistaBuscarCita(nroCaso);
             //form.ShowDialog();
 

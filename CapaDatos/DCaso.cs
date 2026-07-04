@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CapaDatos
 {
@@ -14,17 +12,6 @@ namespace CapaDatos
             {
                 using (var context = new BD_ALBASEntities1())
                 {
-                    int ultimoNro = context.Caso
-                        .Where(c => c.idCliente == caso.idCliente)
-                        .Select(c => (int?)c.nroCaso)
-                        .DefaultIfEmpty(0)
-                        .Max() ?? 0;
-
-                    caso.nroCaso = ultimoNro + 1;
-
-                    caso.estado = "Abierto";
-                    caso.createdAt = DateTime.Now;
-
                     context.Caso.Add(caso);
                     context.SaveChanges();
 
@@ -89,7 +76,7 @@ namespace CapaDatos
             }
         }
 
-        public Caso BuscarPorId(int nroCaso, int idCliente)
+        public Caso BuscarPorId(int nroCaso)
         {
             Caso caso = null;
 
@@ -98,8 +85,9 @@ namespace CapaDatos
                 using (var context = new BD_ALBASEntities1())
                 {
                     caso = context.Caso
-                        .Where(c => c.nroCaso == nroCaso
-                                 && c.idCliente == idCliente)
+                        .Include("Cliente")
+                        .Include("Especialista")
+                        .Where(c => c.nroCaso == nroCaso)
                         .FirstOrDefault();
                 }
 
@@ -258,6 +246,7 @@ namespace CapaDatos
                 {
                     caso = context.Caso
                         .Include("Cliente")
+                        .Include("Especialista")
                         .Where(c => c.nroCaso == nroCaso && c.activo == true)
                         .FirstOrDefault();
                 }
@@ -268,6 +257,48 @@ namespace CapaDatos
             {
                 Console.WriteLine(ex.Message);
                 return caso;
+            }
+        }
+        public string ActualizarEstadoEspecialista(int nroCaso, string estadoNuevo, int idUsuarioModificador)
+        {
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    Caso caso = context.Caso.Find(nroCaso);
+
+                    if (caso == null)
+                    {
+                        return "Caso no encontrado.";
+                    }
+
+                    if (caso.estado == "Cerrado")
+                    {
+                        return "El caso ya se encuentra cerrado.";
+                    }
+
+                    if (caso.estado == "Archivado" || caso.estado == "Anulado")
+                    {
+                        return "No se puede modificar un caso archivado o anulado.";
+                    }
+
+                    caso.estado = estadoNuevo;
+                    caso.modifiedBy = idUsuarioModificador;
+                    caso.modifiedAt = DateTime.Now;
+
+                    if (estadoNuevo == "Cerrado")
+                    {
+                        caso.fechaHoraFin = DateTime.Now;
+                    }
+
+                    context.SaveChanges();
+                }
+
+                return "Estado del caso actualizado correctamente.";
+            }
+            catch (Exception ex)
+            {
+                return "Error al actualizar estado: " + ex.Message;
             }
         }
     }

@@ -148,7 +148,7 @@ namespace CapaDatos
                 using (var context = new BD_ALBASEntities1())
                 {
                     var query = from c in context.Cita
-                                join ca in context.Caso on new { c.nroCaso, c.idCliente } equals new { ca.nroCaso, ca.idCliente }
+                                join ca in context.Caso on c.nroCaso equals ca.nroCaso
                                 join e in context.Especialista on ca.idEspecialista equals e.idEspecialista
                                 join a in context.Area on e.idArea equals a.idArea
                                 where c.estado == "Cancelado" || c.confirmacionAsistencia == false

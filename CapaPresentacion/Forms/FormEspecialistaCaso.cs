@@ -27,16 +27,81 @@ namespace CapaPresentacion.Forms
         private void CargarDatosCaso()
         {
             Caso caso = nCaso.BuscarPorNroCaso(nroCaso);
-            MessageBox.Show("Se abrió el caso Nro: " + caso.nroCaso);
 
+            if (caso == null)
+            {
+                MessageBox.Show("No se encontró el caso seleccionado.");
+                this.Close();
+                return;
+            }
+
+            lblCliente.Text = caso.Cliente.nombre + " " + caso.Cliente.apellido;
+            lblDNI.Text = caso.Cliente.dni;
+            lblNroCaso.Text = caso.nroCaso.ToString();
+            lblTitulo.Text = caso.titulo;
+            lblDescripcion.Text = caso.descripcion;
+            lblDocumento.Text = caso.documento;
+            lblFechaInicio.Text = caso.fechaHoraInicio.ToString("dd/MM/yyyy HH:mm");
+
+            if (caso.fechaHoraFin == null)
+            {
+                lblFechaFin.Text = "Sin finalizar";
+            }
+            else
+            {
+                lblFechaFin.Text = caso.fechaHoraFin.Value.ToString("dd/MM/yyyy HH:mm");
+            }
+
+            lblEstadoActual.Text = caso.estado;
+
+            if (caso.estado == "Cerrado" || caso.estado == "Archivado" || caso.estado == "Anulado")
+            {
+                cbEstadoCaso.Enabled = false;
+                btnActualizarEstado.Enabled = false;
+            }
+            else
+            {
+                cbEstadoCaso.Enabled = true;
+                btnActualizarEstado.Enabled = true;
+            }
         }
         private void btnActualizarEstado_Click(object sender, EventArgs e)
         {
+            if (cbEstadoCaso.Text == "")
+            {
+                MessageBox.Show("Seleccione el nuevo estado.");
+                return;
+            }
 
+            string estadoNuevo = cbEstadoCaso.Text;
+
+            DialogResult respuesta = MessageBox.Show(
+                "¿Está seguro de actualizar el estado del caso a " + estadoNuevo + "?",
+                "Confirmar actualización",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (respuesta != DialogResult.Yes)
+            {
+                return;
+            }
+
+            string mensaje = nCaso.ActualizarEstadoEspecialista(
+                nroCaso,
+                estadoNuevo,
+                usuarioActual.idUsuario
+            );
+
+            MessageBox.Show(mensaje);
+
+            CargarDatosCaso();
         }
 
         private void btnVerCitas_Click(object sender, EventArgs e)
         {
+            //FormEspecialistaBuscarCita form = new FormEspecialistaBuscarCita(nroCaso);
+            //form.ShowDialog();
 
         }
 

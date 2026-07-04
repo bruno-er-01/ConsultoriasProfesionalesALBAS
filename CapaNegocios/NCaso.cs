@@ -13,6 +13,9 @@ namespace CapaNegocios
 
         public string Registrar(Caso caso)
         {
+            caso.estado = "Abierto";
+            caso.activo = true;
+            caso.createdAt = DateTime.Now;
             return dCaso.Registrar(caso);
         }
 
@@ -26,9 +29,9 @@ namespace CapaNegocios
             return dCaso.Modificar(caso);
         }
 
-        public Caso BuscarPorId(int nroCaso, int idCliente)
+        public Caso BuscarPorId(int nroCaso)
         {
-            return dCaso.BuscarPorId(nroCaso, idCliente);
+            return dCaso.BuscarPorId(nroCaso);
         }
 
         public List<ReporteAntiguedadCaso> ListarReporteAntiguedad()
@@ -50,6 +53,20 @@ namespace CapaNegocios
         public Caso BuscarPorNroCaso(int nroCaso)
         {
             return dCaso.BuscarPorNroCaso(nroCaso);
+        }
+        public string ActualizarEstadoEspecialista(int nroCaso, string estadoNuevo, int idUsuarioModificador)
+        {
+            if (estadoNuevo == "")
+            {
+                return "Seleccione un estado.";
+            }
+
+            if (estadoNuevo != "En proceso" && estadoNuevo != "Cerrado")
+            {
+                return "El especialista solo puede cambiar el estado a En proceso o Cerrado.";
+            }
+
+            return dCaso.ActualizarEstadoEspecialista(nroCaso, estadoNuevo, idUsuarioModificador);
         }
     }
 }

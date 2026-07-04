@@ -123,7 +123,7 @@ namespace CapaPresentacion
             int idCliente = int.Parse(fila.Cells["idCliente"].Value.ToString());
             string tituloCaso = fila.Cells["titulo"].Value.ToString();
 
-            FormRegistrarCitas formRegistrarCitas = new FormRegistrarCitas(nroCaso, idCliente, tituloCaso);
+            FormRegistrarCitas formRegistrarCitas = new FormRegistrarCitas(nroCaso, tituloCaso);
             formRegistrarCitas.Show();
         }
     }

@@ -35,8 +35,8 @@ namespace CapaDatos
             {
                 using (var context = new BD_ALBASEntities1())
                 {
-                    return context.Cita.Where(c => c.nroCaso == nroCaso 
-                        && c.id == idCliente)
+                    return context.Cita
+                        .Where(c => c.nroCaso == nroCaso && c.activo == true)
                         .ToList();
                 }
             }
@@ -281,14 +281,11 @@ namespace CapaDatos
                 {
                     DateTime hoy = DateTime.Today;
 
-                    int cantidad = (from ci in context.Cita
-                                    join ca in context.Caso
-                                        on new { ci.nroCaso, ci.idCliente }
-                                        equals new { ca.nroCaso, ca.idCliente }
-                                    where ca.idEspecialista == idEspecialista &&
-                                          ci.fecha == hoy
-                                    select ci)
-                                    .Count();
+                    int cantidad = context.Cita
+                        .Count(c =>
+                            c.Caso.idEspecialista == idEspecialista &&
+                            c.fecha == hoy &&
+                            c.activo == true);
 
                     return cantidad;
                 }
@@ -342,6 +339,25 @@ namespace CapaDatos
             {
                 Console.WriteLine(ex.Message);
                 return lista;
+            }
+        }
+        public List<Cita> ListarPorCaso(int nroCaso)
+        {
+            List<Cita> citas = new List<Cita>();
+
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    return context.Cita
+                        .Where(c => c.nroCaso == nroCaso && c.activo == true)
+                        .ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return citas;
             }
         }
     }

@@ -189,5 +189,26 @@ namespace CapaDatos
                 return ex.Message;
             }
         }
+        public Cliente BuscarPorId(int idCliente)
+        {
+            Cliente cliente = null;
+
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    cliente = context.Cliente
+                        .Where(c => c.idCliente == idCliente)
+                        .FirstOrDefault();
+                }
+
+                return cliente;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return cliente;
+            }
+        }
     }
 }

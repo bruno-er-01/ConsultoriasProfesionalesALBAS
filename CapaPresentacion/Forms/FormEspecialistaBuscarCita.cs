@@ -16,20 +16,68 @@ namespace CapaPresentacion
     {
         private NCita nCita = new NCita();
         private int nroCaso;
-        private int idCliente;
-        public FormEspecialistaBuscarCita()
+
+        public FormEspecialistaBuscarCita(int nroCaso)
         {
             InitializeComponent();
+            this.nroCaso = nroCaso;
             CargarTabla();
         }
 
         private void CargarTabla()
         {
             dgCita.DataSource = null;
-            var lista = nCita.ListarPorCasoCliente(nroCaso, idCliente);
+
+            var lista = nCita.ListarPorCaso(nroCaso);
+
             if (lista != null && lista.Count > 0)
             {
                 dgCita.DataSource = lista;
+
+                if (dgCita.Columns["idCita"] != null)
+                {
+                    dgCita.Columns["idCita"].Visible = false;
+                }
+
+                if (dgCita.Columns["nroCaso"] != null)
+                {
+                    dgCita.Columns["nroCaso"].Visible = false;
+                }
+
+                if (dgCita.Columns["Caso"] != null)
+                {
+                    dgCita.Columns["Caso"].Visible = false;
+                }
+
+                if (dgCita.Columns["tiempoAnticipacion"] != null)
+                {
+                    dgCita.Columns["tiempoAnticipacion"].Visible = false;
+                }
+
+                if (dgCita.Columns["activo"] != null)
+                {
+                    dgCita.Columns["activo"].Visible = false;
+                }
+
+                if (dgCita.Columns["createdBy"] != null)
+                {
+                    dgCita.Columns["createdBy"].Visible = false;
+                }
+
+                if (dgCita.Columns["createdAt"] != null)
+                {
+                    dgCita.Columns["createdAt"].Visible = false;
+                }
+
+                if (dgCita.Columns["modifiedBy"] != null)
+                {
+                    dgCita.Columns["modifiedBy"].Visible = false;
+                }
+
+                if (dgCita.Columns["modifiedAt"] != null)
+                {
+                    dgCita.Columns["modifiedAt"].Visible = false;
+                }
             }
         }
 
@@ -39,14 +87,43 @@ namespace CapaPresentacion
             {
                 var fila = dgCita.SelectedRows[0];
 
-                tbId.Text = (fila.Cells["idCita"].Value ?? fila.Cells["IdCita"].Value ?? fila.Cells[0].Value)?.ToString();
+                if (fila.Cells["idCita"].Value != null)
+                {
+                    tbId.Text = fila.Cells["idCita"].Value.ToString();
+                }
 
-                var fechaVal = fila.Cells["fecha"].Value ?? fila.Cells["Fecha"].Value;
-                tbFecha.Text = fechaVal != null ? Convert.ToDateTime(fechaVal).ToShortDateString() : "";
+                if (fila.Cells["fecha"].Value != null)
+                {
+                    tbFecha.Text = Convert.ToDateTime(fila.Cells["fecha"].Value).ToShortDateString();
+                }
 
-                cbEstado.Text = (fila.Cells["estado"].Value ?? fila.Cells["Estado"].Value)?.ToString();
-                cbAsistencia.Text = (fila.Cells["confirmacionAsistencia"].Value ?? fila.Cells["ConfirmacionAsistencia"].Value)?.ToString();
-                rtcDescripcion.Text = (fila.Cells["observacion"].Value ?? fila.Cells["Observacion"].Value)?.ToString();
+                if (fila.Cells["estado"].Value != null)
+                {
+                    cbEstado.Text = fila.Cells["estado"].Value.ToString();
+                }
+
+                if (fila.Cells["confirmacionAsistencia"].Value != null)
+                {
+                    bool asistencia = Convert.ToBoolean(fila.Cells["confirmacionAsistencia"].Value);
+
+                    if (asistencia == true)
+                    {
+                        cbAsistencia.Text = "Si";
+                    }
+                    else
+                    {
+                        cbAsistencia.Text = "No";
+                    }
+                }
+
+                if (fila.Cells["observacion"].Value != null)
+                {
+                    rtcDescripcion.Text = fila.Cells["observacion"].Value.ToString();
+                }
+                else
+                {
+                    rtcDescripcion.Text = "";
+                }
             }
         }
 
@@ -61,17 +138,17 @@ namespace CapaPresentacion
             if (dgCita.SelectedRows.Count > 0)
             {
                 var fila = dgCita.SelectedRows[0];
+
                 Cita cita = new Cita()
                 {
                     idCita = int.Parse(tbId.Text),
-                    nroCaso = int.Parse(fila.Cells["nroCaso"].Value.ToString()),
-                    idCliente = int.Parse(fila.Cells["idCliente"].Value.ToString()),
+                    nroCaso = nroCaso,
                     fecha = Convert.ToDateTime(tbFecha.Text),
                     horaInicio = (TimeSpan)fila.Cells["horaInicio"].Value,
                     horaFin = (TimeSpan)fila.Cells["horaFin"].Value,
                     estado = cbEstado.Text,
                     observacion = rtcDescripcion.Text,
-                    modalidad = fila.Cells["modalidad"].Value?.ToString() ?? "Presencial",
+                    modalidad = fila.Cells["modalidad"].Value.ToString(),
                     confirmacionAsistencia = cbAsistencia.Text == "Si"
                 };
 
@@ -83,16 +160,21 @@ namespace CapaPresentacion
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            var listaCompleta = nCita.ListarPorCasoCliente(nroCaso, idCliente);
+            var listaCompleta = nCita.ListarPorCaso(nroCaso);
+
             if (listaCompleta != null && listaCompleta.Count > 0)
             {
                 var filtrado = listaCompleta.AsEnumerable();
 
                 if (!string.IsNullOrWhiteSpace(tbId.Text) && int.TryParse(tbId.Text.Trim(), out int idBuscado))
+                {
                     filtrado = filtrado.Where(c => c.idCita == idBuscado);
+                }
 
                 if (cbEstado.SelectedIndex != -1 && !string.IsNullOrWhiteSpace(cbEstado.Text))
+                {
                     filtrado = filtrado.Where(c => c.estado.Equals(cbEstado.Text, StringComparison.OrdinalIgnoreCase));
+                }
 
                 dgCita.DataSource = null;
                 dgCita.DataSource = filtrado.ToList();

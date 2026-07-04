@@ -24,11 +24,11 @@ namespace CapaDatos
         public string modalidad { get; set; }
         public bool confirmacionAsistencia { get; set; }
         public Nullable<bool> activo { get; set; }
+        public Nullable<int> tiempoAnticipacion { get; set; }
         public Nullable<int> createdBy { get; set; }
         public System.DateTime createdAt { get; set; }
         public Nullable<int> modifiedBy { get; set; }
         public Nullable<System.DateTime> modifiedAt { get; set; }
-        public Nullable<int> tiempoAnticipacion { get; set; }
     
         public virtual Caso Caso { get; set; }
     }

@@ -12,10 +12,13 @@ namespace CapaDatos
             {
                 using (var context = new BD_ALBASEntities1())
                 {
+                    caso.estado = "Abierto";
+                    caso.activo = true;
+                    caso.createdAt = DateTime.Now;
+
                     context.Caso.Add(caso);
                     context.SaveChanges();
-
-                    return "Caso Nro " + caso.nroCaso + " registrado correctamente";
+                    return "Caso registrado correctamente";
                 }
             }
             catch (Exception ex)
@@ -34,7 +37,10 @@ namespace CapaDatos
                     context.Configuration.LazyLoadingEnabled = false;
                     context.Configuration.ProxyCreationEnabled = false;
 
-                    return context.Caso.OrderBy(c => c.nroCaso).ToList();
+                    return context.Caso
+                        .Where(c => c.activo == true)
+                        .OrderBy(c => c.nroCaso)
+                        .ToList();
                 }
             }
             catch (Exception ex)
@@ -52,28 +58,22 @@ namespace CapaDatos
                 {
                     var modificado = context.Caso.Find(caso.nroCaso);
 
-                    if (modificado == null)
-                    {
-                        return "Caso no encontrado en la base de datos.";
-                    }
+                    if (modificado == null) return "Caso no encontrado";
 
-                    modificado.idCliente = caso.idCliente; 
-                    modificado.idEspecialista = caso.idEspecialista;
+                    modificado.idCliente = caso.idCliente;
                     modificado.idAdministrador = caso.idAdministrador;
+                    modificado.idEspecialista = caso.idEspecialista;
                     modificado.titulo = caso.titulo;
                     modificado.descripcion = caso.descripcion;
                     modificado.estado = caso.estado;
-                    modificado.fechaHoraInicio = caso.fechaHoraInicio;
-                    modificado.fechaHoraFin = caso.fechaHoraFin;
-                    modificado.documento = caso.documento; 
+                    modificado.documento = caso.documento;
 
                     modificado.modifiedBy = caso.modifiedBy;
                     modificado.modifiedAt = DateTime.Now;
 
                     context.SaveChanges();
+                    return "Caso modificado correctamente";
                 }
-
-                return "Caso modificado correctamente";
             }
             catch (Exception ex)
             {
@@ -202,8 +202,7 @@ namespace CapaDatos
             {
                 using (var context = new BD_ALBASEntities1())
                 {
-                    var consulta = context.Caso
-                        .Where(c => c.idEspecialista == idEspecialista);
+                    var consulta = context.Caso.Where(c => c.idEspecialista == idEspecialista && c.activo == true);
 
                     if (estado != "Todos" && estado != "")
                     {
@@ -349,6 +348,29 @@ namespace CapaDatos
             {
                 Console.WriteLine(ex.Message);
                 return lista;
+            }
+        }
+        public string EliminarLogico(int nroCaso, int idUsuarioModificador)
+        {
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    var caso = context.Caso.Find(nroCaso);
+                    if (caso == null) return "Caso no encontrado";
+
+                    caso.estado = "Cerrado";
+                    caso.activo = false;
+                    caso.modifiedBy = idUsuarioModificador;
+                    caso.modifiedAt = DateTime.Now;
+
+                    context.SaveChanges();
+                    return "Caso eliminado (cerrado) lógicamente";
+                }
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
             }
         }
     }

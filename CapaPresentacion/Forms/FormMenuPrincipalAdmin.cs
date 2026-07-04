@@ -53,7 +53,7 @@ namespace CapaPresentacion
 
         private void pnlRegistrarCasosCitas_Click(object sender, EventArgs e)
         {
-            AbrirFormEnPanel(new FormRegistrarCaso(usuarioActual));
+            AbrirFormEnPanel(new FormRegistrarCaso(1, usuarioActual.idUsuario));
         }
 
         private void pnlReportes_Click(object sender, EventArgs e)

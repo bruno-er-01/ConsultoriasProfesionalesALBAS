@@ -14,15 +14,15 @@ namespace CapaPresentacion
 {
     public partial class FormRegistrarCaso : Form
     {
-        private Usuario usuarioActual;
         private NCaso nCaso = new NCaso();
         private int idClienteAsociado = 1;
+        private int idAdminLogueado = 1;
 
-        public FormRegistrarCaso(Usuario usuarioActual)
+        public FormRegistrarCaso(int idCliente, int idAdminSession)
         {
             InitializeComponent();
-            this.usuarioActual = usuarioActual;
-            //this.idClienteAsociado = idCliente;
+            this.idClienteAsociado = idCliente;
+            this.idAdminLogueado = idAdminSession;
             CargarTabla();
         }
 
@@ -33,6 +33,17 @@ namespace CapaPresentacion
             if (lista != null && lista.Count > 0)
             {
                 dgCaso.DataSource = lista;
+
+                if (dgCaso.Columns.Contains("Administrador")) dgCaso.Columns["Administrador"].Visible = false;
+                if (dgCaso.Columns.Contains("Cliente")) dgCaso.Columns["Cliente"].Visible = false;
+                if (dgCaso.Columns.Contains("Especialista")) dgCaso.Columns["Especialista"].Visible = false;
+                if (dgCaso.Columns.Contains("Cita")) dgCaso.Columns["Cita"].Visible = false;
+
+                if (dgCaso.Columns.Contains("activo")) dgCaso.Columns["activo"].Visible = false;
+                if (dgCaso.Columns.Contains("createdBy")) dgCaso.Columns["createdBy"].Visible = false;
+                if (dgCaso.Columns.Contains("createdAt")) dgCaso.Columns["createdAt"].Visible = false;
+                if (dgCaso.Columns.Contains("modifiedBy")) dgCaso.Columns["modifiedBy"].Visible = false;
+                if (dgCaso.Columns.Contains("modifiedAt")) dgCaso.Columns["modifiedAt"].Visible = false;
             }
         }
 
@@ -67,26 +78,31 @@ namespace CapaPresentacion
         {
             if (string.IsNullOrWhiteSpace(txtNombre.Text))
             {
-                MessageBox.Show("El título del caso es obligatorio.");
+                MessageBox.Show("El título del caso es obligatorio.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
+            int idEspecialistaPredeterminado = 3; 
+
             Caso nuevoCaso = new Caso()
             {
-                nroCaso = 0,
                 idCliente = idClienteAsociado,
-                idAdministrador = 1,
-                idEspecialista = 3,  
+                idAdministrador = this.idAdminLogueado, 
+                idEspecialista = idEspecialistaPredeterminado,
                 titulo = txtNombre.Text.Trim(),
-                estado = cbEstado.Text ?? "Abierto",
-                fechaHoraInicio = string.IsNullOrWhiteSpace(cbFechaInicio.Text) ? DateTime.Now : Convert.ToDateTime(cbFechaInicio.Text),
-                fechaHoraFin = null,
                 descripcion = richTextBox1.Text.Trim(),
-                documento = txtDocumento.Text.Trim()
+                estado = string.IsNullOrWhiteSpace(cbEstado.Text) ? "Abierto" : cbEstado.Text,
+                fechaHoraInicio = DateTime.Now,
+                fechaHoraFin = null,
+                documento = txtDocumento.Text.Trim(),
+                activo = true,
+
+                createdBy = this.idAdminLogueado,
+                createdAt = DateTime.Now
             };
 
             string mensaje = nCaso.Registrar(nuevoCaso);
-            MessageBox.Show(mensaje);
+            MessageBox.Show(mensaje, "Sistema ALBAS", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             CargarTabla();
             LimpiarCampos();
@@ -94,39 +110,42 @@ namespace CapaPresentacion
 
         private void btnActualizarDatos_Click(object sender, EventArgs e)
         {
-            if (dgCaso.SelectedRows.Count == 0)
+            if (dgCaso.CurrentRow == null)
             {
-                MessageBox.Show("Por favor, seleccione primero un caso de la tabla para poder modificarlo.");
+                MessageBox.Show("Por favor, seleccione primero un caso de la tabla para poder modificarlo.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(txtNombre.Text))
             {
-                MessageBox.Show("El título del caso no puede quedar vacío.");
+                MessageBox.Show("El título del caso no puede quedar vacío.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            var fila = dgCaso.SelectedRows[0];
+            var fila = dgCaso.CurrentRow;
 
             Caso casoModificado = new Caso()
             {
-                nroCaso = int.Parse(fila.Cells["nroCaso"].Value.ToString()),
-                idCliente = int.Parse(fila.Cells["idCliente"].Value.ToString()),
-                idEspecialista = int.Parse(fila.Cells["idEspecialista"].Value.ToString()),
-                idAdministrador = int.Parse(fila.Cells["idAdministrador"].Value.ToString()),
-
+                nroCaso = Convert.ToInt32(fila.Cells["nroCaso"].Value),
+                idCliente = Convert.ToInt32(fila.Cells["idCliente"].Value),
+                idEspecialista = Convert.ToInt32(fila.Cells["idEspecialista"].Value),
+                idAdministrador = Convert.ToInt32(fila.Cells["idAdministrador"].Value),
                 titulo = txtNombre.Text.Trim(),
-                estado = cbEstado.Text,
-                fechaHoraInicio = Convert.ToDateTime(cbFechaInicio.Text),
-                fechaHoraFin = (string.IsNullOrWhiteSpace(btnFechaFin.Text) || btnFechaFin.Text == "Seleccionar Fin")
-                    ? (DateTime?)null
-                    : Convert.ToDateTime(btnFechaFin.Text),
                 descripcion = richTextBox1.Text.Trim(),
-                documento = txtDocumento.Text.Trim()
+                estado = cbEstado.Text,
+                fechaHoraInicio = Convert.ToDateTime(fila.Cells["fechaHoraInicio"].Value),
+                fechaHoraFin = (fila.Cells["fechaHoraFin"].Value != null && fila.Cells["fechaHoraFin"].Value != DBNull.Value)
+                                ? Convert.ToDateTime(fila.Cells["fechaHoraFin"].Value)
+                                : (DateTime?)null,
+                documento = txtDocumento.Text.Trim(),
+                activo = true,
+
+                modifiedBy = this.idAdminLogueado,
+                modifiedAt = DateTime.Now
             };
 
             string mensaje = nCaso.Modificar(casoModificado);
-            MessageBox.Show(mensaje);
+            MessageBox.Show(mensaje, "Sistema ALBAS", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             CargarTabla();
             LimpiarCampos();
@@ -160,7 +179,8 @@ namespace CapaPresentacion
             int nroCaso = int.Parse(fila.Cells["nroCaso"].Value.ToString());
             string tituloCaso = fila.Cells["titulo"].Value.ToString();
 
-            FormRegistrarCitas formRegistrarCitas = new FormRegistrarCitas(nroCaso, tituloCaso, usuarioActual);
+            Usuario objetoUsuarioProvisional = new Usuario() { idUsuario = this.idAdminLogueado };
+            FormRegistrarCitas formRegistrarCitas = new FormRegistrarCitas(nroCaso, tituloCaso, objetoUsuarioProvisional);
             formRegistrarCitas.Show();
         }
 
@@ -237,6 +257,33 @@ namespace CapaPresentacion
             }
         }
 
- 
+        private void btnListarTodo_Click(object sender, EventArgs e)
+        {
+            txtNombre.Clear(); 
+            CargarTabla();     
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (dgCaso.CurrentRow == null)
+            {
+                MessageBox.Show("Seleccione un caso de la lista para eliminar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int nroCasoSeleccionado = Convert.ToInt32(dgCaso.CurrentRow.Cells["nroCaso"].Value);
+
+            DialogResult result = MessageBox.Show("¿Está seguro de que desea eliminar (cerrar) este caso de forma lógica?",
+                                                  "Confirmación de Eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                string mensaje = nCaso.EliminarLogico(nroCasoSeleccionado, this.idAdminLogueado);
+                MessageBox.Show(mensaje, "Resultado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                CargarTabla();
+                LimpiarCampos();
+            }
+        }
     }
 }

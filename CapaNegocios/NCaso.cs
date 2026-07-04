@@ -76,5 +76,9 @@ namespace CapaNegocios
         {
             return dCaso.ListarCasosPorEstado();
         }
+        public string EliminarLogico(int nroCaso, int idUsuarioModificador)
+        {
+            return dCaso.EliminarLogico(nroCaso, idUsuarioModificador);
+        }
     }
 }

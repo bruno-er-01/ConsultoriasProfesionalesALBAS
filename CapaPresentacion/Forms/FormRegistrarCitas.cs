@@ -289,5 +289,11 @@ namespace CapaPresentacion
                 fechaAscendente = !fechaAscendente;
             }
         }
+
+        private void btnLimpiarCampos_Click(object sender, EventArgs e)
+        {
+            LimpiarCampos();
+            CargarTabla(nCita.ListarPorCaso(nroCaso));
+        }
     }
 }

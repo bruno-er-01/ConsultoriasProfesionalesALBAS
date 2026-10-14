@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="CapaPresentacion/image/imgLogo.png" alt="Logo de ALBAS" width="360">
+</p>
+
 # ALBAS: sistema de gestión de citas y casos
 
 Aplicación de escritorio para **Asesores & Consultores Inti (ALBAS)**, una consultora legal. Registra clientes, casos y citas, y ofrece **5 dashboards de gestión** para que la administración tome decisiones con datos.

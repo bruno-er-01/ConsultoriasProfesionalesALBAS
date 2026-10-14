@@ -32,7 +32,6 @@ namespace CapaDatos
         public virtual DbSet<Cliente> Cliente { get; set; }
         public virtual DbSet<Especialista> Especialista { get; set; }
         public virtual DbSet<Reporte> Reporte { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
     }
 }

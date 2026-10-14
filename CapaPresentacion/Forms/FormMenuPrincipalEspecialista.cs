@@ -1,5 +1,6 @@
 ﻿using CapaDatos;
 using CapaNegocios;
+using CapaPresentacion.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,9 +22,21 @@ namespace CapaPresentacion
         {
             InitializeComponent();
             this.usuarioActual = usuario;
-
+            ReiniciarColorPaneles();
+            SeleccionarPanel(pnlInicio);
+            ActivarClickEnControles();
         }
+        private void ActivarClickEnControles()
+        {
+            foreach (Control control in pnlInicio.Controls)
+                control.Click += pnlInicio_Click;
 
+            foreach (Control control in pnlMiPerfil.Controls)
+                control.Click += pnlMiPerfil_Click;
+
+            foreach (Control control in pnlMisCasos.Controls)
+                control.Click += pnlMisCasos_Click;
+        }
         private void AbrirFormEnPanel(Form formHijo)
         {
             pnlFormularios.Controls.Clear();
@@ -35,27 +48,50 @@ namespace CapaPresentacion
             pnlFormularios.Controls.Add(formHijo);
             formHijo.Show();
         }
+        private void ReiniciarColorPaneles()
+        {
+            Color colorNormal = Color.FromArgb(66, 15, 29);
 
+            pnlInicio.BackColor = colorNormal;
+            pnlMisCasos.BackColor = colorNormal;
+            pnlMiPerfil.BackColor = colorNormal;
+        }
+        private void SeleccionarPanel(Panel panelSeleccionado)
+        {
+            ReiniciarColorPaneles();
+            panelSeleccionado.BackColor = Color.FromArgb(26, 2, 9);
+        }
         private void pnlInicio_Click(object sender, EventArgs e)
         {
-            AbrirFormEnPanel(new FormInicio());
+            SeleccionarPanel(pnlInicio);
+            AbrirFormEnPanel(new FormEspecialistaInicio(usuarioActual));
         }
 
- 
+        private void pnlMiPerfil_Click(object sender, EventArgs e)
+        {
+            SeleccionarPanel(pnlMiPerfil);
+            AbrirFormEnPanel(new FormEspecialistaMiCuenta(usuarioActual));
+        }
+
+        private void pnlMisCasos_Click(object sender, EventArgs e)
+        {
+            SeleccionarPanel(pnlMisCasos);
+            AbrirFormEnPanel(new FormEspecialistaBuscarCaso(usuarioActual));
+        }
         private void pnlBuscarCasosCitas_Click(object sender, EventArgs e)
         {
-            AbrirFormEnPanel(new FormEspecialistaBuscarCita());
+            //AbrirFormEnPanel(new FormEspecialistaBuscarCita());
         }
+
+        private void pnlBuscarClientes_Click(object sender, EventArgs e)
+        {
+            AbrirFormEnPanel(new FormEspecialistaBuscarCliente());
+        }
+
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
-        private void pnlBuscarClientes_Click(object sender, EventArgs e)
-        {
-            AbrirFormEnPanel( new FormEspecialistaBuscarCliente());
-        }
-        //jiji
     }
 }

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnListar = new System.Windows.Forms.Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormRegistrarAdministrador));
             this.tbCorreo = new System.Windows.Forms.TextBox();
             this.tbTelefono = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -43,315 +43,339 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnExportarExcel = new System.Windows.Forms.Button();
-            this.btnActualizarDatos = new System.Windows.Forms.Button();
-            this.btnBuscar = new System.Windows.Forms.Button();
-            this.btnRegistrar = new System.Windows.Forms.Button();
             this.dgUsuarios = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.tbDireccion = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.tbEstado = new System.Windows.Forms.Label();
-            this.cbEstado = new System.Windows.Forms.ComboBox();
+            this.btnListarActivos = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnRegistrar = new System.Windows.Forms.Button();
+            this.btnActualizarDatos = new System.Windows.Forms.Button();
+            this.btnListar = new System.Windows.Forms.Button();
+            this.btnExportarExcel = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtBuscarAdmin = new System.Windows.Forms.TextBox();
+            this.btnLimpiarTodo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgUsuarios)).BeginInit();
             this.SuspendLayout();
             // 
-            // btnListar
-            // 
-            this.btnListar.BackColor = System.Drawing.Color.Maroon;
-            this.btnListar.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnListar.ForeColor = System.Drawing.Color.White;
-            this.btnListar.Location = new System.Drawing.Point(425, 210);
-            this.btnListar.Margin = new System.Windows.Forms.Padding(2);
-            this.btnListar.Name = "btnListar";
-            this.btnListar.Size = new System.Drawing.Size(120, 43);
-            this.btnListar.TabIndex = 112;
-            this.btnListar.Text = "Listar";
-            this.btnListar.UseVisualStyleBackColor = false;
-            this.btnListar.Click += new System.EventHandler(this.btnListar_Click);
-            // 
             // tbCorreo
             // 
-            this.tbCorreo.Location = new System.Drawing.Point(135, 62);
-            this.tbCorreo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbCorreo.Location = new System.Drawing.Point(177, 116);
+            this.tbCorreo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbCorreo.Name = "tbCorreo";
-            this.tbCorreo.Size = new System.Drawing.Size(113, 20);
+            this.tbCorreo.Size = new System.Drawing.Size(217, 22);
             this.tbCorreo.TabIndex = 110;
             // 
             // tbTelefono
             // 
-            this.tbTelefono.Location = new System.Drawing.Point(566, 62);
-            this.tbTelefono.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbTelefono.Location = new System.Drawing.Point(1027, 119);
+            this.tbTelefono.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbTelefono.Name = "tbTelefono";
-            this.tbTelefono.Size = new System.Drawing.Size(113, 20);
+            this.tbTelefono.Size = new System.Drawing.Size(217, 22);
             this.tbTelefono.TabIndex = 109;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(66, 62);
-            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label9.BackColor = System.Drawing.Color.Transparent;
+            this.label9.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(44, 113);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(65, 21);
+            this.label9.Size = new System.Drawing.Size(85, 28);
             this.label9.TabIndex = 107;
             this.label9.Text = "Correo: ";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(492, 62);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.BackColor = System.Drawing.Color.Transparent;
+            this.label8.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(911, 119);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(77, 21);
+            this.label8.Size = new System.Drawing.Size(106, 28);
             this.label8.TabIndex = 106;
             this.label8.Text = "Télefono: ";
             // 
             // tbDNI
             // 
-            this.tbDNI.Location = new System.Drawing.Point(347, 131);
-            this.tbDNI.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbDNI.Location = new System.Drawing.Point(579, 204);
+            this.tbDNI.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbDNI.Name = "tbDNI";
-            this.tbDNI.Size = new System.Drawing.Size(113, 20);
+            this.tbDNI.Size = new System.Drawing.Size(217, 22);
             this.tbDNI.TabIndex = 105;
             // 
             // tbApellido
             // 
-            this.tbApellido.Location = new System.Drawing.Point(347, 95);
-            this.tbApellido.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbApellido.Location = new System.Drawing.Point(579, 160);
+            this.tbApellido.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbApellido.Name = "tbApellido";
-            this.tbApellido.Size = new System.Drawing.Size(113, 20);
+            this.tbApellido.Size = new System.Drawing.Size(217, 22);
             this.tbApellido.TabIndex = 104;
             // 
             // tbNombre
             // 
-            this.tbNombre.Location = new System.Drawing.Point(347, 62);
-            this.tbNombre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbNombre.Location = new System.Drawing.Point(579, 119);
+            this.tbNombre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbNombre.Name = "tbNombre";
-            this.tbNombre.Size = new System.Drawing.Size(113, 20);
+            this.tbNombre.Size = new System.Drawing.Size(217, 22);
             this.tbNombre.TabIndex = 103;
             // 
             // tbContrasena
             // 
-            this.tbContrasena.Location = new System.Drawing.Point(135, 131);
-            this.tbContrasena.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbContrasena.Location = new System.Drawing.Point(177, 201);
+            this.tbContrasena.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbContrasena.Name = "tbContrasena";
-            this.tbContrasena.Size = new System.Drawing.Size(113, 20);
+            this.tbContrasena.Size = new System.Drawing.Size(217, 22);
             this.tbContrasena.TabIndex = 102;
             // 
             // tbUsername
             // 
-            this.tbUsername.Location = new System.Drawing.Point(135, 97);
-            this.tbUsername.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbUsername.Location = new System.Drawing.Point(177, 159);
+            this.tbUsername.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbUsername.Name = "tbUsername";
-            this.tbUsername.Size = new System.Drawing.Size(113, 20);
+            this.tbUsername.Size = new System.Drawing.Size(217, 22);
             this.tbUsername.TabIndex = 101;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(35, 128);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(44, 198);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(96, 21);
+            this.label7.Size = new System.Drawing.Size(128, 28);
             this.label7.TabIndex = 99;
             this.label7.Text = "Contraseña: ";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(299, 128);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(515, 201);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(44, 21);
+            this.label6.Size = new System.Drawing.Size(59, 28);
             this.label6.TabIndex = 98;
             this.label6.Text = "DNI: ";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(276, 95);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(469, 158);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(74, 21);
+            this.label5.Size = new System.Drawing.Size(101, 28);
             this.label5.TabIndex = 97;
             this.label5.Text = "Apellido: ";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(268, 59);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(472, 116);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(75, 21);
+            this.label4.Size = new System.Drawing.Size(99, 28);
             this.label4.TabIndex = 96;
             this.label4.Text = "Nombre: ";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(43, 94);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(44, 158);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(88, 21);
+            this.label3.Size = new System.Drawing.Size(116, 28);
             this.label3.TabIndex = 95;
             this.label3.Text = "Username: ";
             // 
-            // btnExportarExcel
-            // 
-            this.btnExportarExcel.BackColor = System.Drawing.Color.Maroon;
-            this.btnExportarExcel.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExportarExcel.ForeColor = System.Drawing.Color.White;
-            this.btnExportarExcel.Location = new System.Drawing.Point(718, 210);
-            this.btnExportarExcel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnExportarExcel.Name = "btnExportarExcel";
-            this.btnExportarExcel.Size = new System.Drawing.Size(120, 43);
-            this.btnExportarExcel.TabIndex = 93;
-            this.btnExportarExcel.Text = "Exportar Excel";
-            this.btnExportarExcel.UseVisualStyleBackColor = false;
-            // 
-            // btnActualizarDatos
-            // 
-            this.btnActualizarDatos.BackColor = System.Drawing.Color.Maroon;
-            this.btnActualizarDatos.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnActualizarDatos.ForeColor = System.Drawing.Color.White;
-            this.btnActualizarDatos.Location = new System.Drawing.Point(287, 210);
-            this.btnActualizarDatos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnActualizarDatos.Name = "btnActualizarDatos";
-            this.btnActualizarDatos.Size = new System.Drawing.Size(134, 43);
-            this.btnActualizarDatos.TabIndex = 92;
-            this.btnActualizarDatos.Text = "Actualizar Datos";
-            this.btnActualizarDatos.UseVisualStyleBackColor = false;
-            this.btnActualizarDatos.Click += new System.EventHandler(this.btnActualizarDatos_Click);
-            // 
-            // btnBuscar
-            // 
-            this.btnBuscar.BackColor = System.Drawing.Color.Maroon;
-            this.btnBuscar.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuscar.ForeColor = System.Drawing.Color.White;
-            this.btnBuscar.Location = new System.Drawing.Point(153, 210);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(130, 43);
-            this.btnBuscar.TabIndex = 91;
-            this.btnBuscar.Text = "Buscar username";
-            this.btnBuscar.UseVisualStyleBackColor = false;
-            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
-            // 
-            // btnRegistrar
-            // 
-            this.btnRegistrar.BackColor = System.Drawing.Color.Maroon;
-            this.btnRegistrar.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegistrar.ForeColor = System.Drawing.Color.White;
-            this.btnRegistrar.Location = new System.Drawing.Point(29, 210);
-            this.btnRegistrar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnRegistrar.Name = "btnRegistrar";
-            this.btnRegistrar.Size = new System.Drawing.Size(120, 43);
-            this.btnRegistrar.TabIndex = 90;
-            this.btnRegistrar.Text = "Registrar";
-            this.btnRegistrar.UseVisualStyleBackColor = false;
-            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
-            // 
             // dgUsuarios
             // 
+            this.dgUsuarios.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dgUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgUsuarios.Location = new System.Drawing.Point(29, 257);
-            this.dgUsuarios.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgUsuarios.Location = new System.Drawing.Point(40, 378);
+            this.dgUsuarios.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dgUsuarios.Name = "dgUsuarios";
             this.dgUsuarios.RowHeadersWidth = 51;
-            this.dgUsuarios.Size = new System.Drawing.Size(807, 258);
+            this.dgUsuarios.Size = new System.Drawing.Size(1204, 334);
             this.dgUsuarios.TabIndex = 89;
             this.dgUsuarios.SelectionChanged += new System.EventHandler(this.dgUsuarios_SelectionChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Leelawadee UI", 19.75F, System.Drawing.FontStyle.Bold);
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Calibri", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Maroon;
-            this.label1.Location = new System.Drawing.Point(40, 9);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(73, 36);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(444, 37);
+            this.label1.Size = new System.Drawing.Size(567, 49);
             this.label1.TabIndex = 87;
             this.label1.Text = "Registrar o buscar Administrador";
             // 
             // tbDireccion
             // 
-            this.tbDireccion.Location = new System.Drawing.Point(566, 94);
-            this.tbDireccion.Margin = new System.Windows.Forms.Padding(2);
+            this.tbDireccion.Location = new System.Drawing.Point(1027, 159);
+            this.tbDireccion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbDireccion.Name = "tbDireccion";
-            this.tbDireccion.Size = new System.Drawing.Size(113, 20);
+            this.tbDireccion.Size = new System.Drawing.Size(217, 22);
             this.tbDireccion.TabIndex = 113;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(480, 94);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(911, 159);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(82, 21);
+            this.label2.Size = new System.Drawing.Size(112, 28);
             this.label2.TabIndex = 114;
             this.label2.Text = "Dirección: ";
             // 
-            // tbEstado
+            // btnListarActivos
             // 
-            this.tbEstado.AutoSize = true;
-            this.tbEstado.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbEstado.Location = new System.Drawing.Point(481, 128);
-            this.tbEstado.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.tbEstado.Name = "tbEstado";
-            this.tbEstado.Size = new System.Drawing.Size(81, 21);
-            this.tbEstado.TabIndex = 115;
-            this.tbEstado.Text = "Actividad: ";
-            // 
-            // cbEstado
-            // 
-            this.cbEstado.FormattingEnabled = true;
-            this.cbEstado.Items.AddRange(new object[] {
-            "0",
-            "1"});
-            this.cbEstado.Location = new System.Drawing.Point(566, 128);
-            this.cbEstado.Margin = new System.Windows.Forms.Padding(2);
-            this.cbEstado.Name = "cbEstado";
-            this.cbEstado.Size = new System.Drawing.Size(113, 21);
-            this.cbEstado.TabIndex = 116;
+            this.btnListarActivos.BackColor = System.Drawing.Color.Maroon;
+            this.btnListarActivos.BackgroundImage = global::CapaPresentacion.Properties.Resources.imgFondoMenu;
+            this.btnListarActivos.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListarActivos.ForeColor = System.Drawing.Color.White;
+            this.btnListarActivos.Location = new System.Drawing.Point(503, 300);
+            this.btnListarActivos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnListarActivos.Name = "btnListarActivos";
+            this.btnListarActivos.Size = new System.Drawing.Size(137, 53);
+            this.btnListarActivos.TabIndex = 118;
+            this.btnListarActivos.Text = "Listar activos";
+            this.btnListarActivos.UseVisualStyleBackColor = false;
+            this.btnListarActivos.Click += new System.EventHandler(this.btnListarActivos_Click);
             // 
             // btnEliminar
             // 
             this.btnEliminar.BackColor = System.Drawing.Color.Maroon;
+            this.btnEliminar.BackgroundImage = global::CapaPresentacion.Properties.Resources.imgFondoMenu;
             this.btnEliminar.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEliminar.ForeColor = System.Drawing.Color.White;
-            this.btnEliminar.Location = new System.Drawing.Point(549, 210);
-            this.btnEliminar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnEliminar.Location = new System.Drawing.Point(645, 300);
+            this.btnEliminar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(120, 43);
+            this.btnEliminar.Size = new System.Drawing.Size(120, 53);
             this.btnEliminar.TabIndex = 117;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = false;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
+            // btnRegistrar
+            // 
+            this.btnRegistrar.BackColor = System.Drawing.Color.Maroon;
+            this.btnRegistrar.BackgroundImage = global::CapaPresentacion.Properties.Resources.imgFondoMenu;
+            this.btnRegistrar.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegistrar.ForeColor = System.Drawing.Color.White;
+            this.btnRegistrar.Location = new System.Drawing.Point(41, 300);
+            this.btnRegistrar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRegistrar.Name = "btnRegistrar";
+            this.btnRegistrar.Size = new System.Drawing.Size(121, 53);
+            this.btnRegistrar.TabIndex = 90;
+            this.btnRegistrar.Text = "Registrar";
+            this.btnRegistrar.UseVisualStyleBackColor = false;
+            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
+            // 
+            // btnActualizarDatos
+            // 
+            this.btnActualizarDatos.BackColor = System.Drawing.Color.Maroon;
+            this.btnActualizarDatos.BackgroundImage = global::CapaPresentacion.Properties.Resources.imgFondoMenu;
+            this.btnActualizarDatos.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnActualizarDatos.ForeColor = System.Drawing.Color.White;
+            this.btnActualizarDatos.Location = new System.Drawing.Point(177, 300);
+            this.btnActualizarDatos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnActualizarDatos.Name = "btnActualizarDatos";
+            this.btnActualizarDatos.Size = new System.Drawing.Size(179, 53);
+            this.btnActualizarDatos.TabIndex = 92;
+            this.btnActualizarDatos.Text = "Actualizar Datos";
+            this.btnActualizarDatos.UseVisualStyleBackColor = false;
+            this.btnActualizarDatos.Click += new System.EventHandler(this.btnActualizarDatos_Click);
+            // 
+            // btnListar
+            // 
+            this.btnListar.BackColor = System.Drawing.Color.Maroon;
+            this.btnListar.BackgroundImage = global::CapaPresentacion.Properties.Resources.imgFondoMenu;
+            this.btnListar.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnListar.ForeColor = System.Drawing.Color.White;
+            this.btnListar.Location = new System.Drawing.Point(361, 300);
+            this.btnListar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnListar.Name = "btnListar";
+            this.btnListar.Size = new System.Drawing.Size(137, 53);
+            this.btnListar.TabIndex = 112;
+            this.btnListar.Text = "Listar todo";
+            this.btnListar.UseVisualStyleBackColor = false;
+            this.btnListar.Click += new System.EventHandler(this.btnListar_Click);
+            // 
+            // btnExportarExcel
+            // 
+            this.btnExportarExcel.BackColor = System.Drawing.Color.Maroon;
+            this.btnExportarExcel.BackgroundImage = global::CapaPresentacion.Properties.Resources.imgFondoMenu;
+            this.btnExportarExcel.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExportarExcel.ForeColor = System.Drawing.Color.White;
+            this.btnExportarExcel.Location = new System.Drawing.Point(1084, 300);
+            this.btnExportarExcel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnExportarExcel.Name = "btnExportarExcel";
+            this.btnExportarExcel.Size = new System.Drawing.Size(160, 53);
+            this.btnExportarExcel.TabIndex = 93;
+            this.btnExportarExcel.Text = "Exportar Excel";
+            this.btnExportarExcel.UseVisualStyleBackColor = false;
+            this.btnExportarExcel.Click += new System.EventHandler(this.btnExportarExcel_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.Transparent;
+            this.label11.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(396, 251);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(80, 28);
+            this.label11.TabIndex = 124;
+            this.label11.Text = "Buscar:";
+            // 
+            // txtBuscarAdmin
+            // 
+            this.txtBuscarAdmin.Location = new System.Drawing.Point(488, 254);
+            this.txtBuscarAdmin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtBuscarAdmin.Name = "txtBuscarAdmin";
+            this.txtBuscarAdmin.Size = new System.Drawing.Size(356, 22);
+            this.txtBuscarAdmin.TabIndex = 123;
+            this.txtBuscarAdmin.TextChanged += new System.EventHandler(this.txtBuscarAdmin_TextChanged);
+            // 
+            // btnLimpiarTodo
+            // 
+            this.btnLimpiarTodo.BackColor = System.Drawing.Color.Maroon;
+            this.btnLimpiarTodo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnLimpiarTodo.BackgroundImage")));
+            this.btnLimpiarTodo.Font = new System.Drawing.Font("Leelawadee UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiarTodo.ForeColor = System.Drawing.Color.White;
+            this.btnLimpiarTodo.Location = new System.Drawing.Point(772, 300);
+            this.btnLimpiarTodo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnLimpiarTodo.Name = "btnLimpiarTodo";
+            this.btnLimpiarTodo.Size = new System.Drawing.Size(101, 53);
+            this.btnLimpiarTodo.TabIndex = 125;
+            this.btnLimpiarTodo.Text = "Limpiar";
+            this.btnLimpiarTodo.UseVisualStyleBackColor = false;
+            this.btnLimpiarTodo.Click += new System.EventHandler(this.btnLimpiarTodo_Click);
+            // 
             // FormRegistrarAdministrador
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(855, 526);
+            this.BackgroundImage = global::CapaPresentacion.Properties.Resources.imgFondoGeneral;
+            this.ClientSize = new System.Drawing.Size(1299, 745);
+            this.Controls.Add(this.btnLimpiarTodo);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.txtBuscarAdmin);
+            this.Controls.Add(this.btnListarActivos);
             this.Controls.Add(this.btnEliminar);
-            this.Controls.Add(this.tbEstado);
-            this.Controls.Add(this.cbEstado);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.tbDireccion);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgUsuarios);
             this.Controls.Add(this.btnRegistrar);
-            this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.btnActualizarDatos);
             this.Controls.Add(this.btnListar);
             this.Controls.Add(this.tbCorreo);
@@ -369,9 +393,13 @@
             this.Controls.Add(this.tbContrasena);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.tbUsername);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.MaximumSize = new System.Drawing.Size(1317, 792);
+            this.MinimumSize = new System.Drawing.Size(1317, 792);
             this.Name = "FormRegistrarAdministrador";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Text = "FormRegistrarAdministrador";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.dgUsuarios)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -396,14 +424,15 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnExportarExcel;
         private System.Windows.Forms.Button btnActualizarDatos;
-        private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnRegistrar;
         private System.Windows.Forms.DataGridView dgUsuarios;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbDireccion;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label tbEstado;
-        private System.Windows.Forms.ComboBox cbEstado;
         private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.Button btnListarActivos;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox txtBuscarAdmin;
+        private System.Windows.Forms.Button btnLimpiarTodo;
     }
 }

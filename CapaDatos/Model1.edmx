@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BD_ALBASModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BD_ALBASModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Administrador">
           <Key>
             <PropertyRef Name="idAdministrador" />
@@ -24,9 +24,8 @@
         <EntityType Name="Caso">
           <Key>
             <PropertyRef Name="nroCaso" />
-            <PropertyRef Name="idCliente" />
           </Key>
-          <Property Name="nroCaso" Type="int" Nullable="false" />
+          <Property Name="nroCaso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idCliente" Type="int" Nullable="false" />
           <Property Name="idEspecialista" Type="int" Nullable="false" />
           <Property Name="idAdministrador" Type="int" Nullable="false" />
@@ -39,6 +38,7 @@
           <Property Name="createdBy" Type="int" />
           <Property Name="createdAt" Type="datetime" Nullable="false" />
           <Property Name="modifiedBy" Type="int" />
+          <Property Name="activo" Type="bit" />
           <Property Name="modifiedAt" Type="datetime" />
         </EntityType>
         <EntityType Name="Cita">
@@ -47,7 +47,6 @@
           </Key>
           <Property Name="idCita" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nroCaso" Type="int" Nullable="false" />
-          <Property Name="idCliente" Type="int" Nullable="false" />
           <Property Name="fecha" Type="date" Nullable="false" />
           <Property Name="horaInicio" Type="time" Precision="7" Nullable="false" />
           <Property Name="horaFin" Type="time" Precision="7" Nullable="false" />
@@ -55,6 +54,8 @@
           <Property Name="observacion" Type="varchar" MaxLength="300" />
           <Property Name="modalidad" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="confirmacionAsistencia" Type="bit" Nullable="false" />
+          <Property Name="activo" Type="bit" />
+          <Property Name="tiempoAnticipacion" Type="int" />
           <Property Name="createdBy" Type="int" />
           <Property Name="createdAt" Type="datetime" Nullable="false" />
           <Property Name="modifiedBy" Type="int" />
@@ -95,16 +96,6 @@
           <Property Name="nombre" Type="varchar" MaxLength="300" Nullable="false" />
           <Property Name="tipoGrafico" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="fechaGenerada" Type="datetime" Nullable="false" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -180,11 +171,9 @@
           <ReferentialConstraint>
             <Principal Role="Caso">
               <PropertyRef Name="nroCaso" />
-              <PropertyRef Name="idCliente" />
             </Principal>
             <Dependent Role="Cita">
               <PropertyRef Name="nroCaso" />
-              <PropertyRef Name="idCliente" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -232,7 +221,6 @@
           <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Especialista" EntityType="Self.Especialista" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reporte" EntityType="Self.Reporte" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Administrador_Usuario" Association="Self.FK_Administrador_Usuario">
             <End Role="Usuario" EntitySet="Usuario" />
@@ -267,8 +255,7 @@
             <End Role="Reporte" EntitySet="Reporte" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BD_ALBASModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -295,9 +282,8 @@
         <EntityType Name="Caso">
           <Key>
             <PropertyRef Name="nroCaso" />
-            <PropertyRef Name="idCliente" />
           </Key>
-          <Property Name="nroCaso" Type="Int32" Nullable="false" />
+          <Property Name="nroCaso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="idCliente" Type="Int32" Nullable="false" />
           <Property Name="idEspecialista" Type="Int32" Nullable="false" />
           <Property Name="idAdministrador" Type="Int32" Nullable="false" />
@@ -310,11 +296,12 @@
           <Property Name="createdBy" Type="Int32" />
           <Property Name="createdAt" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="modifiedBy" Type="Int32" />
+          <Property Name="activo" Type="Boolean" />
           <Property Name="modifiedAt" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Administrador" Relationship="Self.FK_Caso_Administrador" FromRole="Caso" ToRole="Administrador" />
           <NavigationProperty Name="Cliente" Relationship="Self.FK_Caso_Cliente" FromRole="Caso" ToRole="Cliente" />
           <NavigationProperty Name="Especialista" Relationship="Self.FK_Caso_Especialista" FromRole="Caso" ToRole="Especialista" />
-          <NavigationProperty Name="Cita" Relationship="Self.FK_Cita_Caso" FromRole="Caso" ToRole="Cita" />
+          <NavigationProperty Name="Cita" Relationship="Self.FK_Cita_Caso1" FromRole="Caso" ToRole="Cita" />
         </EntityType>
         <EntityType Name="Cita">
           <Key>
@@ -322,7 +309,6 @@
           </Key>
           <Property Name="idCita" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nroCaso" Type="Int32" Nullable="false" />
-          <Property Name="idCliente" Type="Int32" Nullable="false" />
           <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="horaInicio" Type="Time" Nullable="false" Precision="7" />
           <Property Name="horaFin" Type="Time" Nullable="false" Precision="7" />
@@ -330,11 +316,13 @@
           <Property Name="observacion" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
           <Property Name="modalidad" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="confirmacionAsistencia" Type="Boolean" Nullable="false" />
+          <Property Name="activo" Type="Boolean" />
+          <Property Name="tiempoAnticipacion" Type="Int32" />
           <Property Name="createdBy" Type="Int32" />
           <Property Name="createdAt" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="modifiedBy" Type="Int32" />
           <Property Name="modifiedAt" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Caso" Relationship="Self.FK_Cita_Caso" FromRole="Cita" ToRole="Caso" />
+          <NavigationProperty Name="Caso" Relationship="Self.FK_Cita_Caso1" FromRole="Cita" ToRole="Caso" />
         </EntityType>
         <EntityType Name="Cliente">
           <Key>
@@ -376,16 +364,6 @@
           <Property Name="tipoGrafico" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="fechaGenerada" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Administrador" Relationship="Self.FK_Reporte_Administrador" FromRole="Reporte" ToRole="Administrador" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -481,17 +459,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Cita_Caso">
+        <Association Name="FK_Cita_Caso1">
           <End Role="Caso" Type="Self.Caso" Multiplicity="1" />
           <End Role="Cita" Type="Self.Cita" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Caso">
               <PropertyRef Name="nroCaso" />
-              <PropertyRef Name="idCliente" />
             </Principal>
             <Dependent Role="Cita">
               <PropertyRef Name="nroCaso" />
-              <PropertyRef Name="idCliente" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -515,7 +491,6 @@
           <EntitySet Name="Cliente" EntityType="Self.Cliente" />
           <EntitySet Name="Especialista" EntityType="Self.Especialista" />
           <EntitySet Name="Reporte" EntityType="Self.Reporte" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" />
           <AssociationSet Name="FK_Administrador_Usuario" Association="Self.FK_Administrador_Usuario">
             <End Role="Usuario" EntitySet="Usuario" />
@@ -541,7 +516,7 @@
             <End Role="Especialista" EntitySet="Especialista" />
             <End Role="Caso" EntitySet="Caso" />
           </AssociationSet>
-          <AssociationSet Name="FK_Cita_Caso" Association="Self.FK_Cita_Caso">
+          <AssociationSet Name="FK_Cita_Caso1" Association="Self.FK_Cita_Caso1">
             <End Role="Caso" EntitySet="Caso" />
             <End Role="Cita" EntitySet="Cita" />
           </AssociationSet>
@@ -590,6 +565,7 @@
                 <ScalarProperty Name="createdBy" ColumnName="createdBy" />
                 <ScalarProperty Name="createdAt" ColumnName="createdAt" />
                 <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
                 <ScalarProperty Name="modifiedAt" ColumnName="modifiedAt" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -599,7 +575,6 @@
               <MappingFragment StoreEntitySet="Cita">
                 <ScalarProperty Name="idCita" ColumnName="idCita" />
                 <ScalarProperty Name="nroCaso" ColumnName="nroCaso" />
-                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
                 <ScalarProperty Name="horaInicio" ColumnName="horaInicio" />
                 <ScalarProperty Name="horaFin" ColumnName="horaFin" />
@@ -607,6 +582,8 @@
                 <ScalarProperty Name="observacion" ColumnName="observacion" />
                 <ScalarProperty Name="modalidad" ColumnName="modalidad" />
                 <ScalarProperty Name="confirmacionAsistencia" ColumnName="confirmacionAsistencia" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="tiempoAnticipacion" ColumnName="tiempoAnticipacion" />
                 <ScalarProperty Name="createdBy" ColumnName="createdBy" />
                 <ScalarProperty Name="createdAt" ColumnName="createdAt" />
                 <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
@@ -650,17 +627,6 @@
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="tipoGrafico" ColumnName="tipoGrafico" />
                 <ScalarProperty Name="fechaGenerada" ColumnName="fechaGenerada" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="BD_ALBASModel.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

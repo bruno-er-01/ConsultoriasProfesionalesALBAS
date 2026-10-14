@@ -25,10 +25,10 @@ namespace CapaNegocios
                 return "El nombre de usuario ya está registrado.";
             }
 
-            //Asignamos el rol
+
             usuario.rol = "Administrador";
 
-            //Aquí registramos el usuario
+
             int idUsuario = dUsuario.Registrar(usuario);
 
             if (idUsuario == 0)
@@ -36,7 +36,7 @@ namespace CapaNegocios
                 return "No se pudo registrar el usuario administrador.";
             }
 
-            //Aquí registramos el administrador
+
             return dAdministrador.Registrar(idUsuario);
         }
 
@@ -52,10 +52,10 @@ namespace CapaNegocios
                 return "El nombre de usuario ya está registrado.";
             }
 
-            //Asignamos el rol
+
             usuario.rol = "Especialista";
 
-            //Aquí registramos el usuario
+
             int idUsuario = dUsuario.Registrar(usuario);
 
             if (idUsuario == 0)
@@ -63,7 +63,6 @@ namespace CapaNegocios
                 return "No se pudo registrar el usuario especialista.";
             }
 
-            //Aquí registramos el especialista
             return dEspecialista.Registrar(idUsuario, idArea, disponible);
         }
 
@@ -76,22 +75,48 @@ namespace CapaNegocios
         {
             return dUsuario.ActualizarPasswordPorCorreo(correo, nuevaPassword);
         }
+        public string ActualizarPassword(Usuario usuario, string contraActual, string contraNueva)
+        {
+            if (usuario.password != contraActual)
+            {
+                return "La contraseña actual es incorrecta.";
+            }
+
+            if (contraNueva.Length < 4)
+            {
+                return "La nueva contraseña debe tener como mínimo 12 caracteres.";
+            }
+            return dUsuario.ActualizarPassword(usuario.idUsuario, contraNueva);
+        }
 
         public List<Usuario> ListarAdministradores()
         {
             return dUsuario.ListarAdministradores();
         }
 
-        //Borrar Muestra solo los usuarios con el rol de Especialista
-        public List<Usuario> ListarEspecialistas()
+        public List<Usuario> ListarTodoadministradores()
         {
-            return dUsuario.ListarEspecialistas();
+            return dUsuario.ListarTodoAdministrador();
         }
 
-        //Agregar Muestra los Especialistas con datos de Usuario
-        public object ListarEspecialistasConDatos()
+        public object ListarEspecialistasConDatosActivos()
+        {
+            return dEspecialista.ListarTodoActivos();
+        }
+
+        public object ListarTodoEspecialistas()
         {
             return dEspecialista.ListarTodo();
+        }
+
+        public object ListarEspecialistasDisponibles()
+        {
+            return dEspecialista.ListarDisponibles();
+        }
+
+        public string ActualizarDisponibleEspecialista(int idEspecialista, bool disponible)
+        {
+            return dEspecialista.ActualizarDisponible(idEspecialista, disponible);
         }
 
         public Usuario BuscarPorDni(string dni)
@@ -139,9 +164,54 @@ namespace CapaNegocios
             return dUsuario.Modificar(usuario);
         }
 
+        public string ActualizarActivo(int idUsuario, bool activo, int idUsuarioModificador)
+        {
+            return dUsuario.ActualizarActivo(idUsuario, activo, idUsuarioModificador);
+        }
+
         public string EliminarLogico(int idUsuario, int idUsuarioModificador)
         {
             return dUsuario.EliminarLogico(idUsuario, idUsuarioModificador);
+        }
+        public string BuscarAreaEspecialista(int idUsuario)
+        {
+            return dEspecialista.BuscarAreaEspecialista(idUsuario);
+        }
+
+        public bool BuscarDisponibilidadEspecialista(int idUsuario)
+        {
+            return dEspecialista.BuscarDisponibilidadEspecialista(idUsuario);
+        }
+        public int ContarUsuariosActivos()
+        {
+            return dUsuario.ContarUsuariosActivos();
+        }
+        public int ContarEspecialistasDisponibles()
+        {
+            return dEspecialista.ContarEspecialistasDisponibles();
+        }
+        public object ListarEspecialistasPorTexto(string texto)
+        {
+            if (texto == "")
+            {
+                return dEspecialista.ListarTodoActivos();
+            }
+
+            return dEspecialista.ListarEspecialistasPorTexto(texto);
+        }
+        public List<Usuario> ListarAdministradoresPorTexto(string texto)
+        {
+            if (texto == "")
+            {
+                return dUsuario.ListarTodoAdministrador();
+            }
+
+            return dUsuario.ListarAdministradoresPorTexto(texto);
+        }
+
+        public List<Usuario> ListarEspecialistas()
+        {
+            return dUsuario.ListarEspecialistas();
         }
     }
 }

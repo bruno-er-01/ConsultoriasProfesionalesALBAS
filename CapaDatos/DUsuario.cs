@@ -27,7 +27,7 @@ namespace CapaDatos
                 return 0;
             }
         }
-        //
+
         public Usuario BuscarPorCorreo(string correo)
         {
             Usuario usuario = null;
@@ -78,7 +78,34 @@ namespace CapaDatos
                 return ex.Message;
             }
         }
-        //
+
+        public string ActualizarPassword(int idUsuario, string nuevaPassword)
+        {
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    var modificado = context.Usuario.Find(idUsuario);
+
+                    if (modificado == null)
+                    {
+                        return "Usuario no encontrado.";
+                    }
+
+                    modificado.password = nuevaPassword;
+                    modificado.modifiedAt = DateTime.Now;
+
+                    context.SaveChanges();
+                }
+
+                return "Contraseña actualizada correctamente.";
+            }
+            catch (Exception ex)
+            {
+                return "Error al actualizar contraseña: " + ex.Message;
+            }
+        }
+
         public List<Usuario> ListarAdministradores()
         {
             try
@@ -87,6 +114,24 @@ namespace CapaDatos
                 {
                     return context.Usuario
                         .Where(u => u.rol == "Administrador" && u.activo == true)
+                        .ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return new List<Usuario>();
+            }
+        }
+
+        public List<Usuario> ListarTodoAdministrador()
+        {
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    return context.Usuario
+                        .Where(u => u.rol == "Administrador")
                         .ToList();
                 }
             }
@@ -232,6 +277,7 @@ namespace CapaDatos
                 return "Error al modificar usuario: " + ex.Message;
             }
         }
+
         public bool ExisteDniEnOtroUsuario(string dni, int idUsuario)
         {
             try
@@ -266,6 +312,34 @@ namespace CapaDatos
             }
         }
 
+        public string ActualizarActivo(int idUsuario, bool activo, int idUsuarioModificador)
+        {
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    var usuario = context.Usuario.Find(idUsuario);
+
+                    if (usuario == null)
+                    {
+                        return "Usuario no encontrado.";
+                    }
+
+                    usuario.activo = activo;
+                    usuario.modifiedBy = idUsuarioModificador;
+                    usuario.modifiedAt = DateTime.Now;
+
+                    context.SaveChanges();
+                }
+
+                return "Estado actualizado correctamente.";
+            }
+            catch (Exception ex)
+            {
+                return "Error al actualizar estado: " + ex.Message;
+            }
+        }
+
         public string EliminarLogico(int idUsuario, int idUsuarioModificador)
         {
             try
@@ -291,6 +365,54 @@ namespace CapaDatos
             catch (Exception ex)
             {
                 return "Error al eliminar usuario: " + ex.Message;
+            }
+        }
+        public int ContarUsuariosActivos()
+        {
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    return context.Usuario
+                        .Where(u => u.activo == true)
+                        .Count();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return 0;
+            }
+        }
+
+        public List<Usuario> ListarAdministradoresPorTexto(string texto)
+        {
+            List<Usuario> usuarios = new List<Usuario>();
+
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    usuarios = context.Usuario
+                        .Where(u => u.activo == true &&
+                                    u.rol == "Administrador" &&
+                                    (
+                                        u.nombre.Contains(texto) ||
+                                        u.apellido.Contains(texto) ||
+                                        u.dni.Contains(texto) ||
+                                        u.username.Contains(texto) ||
+                                        u.correo.Contains(texto) ||
+                                        u.telefono.Contains(texto)
+                                    ))
+                        .ToList();
+                }
+
+                return usuarios;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return usuarios;
             }
         }
     }

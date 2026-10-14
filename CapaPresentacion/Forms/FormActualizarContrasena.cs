@@ -22,14 +22,6 @@ namespace CapaPresentacion.Forms
             this.correoRecuperacion = correoRecuperacion;
         }
 
-        private void btnRegresarLogin_Click(object sender, EventArgs e)
-        {
-            FormRecuperarCuenta formRecuperarCuenta = new FormRecuperarCuenta();
-            formRecuperarCuenta.Show();
-
-            this.Close();
-        }
-
         private void btnActualizar_Click(object sender, EventArgs e)
         {
             string nuevaPassword = txtNuevaPassword.Text.Trim();
@@ -50,8 +42,16 @@ namespace CapaPresentacion.Forms
 
             MessageBox.Show(mensaje);
 
-            FormLogin formLogin = new FormLogin();
+            FormLoginPrincipal formLogin = new FormLoginPrincipal();
             formLogin.Show();
+
+            this.Close();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            FormRecuperarCuenta formRecuperarCuenta = new FormRecuperarCuenta();
+            formRecuperarCuenta.Show();
 
             this.Close();
         }

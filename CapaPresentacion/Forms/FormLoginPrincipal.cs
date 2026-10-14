@@ -10,15 +10,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CapaPresentacion
+namespace CapaPresentacion.Forms
 {
-    public partial class FormLogin : Form
+    public partial class FormLoginPrincipal : Form
     {
         private NUsuario nUsuario = new NUsuario();
-
-        public FormLogin()
+        public FormLoginPrincipal()
         {
             InitializeComponent();
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         private void btnIniciarSesion_Click(object sender, EventArgs e)
@@ -68,17 +72,12 @@ namespace CapaPresentacion
             }
         }
 
-        private void lklOlvidoContraseña_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void lklOlvidoContraseña_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
         {
             FormRecuperarCuenta formRecuperarCuenta = new FormRecuperarCuenta();
             formRecuperarCuenta.Show();
 
             this.Hide();
-        }
-
-        private void btnSalir_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }

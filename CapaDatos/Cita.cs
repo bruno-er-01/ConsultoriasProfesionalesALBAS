@@ -16,7 +16,6 @@ namespace CapaDatos
     {
         public int idCita { get; set; }
         public int nroCaso { get; set; }
-        public int idCliente { get; set; }
         public System.DateTime fecha { get; set; }
         public System.TimeSpan horaInicio { get; set; }
         public System.TimeSpan horaFin { get; set; }
@@ -24,6 +23,8 @@ namespace CapaDatos
         public string observacion { get; set; }
         public string modalidad { get; set; }
         public bool confirmacionAsistencia { get; set; }
+        public Nullable<bool> activo { get; set; }
+        public Nullable<int> tiempoAnticipacion { get; set; }
         public Nullable<int> createdBy { get; set; }
         public System.DateTime createdAt { get; set; }
         public Nullable<int> modifiedBy { get; set; }

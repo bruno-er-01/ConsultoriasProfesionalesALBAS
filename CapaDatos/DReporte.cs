@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace CapaDatos
 {
-    public  class DReporte
+    public class ReporteNoShowEstructura
+    {
+        public string Mes { get; set; }
+        public double TotalPerdido { get; set; }
+    }
+
+    public class DReporte
     {
         public List<string> ListarEstadosCaso()
         {
@@ -68,7 +74,7 @@ namespace CapaDatos
                         {
                             Area = g.Key.Area,
                             TotalCasos = g.Count(),
-                                    
+
                             CasosActivos = g.Count(x =>
                                 x.Estado == "Abierto" ||
                                 x.Estado == "En proceso"),
@@ -110,7 +116,7 @@ namespace CapaDatos
                         }
                     }
 
-                    if (orden == "Menor demanda")
+                    if (orden == "Ascendente")
                     {
                         reporte = reporte.OrderBy(r => r.TotalCasos).ToList();
                     }
@@ -128,6 +134,260 @@ namespace CapaDatos
                 return new List<ReporteDemandaArea>();
             }
         }
+
+        public class ReporteNoShowEstructura
+        {
+            public string Mes { get; set; }
+            public double TotalPerdido { get; set; }
+        }
+
+        public List<ReporteCargaEspecialista> ReporteCargaLaboralPorEspecialista(DateTime fechaInicio, DateTime fechaFin, string orden)
+        {
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    DateTime desde = fechaInicio.Date;
+                    DateTime hasta = fechaFin.Date.AddDays(1);
+
+                    var consulta = from e in context.Especialista
+                                   join u in context.Usuario on e.idEspecialista equals u.idUsuario
+                                   join a in context.Area on e.idArea equals a.idArea
+                                   join c in context.Caso on e.idEspecialista equals c.idEspecialista
+                                   where u.activo == true
+                                         && a.activo == true
+                                         && c.activo == true
+                                         && c.fechaHoraInicio >= desde
+                                         && c.fechaHoraInicio < hasta
+                                   select new
+                                   {
+                                       IdEspecialista = e.idEspecialista,
+                                       NombreCompleto = u.nombre + " " + u.apellido,
+                                       Area = a.nombre,
+                                       IdCaso = c.nroCaso,
+                                       EstadoCaso = c.estado
+                                   };
+
+                    var datosBase = consulta.ToList();
+                    var todasLasCitas = context.Cita.ToList();
+
+                    List<ReporteCargaEspecialista> listaReporte = new List<ReporteCargaEspecialista>();
+                    var grupos = datosBase.GroupBy(x => new { x.IdEspecialista, x.NombreCompleto, x.Area });
+                    int totalCasosGeneral = datosBase.Select(x => x.IdCaso).Distinct().Count();
+
+                    foreach (var g in grupos)
+                    {
+                        ReporteCargaEspecialista fila = new ReporteCargaEspecialista();
+                        fila.IdEspecialista = g.Key.IdEspecialista;
+                        fila.NombreEspecialista = g.Key.NombreCompleto;
+                        fila.Area = g.Key.Area;
+
+                        fila.TotalCasos = g.Select(x => x.IdCaso).Distinct().Count();
+                        fila.CasosActivos = g.Where(x => x.EstadoCaso == "Abierto" || x.EstadoCaso == "En proceso").Select(x => x.IdCaso).Distinct().Count();
+                        fila.CasosCerrados = g.Where(x => x.EstadoCaso == "Cerrado").Select(x => x.IdCaso).Distinct().Count();
+
+                        int contadorCitas = 0;
+                        foreach (var caso in g)
+                        {
+                            foreach (var cita in todasLasCitas)
+                            {
+                                if (cita.nroCaso == caso.IdCaso)
+                                {
+                                    contadorCitas = contadorCitas + 1;
+                                }
+                            }
+                        }
+                        fila.TotalCitas = contadorCitas;
+
+                        if (totalCasosGeneral == 0)
+                        {
+                            fila.PorcentajeDemanda = 0;
+                        }
+                        else
+                        {
+                            double calculo = (fila.TotalCasos * 100.0) / totalCasosGeneral;
+                            fila.PorcentajeDemanda = Math.Round(calculo, 2);
+                        }
+
+                        if (fila.TotalCasos >= 8)
+                        {
+                            fila.Recomendacion = "Sobrecarga detectada. Evaluar redistribución.";
+                        }
+                        else if (fila.TotalCasos >= 4)
+                        {
+                            fila.Recomendacion = "Carga moderada. Flujo de trabajo óptimo.";
+                        }
+                        else
+                        {
+                            fila.Recomendacion = "Carga baja. Disponible para asignación.";
+                        }
+
+                        listaReporte.Add(fila);
+                    }
+
+                    if (orden == "Ascendente")
+                    {
+                        listaReporte = listaReporte.OrderBy(r => r.TotalCasos).ToList();
+                    }
+                    else
+                    {
+                        listaReporte = listaReporte.OrderByDescending(r => r.TotalCasos).ToList();
+                    }
+
+                    return listaReporte;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return new List<ReporteCargaEspecialista>();
+            }
+        }
+
+        public List<CapaDatos.ReporteNoShowEstructura> ObtenerPerdidaNoShow()
+        {
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    var query = from c in context.Cita
+                                join ca in context.Caso on c.nroCaso equals ca.nroCaso
+                                join e in context.Especialista on ca.idEspecialista equals e.idEspecialista
+                                join a in context.Area on e.idArea equals a.idArea
+                                where c.estado == "Cancelado" || c.confirmacionAsistencia == false
+                                select new { c.fecha, a.costo };
+
+                    List<CapaDatos.ReporteNoShowEstructura> resultado = query.ToList()
+                        .GroupBy(x => x.fecha.ToString("MMMM"))
+                        .Select(g => new CapaDatos.ReporteNoShowEstructura
+                        {
+                            Mes = g.Key,
+                            TotalPerdido = g.Sum(x => Convert.ToDouble(x.costo))
+                        }).ToList();
+
+                    return resultado;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return new List<CapaDatos.ReporteNoShowEstructura>();
+            }
+        }
+
+        // Otenemos los montos de area
+        public List<object> ReporteMontosPorArea(DateTime fechaInicio, DateTime fechaFin, int idArea, string modalidad, string orden)
+        {
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    var query = from c in context.Cita
+                                join ca in context.Caso on c.nroCaso equals ca.nroCaso
+                                join e in context.Especialista on ca.idEspecialista equals e.idEspecialista
+                                join a in context.Area on e.idArea equals a.idArea
+                                where c.fecha >= fechaInicio
+                                   && c.fecha <= fechaFin
+                                   && c.estado != "Cancelado"
+                                   && c.confirmacionAsistencia == true
+                                select new
+                                {
+                                    Fecha = c.fecha,
+                                    Modalidad = c.modalidad,
+                                    IdArea = a.idArea,
+                                    Area = a.nombre,
+                                    Costo = a.costo
+                                };
+
+                    if (idArea != 0)
+                    {
+                        query = query.Where(x => x.IdArea == idArea);
+                    }
+
+                    if (modalidad != "Todos")
+                    {
+                        query = query.Where(x => x.Modalidad == modalidad);
+                    }
+
+                    var reporte = query
+                        .GroupBy(x => new
+                        {
+                            Anio = x.Fecha.Year,
+                            Mes = x.Fecha.Month
+                        })
+                        .Select(g => new
+                        {
+                            Anio = g.Key.Anio,
+                            Mes = g.Key.Mes,
+                            MontoTotal = g.Sum(x => x.Costo),
+                            CantidadCitas = g.Count()
+                        });
+
+                    if (orden == "Descendente")
+                    {
+                        reporte = reporte.OrderByDescending(x => x.MontoTotal);
+                    }
+                    else
+                    {
+                        reporte = reporte.OrderBy(x => x.Anio).ThenBy(x => x.Mes);
+                    }
+
+                    return reporte.ToList<object>();
+                }
+            }
+            catch
+            {
+                return new List<object>();
+            }
+        }
+
+        //Montos para el grafico pastel
+        public List<object> ReporteMontosPorModalidad(DateTime fechaInicio, DateTime fechaFin, int idArea)
+        {
+            try
+            {
+                using (var context = new BD_ALBASEntities1())
+                {
+                    var query = from c in context.Cita
+                                join ca in context.Caso on c.nroCaso equals ca.nroCaso
+                                join e in context.Especialista on ca.idEspecialista equals e.idEspecialista
+                                join a in context.Area on e.idArea equals a.idArea
+                                where c.fecha >= fechaInicio
+                                   && c.fecha <= fechaFin
+                                   && c.estado != "Cancelado"
+                                   && c.confirmacionAsistencia == true
+                                select new
+                                {
+                                    Modalidad = c.modalidad,
+                                    IdArea = a.idArea,
+                                    Costo = a.costo
+                                };
+
+                    if (idArea != 0)
+                    {
+                        query = query.Where(x => x.IdArea == idArea);
+                    }
+
+                    var reporte = query
+                        .GroupBy(x => x.Modalidad)
+                        .Select(g => new
+                        {
+                            Modalidad = g.Key,
+                            MontoTotal = g.Sum(x => x.Costo),
+                            CantidadCitas = g.Count()
+                        })
+                        .ToList<object>();
+
+                    return reporte;
+                }
+            }
+            catch
+            {
+                return new List<object>();
+            }
+        }
+
     }
 }
+
 

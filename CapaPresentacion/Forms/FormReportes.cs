@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaPresentacion.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,31 +17,35 @@ namespace CapaPresentacion
         {
             InitializeComponent();
         }
-        private void AbrirFormEnPanel(Form formHijo)
-        {
-            pnlMenuReportes.Controls.Clear();
-
-            formHijo.TopLevel = false;
-            formHijo.FormBorderStyle = FormBorderStyle.None;
-            formHijo.Dock = DockStyle.Fill;
-
-            pnlMenuReportes.Controls.Add(formHijo);
-            formHijo.Show();
-        }
-        private void btnDashBoardClientes_Click(object sender, EventArgs e)
-        {
-            AbrirFormEnPanel(new FormDashBoardClientes());
-        }
-
-        private void btnDashBoardCitas_Click(object sender, EventArgs e)
-        {
-            AbrirFormEnPanel(new FormDashBoardCitas());
-        }
 
         private void btnReporteAreasCasos_Click(object sender, EventArgs e)
         {
            FormDashBoardReporteAreas form =  new FormDashBoardReporteAreas();
            form.ShowDialog();
+        }
+
+        private void btnDashBoardAntiguedadCasosPorAreas_Click(object sender, EventArgs e)
+        {
+            FormDashboardReporteAntiguedadCasos form = new FormDashboardReporteAntiguedadCasos();
+            form.Show();
+        }
+
+        private void btnReporteCargaLaboralXEspecialista_Click(object sender, EventArgs e)
+        {
+            FormDashboardCargaLaboralxEspecialista form = new FormDashboardCargaLaboralxEspecialista();
+            form.Show();
+        }
+
+        private void btnFinanciero_Click_1(object sender, EventArgs e)
+        {
+            FormDashBoardMontos form = new FormDashBoardMontos();
+            form.Show();
+        }
+
+        private void btnVerCitasAusentes_Click(object sender, EventArgs e)
+        {
+            Forms.FormDashBoardCitasAusentes formulario = new Forms.FormDashBoardCitasAusentes();
+            formulario.Show();
         }
     }
 }

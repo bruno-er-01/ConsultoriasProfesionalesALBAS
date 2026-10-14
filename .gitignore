@@ -361,3 +361,8 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+# --- ALBAS: archivos locales que no deben subirse ---
+LogAcceso.txt
+UpgradeLog*.htm
+Accesos.txt
+*.bak

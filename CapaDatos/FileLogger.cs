@@ -12,7 +12,7 @@ namespace CapaDatos
         private string ruta = Path.GetFullPath(
             Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\LogAcceso.txt")
         );
-
+        
         public void RegistrarLog(string mensaje)
         {
             try

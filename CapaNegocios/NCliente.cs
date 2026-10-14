@@ -21,6 +21,24 @@ namespace CapaNegocios
             return dCliente.ListarTodo();
         }
 
+        public List<Cliente> ListarTodoActivos()
+        {
+            return dCliente.ListarTodoActivos();
+        }
+        public string ActualizarActivo(int idCliente, bool activo, int idUsuario)
+        {
+            return dCliente.ActualizarActivo(idCliente, activo, idUsuario);
+        }
+        public Cliente EncontrarClienteDNI(string dni)
+        {
+           return dCliente.EncontrarClienteDNI(dni);
+        }
+
+        public Cliente EncontrarCliente(int id)
+        {
+            return dCliente.EncontrarCliente(id);
+        }
+
         public string Modificar(Cliente cliente)
         {
             return dCliente.Modificar(cliente);
@@ -29,6 +47,28 @@ namespace CapaNegocios
         public string EliminarLogico(int idCliente)
         {
             return dCliente.EliminarLogico(idCliente);
+        }
+
+        public Cliente BuscarPorId(int idCliente)
+        {
+            return dCliente.BuscarPorId(idCliente);
+        }
+        public int ContarClientesRegistrados()
+        {
+            return dCliente.ListarTodoActivos().Count();
+        }
+        public List<object> ListarClientesPorMes()
+        {
+            return dCliente.ListarClientesPorMes();
+        }
+        public List<Cliente> ListarClientesPorTexto(string texto)
+        {
+            if (texto == "")
+            {
+                return dCliente.ListarTodoActivos();
+            }
+
+            return dCliente.ListarClientesPorTexto(texto);
         }
     }
 }

@@ -27,6 +27,20 @@ Proyecto final del curso *Fundamentos de Sistemas de Información* (UPC), desarr
 | Antigüedad de casos | Tiempo que llevan abiertos los casos |
 | Montos | Ingresos por periodo y por modalidad de cita |
 
+## Capturas
+
+**Inicio de sesión**
+
+<img src="capturas/01-login.jpg" alt="Pantalla de inicio de sesión de ALBAS" width="720">
+
+**Pantalla de inicio con resumen general**
+
+<img src="capturas/02-inicio.jpg" alt="Pantalla de inicio con resumen general" width="720">
+
+**Dashboard de demanda por área**
+
+<img src="capturas/03-dashboard-demanda-area.jpg" alt="Dashboard de demanda por área de consultoría" width="720">
+
 ## Tecnologías
 
 - **Lenguaje:** C# (.NET Framework 4.7.2)
